@@ -9,10 +9,9 @@
 import UIKit
 
 final class ModalPresentationController: UIPresentationController {
-
-    var maximumContentHeight = ceil(UIScreen.main.bounds.height - UIApplication.shared.statusBarFrame.height)
-    var minimumContentHeight = ceil(UIScreen.main.bounds.height / 5 * 3)
+    var contentHeight = ceil(UIScreen.main.bounds.height / 5 * 4)
     var dismissalOffsetThreshold: CGFloat = -20
+    var dismissOnTapped: Bool = false
 
     private lazy var scrollView: ScrollView = {
         let scrollView = ScrollView()
@@ -27,35 +26,36 @@ final class ModalPresentationController: UIPresentationController {
     }()
 
     private let contentView: UIView = {
-        let v = UIView()
-        v.layer.cornerRadius = 20
-        v.layer.masksToBounds = true
-        v.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-        return v
+        let view = UIView()
+        view.layer.cornerRadius = 20
+        view.layer.masksToBounds = true
+        view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        return view
     }()
 
     lazy var bottomView: UIView = {
-        let v = UIView()
-        v.backgroundColor = UIColor.black
-        return v
+        let view = UIView()
+        view.backgroundColor = UIColor.black
+        return view
     }()
 
     let handleView: UIView = {
-        let v = UIView()
-        v.backgroundColor = UIColor.white.withAlphaComponent(0.6)
-        v.bounds = CGRect(x: 0, y: 0, width: 36, height: 5)
-        v.layer.cornerRadius = 2.5
-        return v
+        let view = UIView()
+        view.backgroundColor = UIColor.white.withAlphaComponent(0.6)
+        view.bounds = CGRect(x: 0, y: 0, width: 36, height: 5)
+        view.layer.cornerRadius = 2.5
+        return view
     }()
 
-    lazy var dimmingView: UIView = {
-        let dv = UIView()
-        dv.backgroundColor = UIColor.black.withAlphaComponent(0.43)
-        return dv
+    private lazy var dimmingView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.black
+        view.alpha = 0.0
+        return view
     }()
 
     lazy var tapGestureRecognizer: UITapGestureRecognizer = {
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleDimmingViewTap(_:)))
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTapDimmingView(_:)))
         tapGestureRecognizer.delegate = self
         return tapGestureRecognizer
     }()
@@ -68,15 +68,23 @@ final class ModalPresentationController: UIPresentationController {
         return scrollView
     }
 
-    override var frameOfPresentedViewInContainerView: CGRect {
-        return self.containerView!.bounds
+    override public var frameOfPresentedViewInContainerView: CGRect {
+        guard let containerView = containerView else {
+            return CGRect.zero
+        }
+
+        return containerView.bounds
     }
 
     override func presentationTransitionWillBegin() {
-        guard let containerView = self.containerView else {return}
+        guard let containerView = self.containerView else {
+            return
+        }
+
         let haptic = UISelectionFeedbackGenerator()
         haptic.prepare()
         haptic.selectionChanged()
+
         scrollView.addSubview(contentView)
         contentView.addSubview(presentedViewController.view)
         presentedViewController.view.layer.cornerRadius = contentView.layer.cornerRadius
@@ -91,57 +99,136 @@ final class ModalPresentationController: UIPresentationController {
         containerView.addSubview(dimmingView)
         dimmingView.frame = containerView.bounds
         dimmingView.alpha = 0
-        presentedViewController.transitionCoordinator?.animate(alongsideTransition: { (context) in
+
+        let transitionCoordinator = presentingViewController.transitionCoordinator
+        transitionCoordinator?.animate(alongsideTransition: { _ in
             self.dimmingView.alpha = 1
         }, completion: nil)
     }
 
     override func presentationTransitionDidEnd(_ completed: Bool) {
+        // Remove the dimming view if the presentation was aborted.
+        if !completed {
+            dimmingView.removeFromSuperview()
+        }
     }
 
     override func dismissalTransitionWillBegin() {
-        super.dismissalTransitionWillBegin()
-        presentedViewController.transitionCoordinator?.animate(alongsideTransition: { (context) in
+        let transitionCoordinator = presentingViewController.transitionCoordinator
+        transitionCoordinator?.animate(alongsideTransition: { _ in
             self.dimmingView.alpha = 0
         }, completion: nil)
+
         presentedViewController.view.bringSubviewToFront(handleView)
     }
 
     override func dismissalTransitionDidEnd(_ completed: Bool) {
-        super.dismissalTransitionDidEnd(completed)
+        // Remove the dimming view if the presentation was completed.
+        if completed {
+            dimmingView.removeFromSuperview()
+        }
     }
 
     override func containerViewDidLayoutSubviews() {
         scrollView.frame = containerView!.bounds
-        scrollView.contentSize = CGSize(width: scrollView.frame.width, height: scrollView.frame.height + maximumContentHeight - minimumContentHeight)
-        contentView.frame = CGRect(x: 0, y: scrollView.contentSize.height - maximumContentHeight, width: scrollView.frame.width, height: maximumContentHeight)
+        scrollView.contentSize = CGSize(width: scrollView.frame.width, height: scrollView.frame.height)
+        contentView.frame = CGRect(x: 0, y: scrollView.contentSize.height - contentHeight, width: scrollView.frame.width, height: contentHeight)
         bottomView.frame = CGRect(x: 0, y: contentView.frame.maxY, width: scrollView.frame.width, height: scrollView.frame.height)
-        handleView.center = CGPoint(x: contentView.bounds.width/2, y: 6 + handleView.bounds.height/2)
+        handleView.center = CGPoint(x: contentView.bounds.width / 2, y: 6 + handleView.bounds.height / 2)
     }
 
     @objc
-    func handleDimmingViewTap(_ tapGestureRecognizer: UITapGestureRecognizer) {
-        dismiss()
+    private func handleTapDimmingView(_ sender: UITapGestureRecognizer) {
+        guard dismissOnTapped else {
+            return
+        }
+        presentedViewController.dismiss(animated: true, completion: nil)
     }
 
     private func dismiss() {
         presentedViewController.dismiss(animated: true, completion: nil)
     }
 
-    var offsetObservation: NSKeyValueObservation?
-    var contentScrollViewObservation: NSKeyValueObservation?
-    var containerScrollViewObservation: NSKeyValueObservation?
-    var contentScrollView: UIScrollView?
+    private var isContentScrollViewScrollingToTop: Bool = false
+    private var lastOffsetY: CGFloat = 0
+    private var isScrollingUp = false
+    private var offsetObservation: NSKeyValueObservation?
+    private var contentScrollViewObservation: NSKeyValueObservation?
+    private var containerScrollViewObservation: NSKeyValueObservation?
+    private var contentScrollView: UIScrollView?
 
-    func contentScrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        let offsetThreshold = -(maximumContentHeight - minimumContentHeight)/2
-        if self.scrollView.contentOffset.y < dismissalOffsetThreshold || (velocity.y < -10 && targetContentOffset.pointee.y <= offsetThreshold * 2) {
-            dismiss()
+    func setContentScrollView(_ contentScrollView: UIScrollView) {
+        guard contentScrollView != self.contentScrollView else {
             return
         }
-    }
 
-    func contentScrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        contentScrollViewObservation?.invalidate()
+        containerScrollViewObservation?.invalidate()
+        scrollView.contentScrollView = contentScrollView
+
+        let threshold: CGFloat = 0
+        var shouldBypass = false
+
+        contentScrollViewObservation = contentScrollView.observe(
+            \.contentOffset,
+            options: [.old, .new],
+            changeHandler: { [unowned self] contentScrollView, change in
+                if shouldBypass
+                    || ((self.scrollView.isDragging || self.scrollView.isDecelerating)
+                    && contentScrollView.contentOffset.y > 0) {
+                    return
+                }
+
+                guard let oldValue = change.oldValue, let newValue = change.newValue else {
+                    return
+                }
+
+                let oldY = oldValue.y
+                var newY = newValue.y
+
+                if self.isContentScrollViewScrollingToTop {
+                    shouldBypass = true
+                    contentScrollView.setContentOffset(.zero, animated: true)
+                    shouldBypass = false
+                    newY = 0
+                }
+
+                var finalDeltaY: CGFloat = 0
+                if oldY != newY {
+                    if newY > oldY {
+                        if self.scrollView.contentOffset.y < threshold {
+                            let distanceToThreshold = threshold - self.scrollView.contentOffset.y
+                            finalDeltaY = max(0, newY - oldY - distanceToThreshold)
+                            self.scrollView.contentOffset = CGPoint(x: self.scrollView.contentOffset.x, y: self.scrollView.contentOffset.y + newY - oldY - finalDeltaY)
+                            shouldBypass = true
+                            let inset = UIEdgeInsets(top: min(threshold, self.scrollView.contentOffset.y),
+                                                     left: contentScrollView.contentInset.left,
+                                                     bottom: contentScrollView.contentInset.bottom,
+                                                     right: contentScrollView.contentInset.right)
+                            contentScrollView.contentInset = inset
+                            self.contentScrollView?.contentOffset = CGPoint(x: 0, y: oldY)
+                            shouldBypass = false
+                        }
+                    } else {
+                        if newY < 0 {
+                            self.scrollView.contentOffset = CGPoint(x: self.scrollView.contentOffset.x, y: self.scrollView.contentOffset.y + newY)
+                            shouldBypass = true
+                            let inset = UIEdgeInsets(top: self.scrollView.contentOffset.y,
+                                                     left: contentScrollView.contentInset.left,
+                                                     bottom: contentScrollView.contentInset.bottom,
+                                                     right: contentScrollView.contentInset.right)
+                            contentScrollView.contentInset = inset
+                            self.contentScrollView?.contentOffset = CGPoint(x: 0, y: 0)
+                            shouldBypass = false
+                        }
+                    }
+
+                    if self.presentedViewController.isBeingDismissed {
+                        contentScrollView.contentInset = .zero
+                    }
+                    contentScrollView.scrollIndicatorInsets = contentScrollView.contentInset
+                }
+            })
     }
 }
 
@@ -157,40 +244,22 @@ extension ModalPresentationController: UIScrollViewDelegate {
         if scrollView.contentOffset.y < dismissalOffsetThreshold {
             dismiss()
         }
-        if targetContentOffset.pointee.y > scrollView.contentOffset.y {
-            isScrollingUp = true
-        }
-    }
-
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-    }
-    func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
-    }
-
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        DispatchQueue.main.async {
-            self.isScrollingUp = false
-        }
-    }
-
-    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
     }
 }
 
 extension ModalPresentationController: UIGestureRecognizerDelegate {
     func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-        if gestureRecognizer == tapGestureRecognizer {
-            if gestureRecognizer.location(in: scrollView).y < contentView.frame.minY {
-                return true
-            }
+        guard gestureRecognizer == tapGestureRecognizer else {
+            return false
         }
-        return false
+
+        return gestureRecognizer.location(in: scrollView).y < contentView.frame.minY
     }
 }
 
 extension ModalPresentationController {
     fileprivate class ScrollView: UIScrollView {
-        weak var presentationController: ModalPresentationController!
+        weak var presentationController: ModalPresentationController?
         var contentScrollView: UIScrollView?
 
         override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
@@ -208,4 +277,3 @@ extension ModalPresentationController {
         }
     }
 }
-

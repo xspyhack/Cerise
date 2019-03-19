@@ -1,11 +1,11 @@
-////
-////  MattersViewController.swift
-////  Cerise
-////
-////  Created by bl4ckra1sond3tre on 9/10/16.
-////  Copyright © 2016 bl4ckra1sond3tre. All rights reserved.
-////
 //
+//  MattersViewController.swift
+//  Cerise
+//
+//  Created by bl4ckra1sond3tre on 9/10/16.
+//  Copyright © 2016 bl4ckra1sond3tre. All rights reserved.
+//
+
 import UIKit
 import RxSwift
 import RxCocoa
@@ -19,6 +19,7 @@ final class MattersViewController: BaseViewController {
         tableView.rowHeight = Constant.rowHeight
         tableView.estimatedRowHeight = Constant.rowHeight
         tableView.backgroundColor = UIColor.clear
+        tableView.contentInsetAdjustmentBehavior = .never
         tableView.separatorStyle = .none
         return tableView
     }()
@@ -78,7 +79,7 @@ final class MattersViewController: BaseViewController {
             })
             .subscribe(onNext: { [unowned self] in
                 let vc = ComposerViewController()
-                self.present(UINavigationController(rootViewController: vc), animated: true, completion: nil)
+                self.present(vc, animated: true, completion: nil)
             })
             .disposed(by: disposeBag)
 

@@ -14,6 +14,17 @@ final class ComposerViewController: BaseViewController {
         return vc
     }()
 
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nil, bundle: nil)
+
+        transitioningDelegate = self
+        modalPresentationStyle = .custom
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -39,5 +50,23 @@ final class ComposerViewController: BaseViewController {
             builder.edges == view.cerise.edgesAnchor
         }
         editorViewController.didMove(toParent: self)
+    }
+}
+
+extension ComposerViewController: UIViewControllerTransitioningDelegate {
+    func presentationController(forPresented presented: UIViewController,
+                                presenting: UIViewController?,
+                                source: UIViewController) -> UIPresentationController? {
+        guard presented == self else {
+            return nil
+        }
+
+        let presentationController = ModalPresentationController(presentedViewController: presented,
+                                                                 presenting: presenting)
+        let bounds = UIApplication.shared.keyWindow?.bounds ?? UIScreen.main.bounds
+        presentationController.contentHeight = (bounds.height / 5 * 4).rounded(.up)
+        presentationController.handleView.backgroundColor = .red// UIColor(named: "BK70")
+        presentationController.bottomView.backgroundColor = UIColor.white
+        return presentationController
     }
 }
