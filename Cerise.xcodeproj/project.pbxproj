@@ -20,6 +20,9 @@
 		785C69C1223FDF38004DF721 /* EditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785C69C0223FDF38004DF721 /* EditorViewController.swift */; };
 		785C69C3223FDF7C004DF721 /* ComposerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785C69C2223FDF7C004DF721 /* ComposerViewController.swift */; };
 		785C69C522408234004DF721 /* ModalPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785C69C422408234004DF721 /* ModalPresentationController.swift */; };
+		785C69C7224136F5004DF721 /* EditorViewController+Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785C69C6224136F5004DF721 /* EditorViewController+Cell.swift */; };
+		785C69C92241398D004DF721 /* RxTextFieldDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785C69C82241398D004DF721 /* RxTextFieldDelegateProxy.swift */; };
+		785C69CB22413B06004DF721 /* UITextField+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785C69CA22413B06004DF721 /* UITextField+Rx.swift */; };
 		78A8D04E222AA94600885B6E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A8D04D222AA94600885B6E /* AppDelegate.swift */; };
 		78A8D050222AA94600885B6E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A8D04F222AA94600885B6E /* MainViewController.swift */; };
 		78A8D053222AA94600885B6E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78A8D051222AA94600885B6E /* Main.storyboard */; };
@@ -88,6 +91,9 @@
 		785C69C0223FDF38004DF721 /* EditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorViewController.swift; sourceTree = "<group>"; };
 		785C69C2223FDF7C004DF721 /* ComposerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposerViewController.swift; sourceTree = "<group>"; };
 		785C69C422408234004DF721 /* ModalPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalPresentationController.swift; sourceTree = "<group>"; };
+		785C69C6224136F5004DF721 /* EditorViewController+Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EditorViewController+Cell.swift"; sourceTree = "<group>"; };
+		785C69C82241398D004DF721 /* RxTextFieldDelegateProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxTextFieldDelegateProxy.swift; sourceTree = "<group>"; };
+		785C69CA22413B06004DF721 /* UITextField+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Rx.swift"; sourceTree = "<group>"; };
 		78A8D04A222AA94600885B6E /* Cerise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cerise.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78A8D04D222AA94600885B6E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		78A8D04F222AA94600885B6E /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -266,6 +272,7 @@
 			children = (
 				785C69C2223FDF7C004DF721 /* ComposerViewController.swift */,
 				785C69C0223FDF38004DF721 /* EditorViewController.swift */,
+				785C69C6224136F5004DF721 /* EditorViewController+Cell.swift */,
 			);
 			path = Editor;
 			sourceTree = "<group>";
@@ -338,6 +345,8 @@
 				78A8D0B0222AC51200885B6E /* UITableView+Rx.swift */,
 				78A8D0B3222AC51200885B6E /* UIView+Rx.swift */,
 				78A8D0AE222AC4BD00885B6E /* ObservableConvertibleType+Driver.swift */,
+				785C69C82241398D004DF721 /* RxTextFieldDelegateProxy.swift */,
+				785C69CA22413B06004DF721 /* UITextField+Rx.swift */,
 			);
 			path = Rx;
 			sourceTree = "<group>";
@@ -518,8 +527,10 @@
 				FA90AAD82240EDEC00B08682 /* Date+Cerise.swift in Sources */,
 				78A8D075222AAA5500885B6E /* MattersViewController.swift in Sources */,
 				78A8D076222AAA5500885B6E /* MattersViewModel.swift in Sources */,
+				785C69C92241398D004DF721 /* RxTextFieldDelegateProxy.swift in Sources */,
 				78A8D0B6222AC51200885B6E /* UIControl+Rx.swift in Sources */,
 				78A8D050222AA94600885B6E /* MainViewController.swift in Sources */,
+				785C69CB22413B06004DF721 /* UITextField+Rx.swift in Sources */,
 				78A8D0A3222ABDAA00885B6E /* UIImage+Color.swift in Sources */,
 				78A8D07C222AAA5C00885B6E /* MatterViewController.swift in Sources */,
 				78A8D0B7222AC51200885B6E /* UIView+Rx.swift in Sources */,
@@ -531,6 +542,7 @@
 				7849BE92223D3E7B0068503A /* LayoutAnchor.swift in Sources */,
 				78A8D0C4222AD39200885B6E /* UIStoryboard+Cerise.swift in Sources */,
 				78A8D04E222AA94600885B6E /* AppDelegate.swift in Sources */,
+				785C69C7224136F5004DF721 /* EditorViewController+Cell.swift in Sources */,
 				7849BE98223D3FA10068503A /* UIView+Layout.swift in Sources */,
 				78A8D0AC222AC44100885B6E /* ModelService.swift in Sources */,
 				7849BE8C222BC2640068503A /* MattersCoordinator.swift in Sources */,

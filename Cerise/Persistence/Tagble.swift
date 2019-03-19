@@ -10,6 +10,7 @@ import Foundation
 
 /// Hong Kong MTR station colour
 enum Tagble: String {
+    case none = "#000000"
     case hengfachuen = "#b51921"
     case taikoo = "#b2103e"
     case kowloonbay = "#c41832"
