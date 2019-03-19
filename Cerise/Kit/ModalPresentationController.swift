@@ -25,7 +25,7 @@ final class ModalPresentationController: UIPresentationController {
         return scrollView
     }()
 
-    private let contentView: UIView = {
+    private lazy var contentView: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 20
         view.layer.masksToBounds = true
@@ -33,7 +33,7 @@ final class ModalPresentationController: UIPresentationController {
         return view
     }()
 
-    let handleView: UIView = {
+    private(set) lazy var handleView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.white.withAlphaComponent(0.6)
         view.bounds = CGRect(x: 0, y: 0, width: 36, height: 5)
@@ -48,7 +48,7 @@ final class ModalPresentationController: UIPresentationController {
         return view
     }()
 
-    lazy var tapGestureRecognizer: UITapGestureRecognizer = {
+    private lazy var tapGestureRecognizer: UITapGestureRecognizer = {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTapDimmingView(_:)))
         tapGestureRecognizer.delegate = self
         return tapGestureRecognizer
@@ -75,9 +75,7 @@ final class ModalPresentationController: UIPresentationController {
             return
         }
 
-        let haptic = UISelectionFeedbackGenerator()
-        haptic.prepare()
-        haptic.selectionChanged()
+        HapticGenerator.trigger(with: .impactLight)
 
         presentedScrollView.addSubview(contentView)
         contentView.addSubview(presentedViewController.view)
