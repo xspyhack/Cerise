@@ -13,8 +13,8 @@ final class ModalPresentationController: UIPresentationController {
     var dismissalOffsetThreshold: CGFloat = -20
     var dismissOnTapped: Bool = false
 
-    private lazy var scrollView: ScrollView = {
-        let scrollView = ScrollView()
+    private lazy var presentedScrollView: PresentedScrollView = {
+        let scrollView = PresentedScrollView()
         scrollView.contentInsetAdjustmentBehavior = .never
         scrollView.alwaysBounceVertical = true
         scrollView.showsVerticalScrollIndicator = false
@@ -65,7 +65,7 @@ final class ModalPresentationController: UIPresentationController {
     }
 
     override var presentedView: UIView? {
-        return scrollView
+        return presentedScrollView
     }
 
     override public var frameOfPresentedViewInContainerView: CGRect {
@@ -85,13 +85,13 @@ final class ModalPresentationController: UIPresentationController {
         haptic.prepare()
         haptic.selectionChanged()
 
-        scrollView.addSubview(contentView)
+        presentedScrollView.addSubview(contentView)
         contentView.addSubview(presentedViewController.view)
         presentedViewController.view.layer.cornerRadius = contentView.layer.cornerRadius
         presentedViewController.view.layer.masksToBounds = true
         presentedViewController.view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         presentedViewController.view.frame = contentView.bounds
-        scrollView.addSubview(bottomView)
+        presentedScrollView.addSubview(bottomView)
         presentedViewController.view.addSubview(handleView)
         handleView.layer.zPosition = 100
         containerView.layoutIfNeeded()
@@ -130,10 +130,16 @@ final class ModalPresentationController: UIPresentationController {
     }
 
     override func containerViewDidLayoutSubviews() {
-        scrollView.frame = containerView!.bounds
-        scrollView.contentSize = CGSize(width: scrollView.frame.width, height: scrollView.frame.height)
-        contentView.frame = CGRect(x: 0, y: scrollView.contentSize.height - contentHeight, width: scrollView.frame.width, height: contentHeight)
-        bottomView.frame = CGRect(x: 0, y: contentView.frame.maxY, width: scrollView.frame.width, height: scrollView.frame.height)
+        presentedScrollView.frame = containerView!.bounds
+        presentedScrollView.contentSize = presentedScrollView.frame.size
+        contentView.frame = CGRect(x: 0,
+                                   y: presentedScrollView.contentSize.height - contentHeight,
+                                   width: presentedScrollView.frame.width,
+                                   height: contentHeight)
+        bottomView.frame = CGRect(x: 0,
+                                  y: contentView.frame.maxY,
+                                  width: presentedScrollView.frame.width,
+                                  height: presentedScrollView.frame.height)
         handleView.center = CGPoint(x: contentView.bounds.width / 2, y: 6 + handleView.bounds.height / 2)
     }
 
@@ -164,7 +170,7 @@ final class ModalPresentationController: UIPresentationController {
 
         contentScrollViewObservation?.invalidate()
         containerScrollViewObservation?.invalidate()
-        scrollView.contentScrollView = contentScrollView
+        presentedScrollView.contentScrollView = contentScrollView
 
         let threshold: CGFloat = 0
         var shouldBypass = false
@@ -174,7 +180,7 @@ final class ModalPresentationController: UIPresentationController {
             options: [.old, .new],
             changeHandler: { [unowned self] contentScrollView, change in
                 if shouldBypass
-                    || ((self.scrollView.isDragging || self.scrollView.isDecelerating)
+                    || ((self.presentedScrollView.isDragging || self.presentedScrollView.isDecelerating)
                     && contentScrollView.contentOffset.y > 0) {
                     return
                 }
@@ -196,12 +202,12 @@ final class ModalPresentationController: UIPresentationController {
                 var finalDeltaY: CGFloat = 0
                 if oldY != newY {
                     if newY > oldY {
-                        if self.scrollView.contentOffset.y < threshold {
-                            let distanceToThreshold = threshold - self.scrollView.contentOffset.y
+                        if self.presentedScrollView.contentOffset.y < threshold {
+                            let distanceToThreshold = threshold - self.presentedScrollView.contentOffset.y
                             finalDeltaY = max(0, newY - oldY - distanceToThreshold)
-                            self.scrollView.contentOffset = CGPoint(x: self.scrollView.contentOffset.x, y: self.scrollView.contentOffset.y + newY - oldY - finalDeltaY)
+                            self.presentedScrollView.contentOffset = CGPoint(x: self.presentedScrollView.contentOffset.x, y: self.presentedScrollView.contentOffset.y + newY - oldY - finalDeltaY)
                             shouldBypass = true
-                            let inset = UIEdgeInsets(top: min(threshold, self.scrollView.contentOffset.y),
+                            let inset = UIEdgeInsets(top: min(threshold, self.presentedScrollView.contentOffset.y),
                                                      left: contentScrollView.contentInset.left,
                                                      bottom: contentScrollView.contentInset.bottom,
                                                      right: contentScrollView.contentInset.right)
@@ -211,9 +217,10 @@ final class ModalPresentationController: UIPresentationController {
                         }
                     } else {
                         if newY < 0 {
-                            self.scrollView.contentOffset = CGPoint(x: self.scrollView.contentOffset.x, y: self.scrollView.contentOffset.y + newY)
+                            self.presentedScrollView.contentOffset = CGPoint(x: self.presentedScrollView.contentOffset.x,
+                                                                             y: self.presentedScrollView.contentOffset.y + newY)
                             shouldBypass = true
-                            let inset = UIEdgeInsets(top: self.scrollView.contentOffset.y,
+                            let inset = UIEdgeInsets(top: self.presentedScrollView.contentOffset.y,
                                                      left: contentScrollView.contentInset.left,
                                                      bottom: contentScrollView.contentInset.bottom,
                                                      right: contentScrollView.contentInset.right)
@@ -253,12 +260,12 @@ extension ModalPresentationController: UIGestureRecognizerDelegate {
             return false
         }
 
-        return gestureRecognizer.location(in: scrollView).y < contentView.frame.minY
+        return gestureRecognizer.location(in: presentedScrollView).y < contentView.frame.minY
     }
 }
 
 extension ModalPresentationController {
-    fileprivate class ScrollView: UIScrollView {
+    fileprivate class PresentedScrollView: UIScrollView {
         weak var presentationController: ModalPresentationController?
         var contentScrollView: UIScrollView?
 
