@@ -1,4 +1,5 @@
 github "xspyhack/Ditto"
+github "xspyhack/Keldeo"
 github "ReactiveX/RxSwift"
 github "RxSwiftCommunity/RxDataSources"
 # github "realm/SwiftLint"

@@ -59,6 +59,8 @@
 		78A8D0C2222AC84E00885B6E /* UIColor+Cerise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A8D0C1222AC84E00885B6E /* UIColor+Cerise.swift */; };
 		78A8D0C4222AD39200885B6E /* UIStoryboard+Cerise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A8D0C3222AD39200885B6E /* UIStoryboard+Cerise.swift */; };
 		78A8D0C6222AD4C100885B6E /* String+Uppercased.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A8D0C5222AD4C100885B6E /* String+Uppercased.swift */; };
+		FA90AAD42240EB2C00B08682 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA90AAD32240EB2C00B08682 /* Logger.swift */; };
+		FA90AAD62240EC9A00B08682 /* Keldeo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA90AAD52240EC9900B08682 /* Keldeo.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,6 +132,8 @@
 		78A8D0C1222AC84E00885B6E /* UIColor+Cerise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Cerise.swift"; sourceTree = "<group>"; };
 		78A8D0C3222AD39200885B6E /* UIStoryboard+Cerise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+Cerise.swift"; sourceTree = "<group>"; };
 		78A8D0C5222AD4C100885B6E /* String+Uppercased.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Uppercased.swift"; sourceTree = "<group>"; };
+		FA90AAD32240EB2C00B08682 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		FA90AAD52240EC9900B08682 /* Keldeo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Keldeo.framework; path = Carthage/Build/iOS/Keldeo.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +141,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA90AAD62240EC9A00B08682 /* Keldeo.framework in Frameworks */,
 				78A8D098222ABAB200885B6E /* RxSwift.framework in Frameworks */,
 				78A8D094222ABAA600885B6E /* RxCocoa.framework in Frameworks */,
 				78A8D08E222ABA9200885B6E /* Ditto.framework in Frameworks */,
@@ -276,6 +281,7 @@
 		78A8D08A222ABA8F00885B6E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FA90AAD52240EC9900B08682 /* Keldeo.framework */,
 				78A8D097222ABAB200885B6E /* RxSwift.framework */,
 				78A8D095222ABAAC00885B6E /* RxDataSources.framework */,
 				78A8D093222ABAA600885B6E /* RxCocoa.framework */,
@@ -298,6 +304,7 @@
 				7849BE8E223D26150068503A /* Coordinating.swift */,
 				785C69BE223FDD51004DF721 /* HapticGenerator.swift */,
 				78A8D09B222ABAEB00885B6E /* Router.swift */,
+				FA90AAD32240EB2C00B08682 /* Logger.swift */,
 				78A8D0A2222ABDAA00885B6E /* UIImage+Color.swift */,
 				78A8D0C1222AC84E00885B6E /* UIColor+Cerise.swift */,
 				78A8D0A6222AC08700885B6E /* Cerise.swift */,
@@ -455,6 +462,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Ditto.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Differentiator.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RxAtomic.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Keldeo.framework",
 			);
 			name = "Carthage Copy Framework";
 			outputFileListPaths = (
@@ -510,6 +518,7 @@
 				78A8D077222AAA5500885B6E /* MattersViewController+Cell.swift in Sources */,
 				78A8D09C222ABAEB00885B6E /* BaseViewController.swift in Sources */,
 				78A8D0A5222AC06200885B6E /* Reusable.swift in Sources */,
+				FA90AAD42240EB2C00B08682 /* Logger.swift in Sources */,
 				7849BE94223D3EB60068503A /* LayoutProperty.swift in Sources */,
 				7849BE92223D3E7B0068503A /* LayoutAnchor.swift in Sources */,
 				78A8D0C4222AD39200885B6E /* UIStoryboard+Cerise.swift in Sources */,

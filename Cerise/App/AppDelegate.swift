@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Keldeo
 
 @UIApplicationMain
 final class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -39,6 +40,18 @@ extension AppDelegate {
 
 extension AppDelegate {
     private func setUpLogger() {
+        let formatter = LogFormatter()
+
+        if Environment.type == .debug {
+            let consoleLogger = ConsoleLogger(level: .debug, formatter: formatter)
+            Logger.shared.add(AnyLogger(consoleLogger))
+        } else {
+            let fileManager = DefaultFileManager()
+            if let fileLogger = FileLogger(level: .info, formatter: formatter, fileManager: fileManager) {
+                Logger.shared.add(AnyLogger(fileLogger))
+                print("Log directory: \(fileManager.directory)")
+            }
+        }
     }
 
     private func setUpAppearance() {

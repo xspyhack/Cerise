@@ -1,3 +1,4 @@
 github "ReactiveX/RxSwift" "4.4.2"
 github "RxSwiftCommunity/RxDataSources" "3.1.0"
 github "xspyhack/Ditto" "0.0.5"
+github "xspyhack/Keldeo" "0.0.4"
