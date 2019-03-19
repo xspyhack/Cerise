@@ -32,6 +32,13 @@ struct Matter {
 }
 
 extension Matter {
+    enum Kind: Int {
+        case past
+        case coming
+    }
+}
+
+extension Matter {
     static func mock() -> [Matter] {
         return [
             Matter(id: UUID().uuidString, title: "Cherry", occurrenceDate: Date(timeIntervalSince1970: 233)),

@@ -62,6 +62,7 @@
 		FA90AAD42240EB2C00B08682 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA90AAD32240EB2C00B08682 /* Logger.swift */; };
 		FA90AAD62240EC9A00B08682 /* Keldeo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA90AAD52240EC9900B08682 /* Keldeo.framework */; };
 		FA90AAD82240EDEC00B08682 /* Date+Cerise.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA90AAD72240EDEC00B08682 /* Date+Cerise.swift */; };
+		FA90AADA2240F6B500B08682 /* Tagble.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA90AAD92240F6B500B08682 /* Tagble.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -136,6 +137,7 @@
 		FA90AAD32240EB2C00B08682 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		FA90AAD52240EC9900B08682 /* Keldeo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Keldeo.framework; path = Carthage/Build/iOS/Keldeo.framework; sourceTree = "<group>"; };
 		FA90AAD72240EDEC00B08682 /* Date+Cerise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Cerise.swift"; sourceTree = "<group>"; };
+		FA90AAD92240F6B500B08682 /* Tagble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tagble.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -323,6 +325,7 @@
 			isa = PBXGroup;
 			children = (
 				78A8D0A9222AC19A00885B6E /* Matter.swift */,
+				FA90AAD92240F6B500B08682 /* Tagble.swift */,
 			);
 			path = Persistence;
 			sourceTree = "<group>";
@@ -506,6 +509,7 @@
 				78A8D0B4222AC51200885B6E /* UITableView+Rx.swift in Sources */,
 				78A8D0C0222AC77400885B6E /* TraitEnvironment.swift in Sources */,
 				78A8D0B5222AC51200885B6E /* Operators.swift in Sources */,
+				FA90AADA2240F6B500B08682 /* Tagble.swift in Sources */,
 				78A8D09D222ABAEB00885B6E /* Router.swift in Sources */,
 				78A8D0AF222AC4BD00885B6E /* ObservableConvertibleType+Driver.swift in Sources */,
 				78A8D0A7222AC08700885B6E /* Cerise.swift in Sources */,
