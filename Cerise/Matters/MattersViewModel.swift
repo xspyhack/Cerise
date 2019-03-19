@@ -33,15 +33,15 @@ protocol MattersViewModelType {
 typealias MattersViewSection = SectionModel<String, MatterCellModelType>
 
 private enum Section: Int {
-    case comming
+    case upcoming
     case past
 
     var title: String {
         switch self {
-        case .comming:
-            return "Comming"
+        case .upcomming:
+            return "UPCOMING"
         case .past:
-            return "Past"
+            return "PAST"
         }
     }
 }
@@ -72,15 +72,15 @@ struct MattersViewModel: MattersViewModelType {
 
         let sections: Driver<[MattersViewSection]> = matters.asObservable()
             .map { matters in
-                let commingCellModels = matters.filter { $0.occurrenceDate > Date() }
+                let comingCellModels = matters.filter { $0.occurrenceDate > Date() }
                     .map(MattersViewController.MatterCellModel.init) as [MatterCellModelType]
-                let commingSection = MattersViewSection(model: Section.comming.title, items: commingCellModels)
+                let comingSection = MattersViewSection(model: Section.upcoming.title, items: comingCellModels)
 
                 let pastCellModels = matters.filter { $0.occurrenceDate <= Date() }
                     .map(MattersViewController.MatterCellModel.init) as [MatterCellModelType]
                 let pastSection = MattersViewSection(model: Section.past.title, items: pastCellModels)
 
-                return [commingSection, pastSection]
+                return [comingSection, pastSection]
             }
             .asDriver(onErrorJustReturn: [])
 
@@ -110,9 +110,9 @@ extension MattersViewModel {
             return nil
         }
         switch section {
-        case .comming:
-            let commings = matters.value.filter { $0.occurrenceDate > Date() }
-            return commings.safe[indexPath.row]
+        case .upcoming:
+            let comings = matters.value.filter { $0.occurrenceDate > Date() }
+            return comings.safe[indexPath.row]
         case .past:
             let pasts = matters.value.filter { $0.occurrenceDate <= Date() }
             return pasts.safe[indexPath.row]

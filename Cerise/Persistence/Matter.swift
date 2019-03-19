@@ -34,7 +34,7 @@ struct Matter {
 extension Matter {
     enum Kind: Int {
         case past
-        case coming
+        case upcoming
     }
 }
 
