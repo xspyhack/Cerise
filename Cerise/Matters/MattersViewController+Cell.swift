@@ -12,8 +12,7 @@ protocol MatterCellModelType {
     var title: String { get }
     var days: Int { get }
 //    var tag: String { get }
-//    var notes: String { get }
-//    var createdAt: TimeInterval { get }
+    var notes: String? { get }
 }
 
 extension MattersViewController {
@@ -21,15 +20,13 @@ extension MattersViewController {
         var title: String
         var days: Int
 //        var tag: String
-//        var notes: String
-//        let createdAt: TimeInterval
+        var notes: String?
 
         init(matter: Matter) {
             self.title = matter.title
-            self.days = 10// Date().cerise.absoluteDays(with: Date(timeIntervalSince1970: matter.happenedAt))
+            self.days = Date().cerise.absoluteDays(with: matter.occurrenceDate)
 //            self.tag = (Tag(rawValue: matter.tag) ?? .red).value
-//            self.notes = matter.body
-//            self.createdAt = matter.createdAt
+            self.notes = matter.notes
         }
     }
 }
@@ -38,7 +35,7 @@ extension MattersViewController {
     final class MatterCell: UITableViewCell, Reusable {
         private lazy var daysLabel: UILabel = {
             let label = UILabel()
-            label.font = UIFont.systemFont(ofSize: 32.0, weight: .medium)
+            label.font = UIFont.systemFont(ofSize: 46.0, weight: .medium)
             label.text = "+333"
             label.textColor = UIColor.cerise.tint
             return label

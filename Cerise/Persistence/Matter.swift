@@ -8,35 +8,44 @@
 
 import Foundation
 
+/// A model that represents a matter.
 struct Matter {
-    ///
+    /// The matter’s unique identifier.
     let id: String
 
-    ///
+    /// The title for the matter.
     let title: String
 
-    ///
-    let days: Int
+    /// The original occurrence date of the matter.
+    let occurrenceDate: Date
 
-    ///
-    let happenedAt: TimeInterval
+    /// The notes associated with the matter.
+    let notes: String?
+
+    /// This will be removed after Swift 5.
+    init(id: String, title: String, occurrenceDate: Date, notes: String? = nil) {
+        self.id = id
+        self.title = title
+        self.occurrenceDate = occurrenceDate
+        self.notes = notes
+    }
 }
 
 extension Matter {
     static func mock() -> [Matter] {
         return [
-            Matter(id: UUID().uuidString, title: "Cherry", days: 233, happenedAt: Date().timeIntervalSince1970),
-            Matter(id: UUID().uuidString, title: "Blessing", days: -233, happenedAt: Date().timeIntervalSince1970),
-            Matter(id: UUID().uuidString, title: "Lily", days: 23, happenedAt: Date().timeIntervalSince1970),
-            Matter(id: UUID().uuidString, title: "Alex", days: 33, happenedAt: Date().timeIntervalSince1970),
-            Matter(id: UUID().uuidString, title: "Cerise", days: -3, happenedAt: Date().timeIntervalSince1970),
-            Matter(id: UUID().uuidString, title: "Prelude", days: 131, happenedAt: Date().timeIntervalSince1970),
-            Matter(id: UUID().uuidString, title: "Kit", days: 324, happenedAt: Date().timeIntervalSince1970),
-            Matter(id: UUID().uuidString, title: "Router", days: -979, happenedAt: 0),
-            Matter(id: UUID().uuidString, title: "Coordinator", days: 3, happenedAt: Date().timeIntervalSinceNow),
-            Matter(id: UUID().uuidString, title: "Logger", days: 230, happenedAt: 342),
-            Matter(id: UUID().uuidString, title: "Logging", days: 230, happenedAt: 242),
-            Matter(id: UUID().uuidString, title: "Swift", days: 230, happenedAt: 42),
+            Matter(id: UUID().uuidString, title: "Cherry", occurrenceDate: Date(timeIntervalSince1970: 233)),
+            Matter(id: UUID().uuidString, title: "Blessing", occurrenceDate: Date()),
+            Matter(id: UUID().uuidString, title: "Lily", occurrenceDate: Date(timeIntervalSinceNow: 22_330)),
+            Matter(id: UUID().uuidString, title: "Alex", occurrenceDate: Date(timeInterval: 111_233, since: Date())),
+            Matter(id: UUID().uuidString, title: "Cerise", occurrenceDate: Date()),
+            Matter(id: UUID().uuidString, title: "Prelude", occurrenceDate: Date()),
+            Matter(id: UUID().uuidString, title: "Kit", occurrenceDate: Date()),
+            Matter(id: UUID().uuidString, title: "Router", occurrenceDate: Date()),
+            Matter(id: UUID().uuidString, title: "Coordinator", occurrenceDate: Date()),
+            Matter(id: UUID().uuidString, title: "Logger", occurrenceDate: Date()),
+            Matter(id: UUID().uuidString, title: "Keldeo", occurrenceDate: Date()),
+            Matter(id: UUID().uuidString, title: "Swift", occurrenceDate: Date()),
         ]
     }
 }

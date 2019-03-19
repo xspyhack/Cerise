@@ -61,6 +61,7 @@
 		78A8D0C6222AD4C100885B6E /* String+Uppercased.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A8D0C5222AD4C100885B6E /* String+Uppercased.swift */; };
 		FA90AAD42240EB2C00B08682 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA90AAD32240EB2C00B08682 /* Logger.swift */; };
 		FA90AAD62240EC9A00B08682 /* Keldeo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA90AAD52240EC9900B08682 /* Keldeo.framework */; };
+		FA90AAD82240EDEC00B08682 /* Date+Cerise.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA90AAD72240EDEC00B08682 /* Date+Cerise.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -134,6 +135,7 @@
 		78A8D0C5222AD4C100885B6E /* String+Uppercased.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Uppercased.swift"; sourceTree = "<group>"; };
 		FA90AAD32240EB2C00B08682 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		FA90AAD52240EC9900B08682 /* Keldeo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Keldeo.framework; path = Carthage/Build/iOS/Keldeo.framework; sourceTree = "<group>"; };
+		FA90AAD72240EDEC00B08682 /* Date+Cerise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Cerise.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -307,6 +309,7 @@
 				FA90AAD32240EB2C00B08682 /* Logger.swift */,
 				78A8D0A2222ABDAA00885B6E /* UIImage+Color.swift */,
 				78A8D0C1222AC84E00885B6E /* UIColor+Cerise.swift */,
+				FA90AAD72240EDEC00B08682 /* Date+Cerise.swift */,
 				78A8D0A6222AC08700885B6E /* Cerise.swift */,
 				78A8D0AB222AC44100885B6E /* ModelService.swift */,
 				78A8D0B8222AC5EA00885B6E /* FeedbackController.swift */,
@@ -508,6 +511,7 @@
 				78A8D0A7222AC08700885B6E /* Cerise.swift in Sources */,
 				78A8D0AA222AC19A00885B6E /* Matter.swift in Sources */,
 				7849BE9A223D3FE50068503A /* AutoLayout.swift in Sources */,
+				FA90AAD82240EDEC00B08682 /* Date+Cerise.swift in Sources */,
 				78A8D075222AAA5500885B6E /* MattersViewController.swift in Sources */,
 				78A8D076222AAA5500885B6E /* MattersViewModel.swift in Sources */,
 				78A8D0B6222AC51200885B6E /* UIControl+Rx.swift in Sources */,

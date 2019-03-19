@@ -72,11 +72,11 @@ struct MattersViewModel: MattersViewModelType {
 
         let sections: Driver<[MattersViewSection]> = matters.asObservable()
             .map { matters in
-                let commingCellModels = matters.filter { $0.happenedAt > Date().timeIntervalSince1970 }
+                let commingCellModels = matters.filter { $0.occurrenceDate > Date() }
                     .map(MattersViewController.MatterCellModel.init) as [MatterCellModelType]
                 let commingSection = MattersViewSection(model: Section.comming.title, items: commingCellModels)
 
-                let pastCellModels = matters.filter { $0.happenedAt <= Date().timeIntervalSince1970 }
+                let pastCellModels = matters.filter { $0.occurrenceDate <= Date() }
                     .map(MattersViewController.MatterCellModel.init) as [MatterCellModelType]
                 let pastSection = MattersViewSection(model: Section.past.title, items: pastCellModels)
 
@@ -106,7 +106,17 @@ struct MattersViewModel: MattersViewModelType {
 
 extension MattersViewModel {
     func matter(at indexPath: IndexPath) -> Matter? {
-        return matters.value.safe[indexPath.row]
+        guard let section = Section(rawValue: indexPath.section) else {
+            return nil
+        }
+        switch section {
+        case .comming:
+            let commings = matters.value.filter { $0.occurrenceDate > Date() }
+            return commings.safe[indexPath.row]
+        case .past:
+            let pasts = matters.value.filter { $0.occurrenceDate <= Date() }
+            return pasts.safe[indexPath.row]
+        }
     }
 }
 

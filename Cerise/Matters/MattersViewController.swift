@@ -27,7 +27,7 @@ final class MattersViewController: BaseViewController {
     private var viewModel: MattersViewModelType
 
     private enum Constant {
-        static let rowHeight: CGFloat = 64.0
+        static let rowHeight: CGFloat = 68.0
     }
 
     init(viewModel: MattersViewModelType = MattersViewModel()) {
