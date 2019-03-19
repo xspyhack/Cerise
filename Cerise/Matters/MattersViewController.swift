@@ -77,6 +77,7 @@ final class MattersViewController: BaseViewController {
                 HapticGenerator.trigger(with: .impact)
                 self.tableView.refreshControl?.endRefreshing()
             })
+            .delay(0.25, scheduler: MainScheduler.instance)
             .subscribe(onNext: { [unowned self] in
                 let vc = ComposerViewController()
                 self.present(vc, animated: true, completion: nil)

@@ -33,12 +33,6 @@ final class ModalPresentationController: UIPresentationController {
         return view
     }()
 
-    lazy var bottomView: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor.black
-        return view
-    }()
-
     let handleView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.white.withAlphaComponent(0.6)
@@ -91,7 +85,6 @@ final class ModalPresentationController: UIPresentationController {
         presentedViewController.view.layer.masksToBounds = true
         presentedViewController.view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         presentedViewController.view.frame = contentView.bounds
-        presentedScrollView.addSubview(bottomView)
         presentedViewController.view.addSubview(handleView)
         handleView.layer.zPosition = 100
         containerView.layoutIfNeeded()
@@ -102,7 +95,7 @@ final class ModalPresentationController: UIPresentationController {
 
         let transitionCoordinator = presentingViewController.transitionCoordinator
         transitionCoordinator?.animate(alongsideTransition: { _ in
-            self.dimmingView.alpha = 1
+            self.dimmingView.alpha = 0.5
         }, completion: nil)
     }
 
@@ -136,10 +129,6 @@ final class ModalPresentationController: UIPresentationController {
                                    y: presentedScrollView.contentSize.height - contentHeight,
                                    width: presentedScrollView.frame.width,
                                    height: contentHeight)
-        bottomView.frame = CGRect(x: 0,
-                                  y: contentView.frame.maxY,
-                                  width: presentedScrollView.frame.width,
-                                  height: presentedScrollView.frame.height)
         handleView.center = CGPoint(x: contentView.bounds.width / 2, y: 6 + handleView.bounds.height / 2)
     }
 

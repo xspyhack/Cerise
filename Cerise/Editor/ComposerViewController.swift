@@ -65,8 +65,7 @@ extension ComposerViewController: UIViewControllerTransitioningDelegate {
                                                                  presenting: presenting)
         let bounds = UIApplication.shared.keyWindow?.bounds ?? UIScreen.main.bounds
         presentationController.contentHeight = (bounds.height / 5 * 4).rounded(.up)
-        presentationController.handleView.backgroundColor = .red// UIColor(named: "BK70")
-        presentationController.bottomView.backgroundColor = UIColor.white
+        presentationController.handleView.backgroundColor = UIColor.cerise.tint
         return presentationController
     }
 }
