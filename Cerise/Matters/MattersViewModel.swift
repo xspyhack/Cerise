@@ -38,7 +38,7 @@ private enum Section: Int {
 
     var title: String {
         switch self {
-        case .upcomming:
+        case .upcoming:
             return "UPCOMING"
         case .past:
             return "PAST"

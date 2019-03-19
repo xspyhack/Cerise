@@ -18,6 +18,8 @@ final class MattersViewController: BaseViewController {
         tableView.cerise.register(reusableCell: MattersViewController.MatterCell.self)
         tableView.rowHeight = Constant.rowHeight
         tableView.estimatedRowHeight = Constant.rowHeight
+        tableView.sectionHeaderHeight = Constant.sectionHeaderHeight
+        tableView.sectionFooterHeight = Constant.sectionFooterHeight
         tableView.backgroundColor = UIColor.clear
         tableView.contentInsetAdjustmentBehavior = .never
         tableView.separatorStyle = .none
@@ -28,6 +30,8 @@ final class MattersViewController: BaseViewController {
 
     private enum Constant {
         static let rowHeight: CGFloat = 68.0
+        static let sectionHeaderHeight: CGFloat = 44.0
+        static let sectionFooterHeight: CGFloat = 32.0
     }
 
     init(viewModel: MattersViewModelType = MattersViewModel()) {
@@ -111,6 +115,10 @@ final class MattersViewController: BaseViewController {
         dataSource.titleForHeaderInSection = { dataSource, index in
             let section = dataSource[index]
             return section.model
+        }
+
+        dataSource.titleForFooterInSection = { _, _ in
+            return " "
         }
 
         dataSource.canEditRowAtIndexPath = { _, _ in
