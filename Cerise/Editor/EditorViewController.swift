@@ -137,6 +137,7 @@ extension EditorViewController: UITableViewDataSource {
         case .title:
             let cell: TextFieldCell = tableView.cerise.dequeueReusableCell(for: indexPath)
             cell.textField.placeholder = "What's the Matter"
+            cell.textField.returnKeyType = .done
             cell.textChanged
                 .bind(to: viewModel.title)
                 .disposed(by: cell.rx.prepareForReuseBag)
