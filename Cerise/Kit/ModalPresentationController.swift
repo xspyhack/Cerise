@@ -277,7 +277,7 @@ extension ModalPresentationController {
             if gestureRecognizer == panGestureRecognizer {
                 let inContentScrollView = contentScrollView.frame.contains(panGestureRecognizer.location(in: contentScrollView.superview!))
                 if inContentScrollView {
-                    return contentScrollView.contentSize.height + contentScrollView.contentInset.top + contentScrollView.contentInset.bottom <= contentScrollView.frame.size.height
+                    return contentScrollView.contentSize.height + contentScrollView.adjustedContentInset.top + contentScrollView.adjustedContentInset.bottom <= contentScrollView.frame.size.height
                 }
             }
             return super.gestureRecognizerShouldBegin(gestureRecognizer)
