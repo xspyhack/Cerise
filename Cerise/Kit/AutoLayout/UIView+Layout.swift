@@ -27,7 +27,7 @@ public extension Cerise where Base: UIView {
         return [AnyLayoutAnchor(base.centerXAnchor), AnyLayoutAnchor(base.centerYAnchor)]
     }
 
-    public var sizeAnchor: [AnyLayoutAnchor] {
-        return [AnyLayoutAnchor(base.widthAnchor), AnyLayoutAnchor(base.heightAnchor)]
+    public var sizeAnchor: [NSLayoutDimension] {
+        return [base.widthAnchor, base.heightAnchor]
     }
 }

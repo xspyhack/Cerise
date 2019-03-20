@@ -87,3 +87,61 @@ extension AnyLayoutAnchor: LayoutAnchor {
         return box.constraint(lessThanOrEqualTo: anchor.box, constant: constant)
     }
 }
+
+/*
+protocol AnyLayoutDimensionBox: AnyLayoutAnchorBox {
+    func constraint(equalToConstant constant: CGFloat) -> NSLayoutConstraint
+    func constraint(greaterThanOrEqualToConstant constant: CGFloat) -> NSLayoutConstraint
+    func constraint(lessThanOrEqualToConstant constant: CGFloat) -> NSLayoutConstraint
+}
+
+extension ConcreteLayoutAnchorBox: AnyLayoutDimensionBox where Base: LayoutDimension {
+    func constraint(equalToConstant constant: CGFloat) -> NSLayoutConstraint {
+        return base.constraint(equalToConstant: constant)
+    }
+
+    func constraint(greaterThanOrEqualToConstant constant: CGFloat) -> NSLayoutConstraint {
+        return base.constraint(greaterThanOrEqualToConstant: constant)
+    }
+
+    func constraint(lessThanOrEqualToConstant constant: CGFloat) -> NSLayoutConstraint {
+        return base.constraint(lessThanOrEqualToConstant: constant)
+    }
+}
+
+public struct AnyLayoutDimension {
+    private var box: AnyLayoutDimensionBox
+
+    public init<T: LayoutDimension>(_ box: T) {
+        self.box = ConcreteLayoutAnchorBox(box)
+    }
+}
+
+extension AnyLayoutDimension: LayoutAnchor {
+    public func constraint(equalTo anchor: AnyLayoutDimension, constant: CGFloat) -> NSLayoutConstraint {
+        return box.constraint(equalTo: anchor.box, constant: constant)
+    }
+
+    public func constraint(greaterThanOrEqualTo anchor: AnyLayoutDimension, constant: CGFloat) -> NSLayoutConstraint {
+        return box.constraint(greaterThanOrEqualTo: anchor.box, constant: constant)
+    }
+
+    public func constraint(lessThanOrEqualTo anchor: AnyLayoutDimension, constant: CGFloat) -> NSLayoutConstraint {
+        return box.constraint(lessThanOrEqualTo: anchor.box, constant: constant)
+    }
+}
+
+extension AnyLayoutDimension: LayoutDimension {
+    public func constraint(equalToConstant constant: CGFloat) -> NSLayoutConstraint {
+        return box.constraint(equalToConstant: constant)
+    }
+
+    public func constraint(greaterThanOrEqualToConstant constant: CGFloat) -> NSLayoutConstraint {
+        return box.constraint(greaterThanOrEqualToConstant: constant)
+    }
+
+    public func constraint(lessThanOrEqualToConstant constant: CGFloat) -> NSLayoutConstraint {
+        return box.constraint(lessThanOrEqualToConstant: constant)
+    }
+}
+*/

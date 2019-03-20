@@ -48,3 +48,8 @@ public extension LayoutProperty where Anchor: LayoutDimension {
         anchor.constraint(lessThanOrEqualToConstant: constant).isActive = true
     }
 }
+
+public struct DimensionProperty<Anchor: LayoutDimension> {
+    let width: LayoutProperty<Anchor>
+    let height: LayoutProperty<Anchor>
+}

@@ -28,6 +28,17 @@ public func == <Anchor: LayoutDimension>(lhs: LayoutProperty<Anchor>, rhs: CGFlo
     lhs.equal(toConstant: rhs)
 }
 
+public func == <Anchor: LayoutDimension>(lhs: DimensionProperty<Anchor>, rhs: CGSize) {
+    lhs.width.equal(toConstant: rhs.width)
+    lhs.height.equal(toConstant: rhs.height)
+}
+
+public func == <Anchor: LayoutDimension>(lhs: DimensionProperty<Anchor>, rhs: [Anchor]) {
+    assert(rhs.count == 2, "Layout anchors count must be 2")
+    lhs.width.equal(to: rhs[0])
+    lhs.height.equal(to: rhs[1])
+}
+
 public func == <Anchor: LayoutAnchor>(lhs: [LayoutProperty<Anchor>], rhs: [Anchor]) {
     assert(lhs.count == rhs.count, "Layout properties count must equal to anchors count")
     zip(lhs, rhs).forEach { $0.equal(to: $1) }
