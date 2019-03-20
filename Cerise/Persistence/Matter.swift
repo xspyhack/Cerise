@@ -9,7 +9,7 @@
 import Foundation
 
 /// A model that represents a matter.
-struct Matter {
+struct Matter: Codable {
     /// The matter’s unique identifier.
     let id: String
 
