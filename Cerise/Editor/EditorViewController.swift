@@ -64,6 +64,13 @@ final class EditorViewController: BaseViewController {
             })
             .disposed(by: disposeBag)
     }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        let titleCell = tableView.cellForRow(at: IndexPath(row: EditorViewModel.Section.title.rawValue, section: 0)) as? TextFieldCell
+        titleCell?.textField.becomeFirstResponder()
+    }
 }
 
 // MARK: - Picker
