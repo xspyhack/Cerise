@@ -42,6 +42,16 @@ extension Matter {
     }
 }
 
+extension Matter: Hashable {
+    static func == (lhs: Matter, rhs: Matter) -> Bool {
+        return lhs.id == rhs.id
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+}
+
 extension Matter {
     static func mock() -> [Matter] {
         return [
