@@ -31,8 +31,8 @@ struct ComposerViewModel {
             .withLatestFrom(validated)
             .filter { $0 }
             .withLatestFrom(matter)
-            .do(onNext: { _ in
-                //Matter.didCreate.onNext(matter)
+            .do(onNext: { matter in
+                Matter.didCreate.onNext(matter)
             })
             .map { _ in
             }

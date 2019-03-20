@@ -13,7 +13,7 @@ import RxSwift
 final class EditorViewController: BaseViewController {
     let viewModel: EditorViewModelType
 
-    private lazy var tableView: UITableView = {
+    private(set) lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero)
         tableView.cerise.register(reusableCell: TextFieldCell.self)
         tableView.cerise.register(reusableCell: TextViewCell.self)
@@ -23,6 +23,7 @@ final class EditorViewController: BaseViewController {
         tableView.delegate = self
         tableView.tableFooterView = UIView()
         tableView.alwaysBounceVertical = true
+        //tableView.contentInsetAdjustmentBehavior = .never
         return tableView
     }()
 
