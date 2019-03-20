@@ -23,7 +23,11 @@ struct Matter {
     let notes: String?
 
     /// This will be removed after Swift 5.
-    init(id: String, title: String, occurrenceDate: Date, notes: String? = nil) {
+    init(id: String,
+         title: String,
+         tag: Tagble = .none,
+         occurrenceDate: Date,
+         notes: String? = nil) {
         self.id = id
         self.title = title
         self.occurrenceDate = occurrenceDate

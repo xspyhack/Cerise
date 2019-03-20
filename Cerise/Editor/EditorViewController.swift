@@ -11,8 +11,7 @@ import RxCocoa
 import RxSwift
 
 final class EditorViewController: BaseViewController {
-
-    //var viewModel: NewMatterViewModel?
+    let viewModel: EditorViewModelType
 
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero)
@@ -23,36 +22,27 @@ final class EditorViewController: BaseViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.tableFooterView = UIView()
+        tableView.alwaysBounceVertical = true
         return tableView
     }()
 
     private enum Constant {
         static let pickerRowHeight: CGFloat = 200.0
         static let rowHeight: CGFloat = 56.0
+        static let minimumNotesRowHeight: CGFloat = 120.0
     }
 
-    private var notesRowHeight: CGFloat = 120.0
-    private let generator = UISelectionFeedbackGenerator()
-
-    private var pickedDate: Date = Date() {
-        willSet {
-            guard newValue != pickedDate else {
-                return
-            }
-
-            let cell = tableView.cellForRow(at: IndexPath(row: 0, section: Section.when.rawValue))
-            cell?.detailTextLabel?.text = newValue.cerise.yearMonthDay
-        }
-        didSet {
-            happenedDate.value = pickedDate as Date
-        }
-    }
-
-    private var subject: Variable<String> = Variable("")
-    private var tag: Variable<Tagble> = Variable(.none)
+    private var notesRowHeight: CGFloat = Constant.minimumNotesRowHeight
     private var datePickerIndexPath: IndexPath?
-    private var happenedDate: Variable<Date> = Variable(Date())
-    private var body: Variable<String> = Variable("")
+
+    init(viewModel: EditorViewModelType) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,50 +55,19 @@ final class EditorViewController: BaseViewController {
             builder.edges == view.cerise.edgesAnchor
         }
 
-        // MARK: Setup
+        // MARK: ViewModel binding
 
-        //let viewModel = self.viewModel ?? NewMatterViewModel()
-
-//        cancelItem.rx.tap
-//            .bind(to: viewModel.cancelAction)
-//            .disposed(by: disposeBag)
-//
-//        postItem.rx.tap
-//            .bind(to: viewModel.postAction)
-//            .disposed(by: disposeBag)
-//
-//        viewModel.postButtonEnabled
-//            .drive(self.postItem.rx.isEnabled)
-//            .disposed(by: disposeBag)
-//
-//        viewModel.dismissViewController
-//            .drive(onNext: { [weak self] in
-//                self?.view.endEditing(true)
-//                self?.dismiss(animated: true, completion: nil)
-//            })
-//            .disposed(by: disposeBag)
-//
-//        subject.asObservable()
-//            .bind(to: viewModel.title)
-//            .disposed(by: disposeBag)
-//
-//        tag.asObservable()
-//            .bind(to: viewModel.tag)
-//            .disposed(by: disposeBag)
-//
-//        happenedDate.asObservable()
-//            .bind(to: viewModel.happenedAt)
-//            .disposed(by: disposeBag)
-//
-//        body.asObservable()
-//            .bind(to: viewModel.body)
-//            .disposed(by: disposeBag)
-
-        generator.prepare()
+        viewModel.outputs.itemsUpdated
+            .subscribe(onNext: { [weak self] update in
+                update.performUpdate(to: self?.tableView)
+            })
+            .disposed(by: disposeBag)
     }
+}
 
-    // MARK: Picker
+// MARK: - Picker
 
+extension EditorViewController {
     private func hasInlineDatePicker() -> Bool {
         return datePickerIndexPath != nil
     }
@@ -157,34 +116,19 @@ final class EditorViewController: BaseViewController {
     }
 }
 
+// MARK: - UITableViewDataSource
+
 extension EditorViewController: UITableViewDataSource {
-    private enum Section: Int, CaseIterable {
-        case title = 0
-        case when
-        case notes
-
-        var annotation: String {
-            switch self {
-            case .title:
-                return "Title"
-            case .when:
-                return "Happen"
-            case .notes:
-                return "Notes"
-            }
-        }
-    }
-
     func numberOfSections(in tableView: UITableView) -> Int {
-        return Section.allCases.count
+        return EditorViewModel.Section.allCases.count
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (section == Section.when.rawValue && hasInlineDatePicker()) ? 2 : 1
+        return (section == EditorViewModel.Section.when.rawValue && hasInlineDatePicker()) ? 2 : 1
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let section = Section(rawValue: indexPath.section) else {
+        guard let section = EditorViewModel.Section(rawValue: indexPath.section) else {
             fatalError("Negative section: \(indexPath.section)")
         }
 
@@ -193,7 +137,7 @@ extension EditorViewController: UITableViewDataSource {
             let cell: TextFieldCell = tableView.cerise.dequeueReusableCell(for: indexPath)
             cell.textField.placeholder = "What's the Matter"
             cell.textChanged
-                .bind(to: self.subject)
+                .bind(to: viewModel.title)
                 .disposed(by: cell.rx.prepareForReuseBag)
 
             cell.textFieldDidBeginEditing
@@ -213,24 +157,23 @@ extension EditorViewController: UITableViewDataSource {
                 .disposed(by: cell.rx.prepareForReuseBag)
 
             cell.textViewDidChangeAction = { [unowned self] height in
-                if height != self.notesRowHeight && height >= 120 {
+                if height != self.notesRowHeight && height >= Constant.minimumNotesRowHeight {
                     tableView.beginUpdates()
                     self.notesRowHeight = height
                     tableView.endUpdates()
                     // scroll to bottom
-                    //tableView.hi.scrollToBottom()
-                    //(tableView as! TPKeyboardAvoidingTableView).tpKeyboardAvoiding_scrollToActiveTextField()
+                    // tableView.cerise.scrollToBottom()
                 }
             }
 
             cell.textViewDidEndEditing
                 .withLatestFrom(cell.textView.rx.text.orEmpty)
                 .map { $0.cerise.trimming(.whitespaceAndNewline) }
-                .bind(to: body)
+                .bind(to: viewModel.notes)
                 .disposed(by: cell.rx.prepareForReuseBag)
 
             cell.textChanged
-                .bind(to: body)
+                .bind(to: viewModel.notes)
                 .disposed(by: cell.rx.prepareForReuseBag)
 
             return cell
@@ -238,21 +181,22 @@ extension EditorViewController: UITableViewDataSource {
             if indexPathHasPicker(indexPath) {
                 let cell: DatePickerCell = tableView.cerise.dequeueReusableCell(for: indexPath)
                 cell.datePicked
-                    .subscribe(onNext: { [weak self] date in
-                        self?.pickedDate = date
-                    })
+                    .distinctUntilChanged()
+                    .bind(to: viewModel.when)
                     .disposed(by: cell.rx.prepareForReuseBag)
                 return cell
             } else {
                 let cell: DisclosureCell = tableView.cerise.dequeueReusableCell(for: indexPath)
                 cell.titleLabel.text = section.annotation
-                cell.detailTextLabel?.text = pickedDate.cerise.yearMonthDay
+                cell.detailTextLabel?.text = viewModel.when.value.cerise.yearMonthDay
                 cell.detailTextLabel?.textColor = UIColor.gray
                 return cell
             }
         }
     }
 }
+
+// MARK: - UITableViewDelegate
 
 extension EditorViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -261,7 +205,7 @@ extension EditorViewController: UITableViewDelegate {
         }
 
         // Selected date cell
-        if indexPath.section == Section.when.rawValue && indexPath.row == 0 {
+        if indexPath.section == EditorViewModel.Section.when.rawValue && indexPath.row == 0 {
             view.endEditing(true)
             // show date picker
             displayInlineDatePicker(for: indexPath)
@@ -274,7 +218,7 @@ extension EditorViewController: UITableViewDelegate {
         if indexPath == datePickerIndexPath {
             return Constant.pickerRowHeight
         } else {
-            return indexPath.section == Section.notes.rawValue ? notesRowHeight : Constant.rowHeight
+            return indexPath.section == EditorViewModel.Section.notes.rawValue ? notesRowHeight : Constant.rowHeight
         }
     }
 }

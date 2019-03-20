@@ -9,10 +9,6 @@
 import UIKit
 
 final class ComposerViewController: BaseViewController {
-    private(set) lazy var editorViewController: EditorViewController = {
-        let vc = EditorViewController()
-        return vc
-    }()
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nil, bundle: nil)
@@ -44,12 +40,27 @@ final class ComposerViewController: BaseViewController {
             })
             .disposed(by: disposeBag)
 
+        let editorViewModel = EditorViewModel()
+        let editorViewController = EditorViewController(viewModel: editorViewModel)
         addChild(editorViewController)
         view.addSubview(editorViewController.view)
         editorViewController.view.cerise.layout { builder in
             builder.edges == view.cerise.edgesAnchor
         }
         editorViewController.didMove(toParent: self)
+
+        let viewModel = ComposerViewModel(matter: editorViewModel.outputs.matter, validated: editorViewModel.outputs.validated)
+
+        viewModel.outputs.isPostEnabled
+            .drive(doneItem.rx.isEnabled)
+            .disposed(by: disposeBag)
+
+        viewModel.outputs.dismiss
+            .drive(onNext: { [weak self] in
+                self?.view.endEditing(true)
+                self?.dismiss(animated: true, completion: nil)
+            })
+            .disposed(by: disposeBag)
     }
 }
 
@@ -66,6 +77,7 @@ extension ComposerViewController: UIViewControllerTransitioningDelegate {
         let bounds = UIApplication.shared.keyWindow?.bounds ?? UIScreen.main.bounds
         presentationController.contentHeight = (bounds.height / 5 * 4).rounded(.up)
         presentationController.handleView.backgroundColor = UIColor.cerise.tint
+        presentationController.bottomView.backgroundColor = .white
         return presentationController
     }
 }

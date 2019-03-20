@@ -66,6 +66,11 @@
 		FA90AAD62240EC9A00B08682 /* Keldeo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA90AAD52240EC9900B08682 /* Keldeo.framework */; };
 		FA90AAD82240EDEC00B08682 /* Date+Cerise.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA90AAD72240EDEC00B08682 /* Date+Cerise.swift */; };
 		FA90AADA2240F6B500B08682 /* Tagble.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA90AAD92240F6B500B08682 /* Tagble.swift */; };
+		FA90AADC2241F10100B08682 /* EditorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA90AADB2241F10100B08682 /* EditorViewModel.swift */; };
+		FA90AADE2241F6AF00B08682 /* ComposerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA90AADD2241F6AF00B08682 /* ComposerViewModel.swift */; };
+		FA90AAE02241F9A000B08682 /* ListUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA90AADF2241F9A000B08682 /* ListUpdater.swift */; };
+		FA90AAE22241FA8200B08682 /* ListUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA90AAE12241FA8200B08682 /* ListUpdate.swift */; };
+		FA90AAE42241FAFC00B08682 /* SafeDispatchQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA90AAE32241FAFC00B08682 /* SafeDispatchQueue.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -144,6 +149,11 @@
 		FA90AAD52240EC9900B08682 /* Keldeo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Keldeo.framework; path = Carthage/Build/iOS/Keldeo.framework; sourceTree = "<group>"; };
 		FA90AAD72240EDEC00B08682 /* Date+Cerise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Cerise.swift"; sourceTree = "<group>"; };
 		FA90AAD92240F6B500B08682 /* Tagble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tagble.swift; sourceTree = "<group>"; };
+		FA90AADB2241F10100B08682 /* EditorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorViewModel.swift; sourceTree = "<group>"; };
+		FA90AADD2241F6AF00B08682 /* ComposerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposerViewModel.swift; sourceTree = "<group>"; };
+		FA90AADF2241F9A000B08682 /* ListUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListUpdater.swift; sourceTree = "<group>"; };
+		FA90AAE12241FA8200B08682 /* ListUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListUpdate.swift; sourceTree = "<group>"; };
+		FA90AAE32241FAFC00B08682 /* SafeDispatchQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeDispatchQueue.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,6 +196,7 @@
 			isa = PBXGroup;
 			children = (
 				7849BE9C223E1F180068503A /* SafeCollection.swift */,
+				FA90AAE32241FAFC00B08682 /* SafeDispatchQueue.swift */,
 			);
 			path = Prelude;
 			sourceTree = "<group>";
@@ -271,8 +282,10 @@
 			isa = PBXGroup;
 			children = (
 				785C69C2223FDF7C004DF721 /* ComposerViewController.swift */,
+				FA90AADD2241F6AF00B08682 /* ComposerViewModel.swift */,
 				785C69C0223FDF38004DF721 /* EditorViewController.swift */,
 				785C69C6224136F5004DF721 /* EditorViewController+Cell.swift */,
+				FA90AADB2241F10100B08682 /* EditorViewModel.swift */,
 			);
 			path = Editor;
 			sourceTree = "<group>";
@@ -314,6 +327,8 @@
 				785C69C422408234004DF721 /* ModalPresentationController.swift */,
 				7849BE8E223D26150068503A /* Coordinating.swift */,
 				785C69BE223FDD51004DF721 /* HapticGenerator.swift */,
+				FA90AAE12241FA8200B08682 /* ListUpdate.swift */,
+				FA90AADF2241F9A000B08682 /* ListUpdater.swift */,
 				78A8D09B222ABAEB00885B6E /* Router.swift */,
 				FA90AAD32240EB2C00B08682 /* Logger.swift */,
 				78A8D0A2222ABDAA00885B6E /* UIImage+Color.swift */,
@@ -513,6 +528,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA90AAE42241FAFC00B08682 /* SafeDispatchQueue.swift in Sources */,
+				FA90AAE22241FA8200B08682 /* ListUpdate.swift in Sources */,
 				785C69C3223FDF7C004DF721 /* ComposerViewController.swift in Sources */,
 				78A8D09F222ABB8E00885B6E /* AppCoordinator.swift in Sources */,
 				78A8D0B4222AC51200885B6E /* UITableView+Rx.swift in Sources */,
@@ -529,14 +546,17 @@
 				78A8D076222AAA5500885B6E /* MattersViewModel.swift in Sources */,
 				785C69C92241398D004DF721 /* RxTextFieldDelegateProxy.swift in Sources */,
 				78A8D0B6222AC51200885B6E /* UIControl+Rx.swift in Sources */,
+				FA90AAE02241F9A000B08682 /* ListUpdater.swift in Sources */,
 				78A8D050222AA94600885B6E /* MainViewController.swift in Sources */,
 				785C69CB22413B06004DF721 /* UITextField+Rx.swift in Sources */,
 				78A8D0A3222ABDAA00885B6E /* UIImage+Color.swift in Sources */,
 				78A8D07C222AAA5C00885B6E /* MatterViewController.swift in Sources */,
 				78A8D0B7222AC51200885B6E /* UIView+Rx.swift in Sources */,
 				78A8D077222AAA5500885B6E /* MattersViewController+Cell.swift in Sources */,
+				FA90AADE2241F6AF00B08682 /* ComposerViewModel.swift in Sources */,
 				78A8D09C222ABAEB00885B6E /* BaseViewController.swift in Sources */,
 				78A8D0A5222AC06200885B6E /* Reusable.swift in Sources */,
+				FA90AADC2241F10100B08682 /* EditorViewModel.swift in Sources */,
 				FA90AAD42240EB2C00B08682 /* Logger.swift in Sources */,
 				7849BE94223D3EB60068503A /* LayoutProperty.swift in Sources */,
 				7849BE92223D3E7B0068503A /* LayoutAnchor.swift in Sources */,
