@@ -9,7 +9,10 @@
 import Foundation
 import RxSwift
 
-private var _instances = [String: Any]()
+private class Store {
+    static let shared = Store()
+    var instances = [String: Any]()
+}
 
 protocol ModelType {}
 
@@ -20,11 +23,11 @@ struct ModelService<Model: ModelType> {
 
     static func instance(_ modelClass: Model.Type) -> ModelService<Model> {
         let key = String(describing: modelClass)
-        if let stream = _instances[key] as? ModelService<Model> {
+        if let stream = Store.shared.instances[key] as? ModelService<Model> {
             return stream
         }
         let stream = ModelService<Model>()
-        _instances[key] = stream
+        Store.shared.instances[key] = stream
         return stream
     }
 
@@ -43,3 +46,5 @@ extension ModelType {
         return ModelService.instance(Self.self).didDelete
     }
 }
+
+extension Matter: ModelType {}
