@@ -101,6 +101,14 @@ struct MattersViewModel: MattersViewModelType {
             .map { $0! }
             .bind(to: outputs.showMatterDetail)
             .disposed(by: disposeBag)
+
+        Matter.didCreate
+            .subscribe(onNext: { matter in
+                var matters = self.matters.value
+                matters.insert(matter, at: 0)
+                self.matters.accept(matters)
+            })
+            .disposed(by: disposeBag)
     }
 }
 

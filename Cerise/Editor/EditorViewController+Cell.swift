@@ -29,7 +29,7 @@ extension EditorViewController {
         private(set) lazy var textField: UITextField = {
             let textField = UITextField()
             textField.textAlignment = .center
-            textField.textColor = UIColor.cerise.title
+            textField.textColor = UIColor.gray
             return textField
         }()
 
