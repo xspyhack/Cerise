@@ -72,6 +72,7 @@
 		FA90AAE22241FA8200B08682 /* ListUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA90AAE12241FA8200B08682 /* ListUpdate.swift */; };
 		FA90AAE42241FAFC00B08682 /* SafeDispatchQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA90AAE32241FAFC00B08682 /* SafeDispatchQueue.swift */; };
 		FA90AAE622433EAA00B08682 /* Observable+Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA90AAE522433EA800B08682 /* Observable+Optional.swift */; };
+		FA90AAE8224340DF00B08682 /* MatterCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA90AAE7224340DF00B08682 /* MatterCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -156,6 +157,7 @@
 		FA90AAE12241FA8200B08682 /* ListUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListUpdate.swift; sourceTree = "<group>"; };
 		FA90AAE32241FAFC00B08682 /* SafeDispatchQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeDispatchQueue.swift; sourceTree = "<group>"; };
 		FA90AAE522433EA800B08682 /* Observable+Optional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+Optional.swift"; sourceTree = "<group>"; };
+		FA90AAE7224340DF00B08682 /* MatterCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatterCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -276,6 +278,7 @@
 				78A8D078222AAA5B00885B6E /* Matter.storyboard */,
 				78A8D079222AAA5B00885B6E /* MatterViewController.swift */,
 				78A8D07A222AAA5C00885B6E /* MatterViewModel.swift */,
+				FA90AAE7224340DF00B08682 /* MatterCoordinator.swift */,
 			);
 			path = Matter;
 			sourceTree = "<group>";
@@ -546,6 +549,7 @@
 				78A8D0AA222AC19A00885B6E /* Matter.swift in Sources */,
 				7849BE9A223D3FE50068503A /* AutoLayout.swift in Sources */,
 				FA90AAD82240EDEC00B08682 /* Date+Cerise.swift in Sources */,
+				FA90AAE8224340DF00B08682 /* MatterCoordinator.swift in Sources */,
 				78A8D075222AAA5500885B6E /* MattersViewController.swift in Sources */,
 				78A8D076222AAA5500885B6E /* MattersViewModel.swift in Sources */,
 				785C69C92241398D004DF721 /* RxTextFieldDelegateProxy.swift in Sources */,

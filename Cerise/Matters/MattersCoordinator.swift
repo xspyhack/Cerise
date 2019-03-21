@@ -7,21 +7,32 @@
 //
 
 import UIKit
+import RxSwift
 
 struct MattersCoodinator: Coordinating {
     weak var parentViewController: UIViewController?
+    let disposeBag = DisposeBag()
 
     init(parentViewController: UIViewController) {
         self.parentViewController = parentViewController
     }
 
     func start() {
-        let viewController = MattersViewController()
+        let viewModel = MattersViewModel()
+        let viewController = MattersViewController(viewModel: viewModel)
         parentViewController?.addChild(viewController)
         viewController.didMove(toParent: parentViewController)
+
+        viewModel.outputs.showMatterDetail
+            .subscribe(onNext: { [unowned viewController] matter in
+                let coordinator = MatterCoordinator(parentViewController: viewController, matter: matter)
+                coordinator.start()
+            })
+            .disposed(by: disposeBag)
     }
 
     func stop() {
+        parentViewController?.children.first?.removeFromParent()
     }
 
     func makeMatterViewController() -> UIViewController {

@@ -26,7 +26,7 @@ final class MattersViewController: BaseViewController {
         return tableView
     }()
 
-    private var viewModel: MattersViewModelType
+    private(set) var viewModel: MattersViewModelType
 
     private enum Constant {
         static let rowHeight: CGFloat = 68.0
