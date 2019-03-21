@@ -11,6 +11,8 @@ import UIKit
 final class MainViewController: UIViewController {
     private var containerView: UIView = UIView()
 
+    private lazy var mattersViewController = MattersViewController()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -24,12 +26,17 @@ final class MainViewController: UIViewController {
 //            builder.edges == view.cerise.edgesAnchor
 //        }
 
-        let mattersViewController = MattersViewController()
         addChild(mattersViewController)
         view.addSubview(mattersViewController.view)
         mattersViewController.view.cerise.layout { builder in
             builder.edges == view.cerise.edgesAnchor
         }
         mattersViewController.didMove(toParent: self)
+    }
+}
+
+extension MainViewController: CherryTransitioning {
+    var anchorView: UIView? {
+        return mattersViewController.anchorView
     }
 }

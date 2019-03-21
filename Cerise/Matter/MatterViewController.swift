@@ -128,3 +128,6 @@ extension MatterViewController: UIViewControllerPreviewingDelegate {
         return nil
     }
 }
+
+extension MatterViewController: CherryTransitioning {
+}

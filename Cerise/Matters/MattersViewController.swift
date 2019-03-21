@@ -21,12 +21,14 @@ final class MattersViewController: BaseViewController {
         tableView.sectionHeaderHeight = Constant.sectionHeaderHeight
         tableView.sectionFooterHeight = Constant.sectionFooterHeight
         tableView.backgroundColor = UIColor.clear
-        tableView.contentInsetAdjustmentBehavior = .never
+//        tableView.contentInsetAdjustmentBehavior = .never
         tableView.separatorStyle = .none
         return tableView
     }()
 
     let viewModel: MattersViewModelType
+
+    private var anchorIndexPath: IndexPath?
 
     private enum Constant {
         static let rowHeight: CGFloat = 68.0
@@ -49,6 +51,7 @@ final class MattersViewController: BaseViewController {
         title = "Matters"
 
         //WatchSessionService.shared.start(withDelegate: self)
+        //definesPresentationContext = true
         registerForPreviewing(with: self, sourceView: tableView)
 
         view.addSubview(tableView)
@@ -71,6 +74,7 @@ final class MattersViewController: BaseViewController {
             })
             .subscribe(onNext: { [unowned self] matter in
                 let vc = MatterViewController(viewModel: MatterViewModel(matter: matter))
+                vc.transitioningDelegate = self
                 self.present(vc, animated: true, completion: nil)
             })
             .disposed(by: disposeBag)
@@ -98,6 +102,9 @@ final class MattersViewController: BaseViewController {
             .disposed(by: disposeBag)
 
         viewModel.outputs.itemDeselected
+            .do(onNext: { [unowned self] indexPath in
+                self.anchorIndexPath = indexPath
+            })
             .subscribe(onNext: { [weak self] indexPath in
                 self?.tableView.deselectRow(at: indexPath, animated: true)
             })
@@ -139,11 +146,28 @@ extension MattersViewController: UIViewControllerPreviewingDelegate {
             return nil
         }
 
+        anchorIndexPath = indexPath
         let viewController = MatterViewController(viewModel: MatterViewModel(matter: matter))
         let cellRect = tableView.rectForRow(at: indexPath)
         previewingContext.sourceRect = previewingContext.sourceView.convert(cellRect, from: tableView)
 
         return viewController
+    }
+}
+
+extension MattersViewController: CherryTransitioning {
+    var anchorView: UIView? {
+        return anchorIndexPath.flatMap { tableView.cellForRow(at: $0) }
+    }
+}
+
+extension MattersViewController: UIViewControllerTransitioningDelegate {
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return CherryTransitionController(duration: 0.35, operation: .forward)
+    }
+
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return CherryTransitionController(duration: 0.25, operation: .backward)
     }
 }
 

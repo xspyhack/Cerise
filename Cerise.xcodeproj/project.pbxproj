@@ -74,6 +74,7 @@
 		FA90AAE622433EAA00B08682 /* Observable+Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA90AAE522433EA800B08682 /* Observable+Optional.swift */; };
 		FA90AAE8224340DF00B08682 /* MatterCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA90AAE7224340DF00B08682 /* MatterCoordinator.swift */; };
 		FA90AAEA224348C100B08682 /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA90AAE9224348C100B08682 /* UIColor+Hex.swift */; };
+		FAB928082243718800E338A8 /* CherryTransitionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB928072243718800E338A8 /* CherryTransitionController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -160,6 +161,7 @@
 		FA90AAE522433EA800B08682 /* Observable+Optional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+Optional.swift"; sourceTree = "<group>"; };
 		FA90AAE7224340DF00B08682 /* MatterCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatterCoordinator.swift; sourceTree = "<group>"; };
 		FA90AAE9224348C100B08682 /* UIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
+		FAB928072243718800E338A8 /* CherryTransitionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CherryTransitionController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -332,6 +334,7 @@
 				78A8D0A4222AC06200885B6E /* Reusable.swift */,
 				78A8D09A222ABAEB00885B6E /* BaseViewController.swift */,
 				785C69C422408234004DF721 /* ModalPresentationController.swift */,
+				FAB928072243718800E338A8 /* CherryTransitionController.swift */,
 				7849BE8E223D26150068503A /* Coordinating.swift */,
 				785C69BE223FDD51004DF721 /* HapticGenerator.swift */,
 				FA90AAE12241FA8200B08682 /* ListUpdate.swift */,
@@ -561,6 +564,7 @@
 				FA90AAE02241F9A000B08682 /* ListUpdater.swift in Sources */,
 				78A8D050222AA94600885B6E /* MainViewController.swift in Sources */,
 				785C69CB22413B06004DF721 /* UITextField+Rx.swift in Sources */,
+				FAB928082243718800E338A8 /* CherryTransitionController.swift in Sources */,
 				78A8D0A3222ABDAA00885B6E /* UIImage+Color.swift in Sources */,
 				78A8D07C222AAA5C00885B6E /* MatterViewController.swift in Sources */,
 				78A8D0B7222AC51200885B6E /* UIView+Rx.swift in Sources */,
