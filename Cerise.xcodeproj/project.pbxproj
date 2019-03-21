@@ -73,6 +73,7 @@
 		FA90AAE42241FAFC00B08682 /* SafeDispatchQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA90AAE32241FAFC00B08682 /* SafeDispatchQueue.swift */; };
 		FA90AAE622433EAA00B08682 /* Observable+Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA90AAE522433EA800B08682 /* Observable+Optional.swift */; };
 		FA90AAE8224340DF00B08682 /* MatterCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA90AAE7224340DF00B08682 /* MatterCoordinator.swift */; };
+		FA90AAEA224348C100B08682 /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA90AAE9224348C100B08682 /* UIColor+Hex.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -158,6 +159,7 @@
 		FA90AAE32241FAFC00B08682 /* SafeDispatchQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeDispatchQueue.swift; sourceTree = "<group>"; };
 		FA90AAE522433EA800B08682 /* Observable+Optional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+Optional.swift"; sourceTree = "<group>"; };
 		FA90AAE7224340DF00B08682 /* MatterCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatterCoordinator.swift; sourceTree = "<group>"; };
+		FA90AAE9224348C100B08682 /* UIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -338,6 +340,7 @@
 				FA90AAD32240EB2C00B08682 /* Logger.swift */,
 				78A8D0A2222ABDAA00885B6E /* UIImage+Color.swift */,
 				78A8D0C1222AC84E00885B6E /* UIColor+Cerise.swift */,
+				FA90AAE9224348C100B08682 /* UIColor+Hex.swift */,
 				FA90AAD72240EDEC00B08682 /* Date+Cerise.swift */,
 				78A8D0A6222AC08700885B6E /* Cerise.swift */,
 				78A8D0AB222AC44100885B6E /* ModelService.swift */,
@@ -537,6 +540,7 @@
 				FA90AAE42241FAFC00B08682 /* SafeDispatchQueue.swift in Sources */,
 				FA90AAE22241FA8200B08682 /* ListUpdate.swift in Sources */,
 				785C69C3223FDF7C004DF721 /* ComposerViewController.swift in Sources */,
+				FA90AAEA224348C100B08682 /* UIColor+Hex.swift in Sources */,
 				78A8D09F222ABB8E00885B6E /* AppCoordinator.swift in Sources */,
 				78A8D0B4222AC51200885B6E /* UITableView+Rx.swift in Sources */,
 				78A8D0C0222AC77400885B6E /* TraitEnvironment.swift in Sources */,
