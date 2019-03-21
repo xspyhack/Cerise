@@ -32,10 +32,11 @@ final class MatterViewController: BaseViewController {
         let textView = UITextView()
         textView.textContainerInset = UIEdgeInsets(top: 12.0, left: 8.0, bottom: 12.0, right: 8.0)
         textView.textColor = .white
-        textView.backgroundColor = UIColor(named: "BK10")
+        textView.backgroundColor = UIColor(named: "BK10")?.withAlphaComponent(0.5)
         textView.keyboardDismissMode = .interactive
         textView.keyboardAppearance = .dark
         textView.isEditable = false
+        textView.isSelectable = false
         return textView
     }()
 
