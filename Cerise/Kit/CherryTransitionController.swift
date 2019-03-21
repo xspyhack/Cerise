@@ -97,35 +97,47 @@ extension CherryTransitionController: UIViewControllerAnimatedTransitioning {
         }
 
         let anchor = fromViewController.anchorView.flatMap { $0 }
-        guard let anchorView = anchor else {
+        guard let anchorView = anchor,
+            let transitionView = transitionContext.view(forKey: .from)?.snapshotView(afterScreenUpdates: true) else {
             return
         }
 
         let anchorRect = rect(of: anchorView, in: containerView)
-        let toView = UIView()
-        toView.clipsToBounds = true
-        toView.frame = anchorRect
-        containerView.addSubview(toView)
-
-        toView.addSubview(toViewController.view)
         let finalFrame = transitionContext.finalFrame(for: toViewController)
+        let scale = finalFrame.height / anchorRect.height / 2
+        containerView.addSubview(transitionView)
+
+        let toMaskView = UIView()
+        toMaskView.alpha = 0.0
+        toMaskView.clipsToBounds = true
+        toMaskView.frame = anchorRect
+        containerView.addSubview(toMaskView)
+
+        toMaskView.addSubview(toViewController.view)
         toViewController.view.bounds = CGRect(origin: .zero, size: finalFrame.size)
-        toViewController.view.frame.origin.y = -toView.frame.minY
+        toViewController.view.frame.origin.y = -toMaskView.frame.minY
         toViewController.view.layoutIfNeeded()
 
         mainAnimator.isUserInteractionEnabled = true
         mainAnimator.addAnimations {
-            toView.frame = finalFrame
+            toMaskView.alpha = 1.0
+            toMaskView.frame = finalFrame
             toViewController.view.frame = finalFrame
+            let mid = finalFrame.midY - (anchorRect.midY - finalFrame.midY)
+            transitionView.center = CGPoint(x: finalFrame.midX, y: mid)
+            var transform = CGAffineTransform(scaleX: scale, y: scale)
+            transform = transform.concatenating(CGAffineTransform(translationX: 0, y: finalFrame.midY - anchorRect.midY))
+            transitionView.transform = transform
 
             fromViewController.animateAlongsideTransitionController?(self, from: fromViewController, to: toViewController)
             toViewController.animateAlongsideTransitionController?(self, from: fromViewController, to: toViewController)
         }
 
         mainAnimator.addCompletion { _ in
-            toView.removeFromSuperview()
-            let completed = !transitionContext.transitionWasCancelled
+            toMaskView.removeFromSuperview()
+            transitionView.removeFromSuperview()
 
+            let completed = !transitionContext.transitionWasCancelled
             if completed {
                 containerView.addSubview(toViewController.view)
                 transitionContext.completeTransition(completed)
@@ -150,31 +162,47 @@ extension CherryTransitionController: UIViewControllerAnimatedTransitioning {
         }
 
         let anchor = toViewController.anchorView.flatMap { $0 }
-        guard let anchorView = anchor else {
+        guard let anchorView = anchor,
+            let fromView = fromViewController.view.snapshotView(afterScreenUpdates: false),
+            let transitionView = toView.snapshotView(afterScreenUpdates: true) else {
             return
         }
 
         let anchorRect = rect(of: anchorView, in: containerView)
-        let fromView = UIView()
-        fromView.clipsToBounds = true
-        fromView.frame = fromViewController.view.frame
-        containerView.addSubview(fromView)
-        fromViewController.view.removeFromSuperview()
-        fromView.addSubview(fromViewController.view)
-
+        let initialFrame = transitionContext.initialFrame(for: fromViewController)
         let finalFrame = transitionContext.finalFrame(for: transitionContext.viewController(forKey: .to)!)
+        let scale = finalFrame.height / anchorRect.height / 2
+        transitionView.center = CGPoint(x: finalFrame.midX, y: finalFrame.midY - (anchorRect.midY - finalFrame.midY))
+        transitionView.transform = CGAffineTransform(scaleX: scale, y: scale)
+        containerView.addSubview(transitionView)
+
+        let fromMaskView = UIView()
+        fromMaskView.backgroundColor = .red
+        fromMaskView.clipsToBounds = true
+        fromMaskView.frame = initialFrame
+        containerView.addSubview(fromMaskView)
+
+        fromView.frame = initialFrame
+        fromMaskView.addSubview(fromView)
+        fromViewController.view.removeFromSuperview()
+
         containerView.addSubview(toView)
         containerView.sendSubviewToBack(toView)
 
         mainAnimator.addAnimations {
-            fromView.frame = anchorRect
-            fromViewController.view.frame.origin.y = -anchorRect.minY
+            fromMaskView.alpha = 0
+            fromMaskView.frame = anchorRect
+            fromView.frame.origin.y = -anchorRect.minY
             toView.frame = finalFrame
-            toView.transform = .identity
+
+            transitionView.center = CGPoint(x: finalFrame.midX, y: finalFrame.midY)
+            transitionView.transform = .identity
         }
 
         mainAnimator.addCompletion { _ in
             fromView.removeFromSuperview()
+            fromMaskView.removeFromSuperview()
+            transitionView.removeFromSuperview()
 
             let completed = !transitionContext.transitionWasCancelled
             transitionContext.completeTransition(completed)

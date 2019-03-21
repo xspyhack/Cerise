@@ -21,7 +21,7 @@ final class MattersViewController: BaseViewController {
         tableView.sectionHeaderHeight = Constant.sectionHeaderHeight
         tableView.sectionFooterHeight = Constant.sectionFooterHeight
         tableView.backgroundColor = UIColor.clear
-//        tableView.contentInsetAdjustmentBehavior = .never
+        tableView.contentInsetAdjustmentBehavior = .never
         tableView.separatorStyle = .none
         return tableView
     }()
@@ -163,11 +163,11 @@ extension MattersViewController: CherryTransitioning {
 
 extension MattersViewController: UIViewControllerTransitioningDelegate {
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return CherryTransitionController(duration: 0.35, operation: .forward)
+        return CherryTransitionController(duration: 0.65, operation: .forward)
     }
 
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return CherryTransitionController(duration: 0.25, operation: .backward)
+        return CherryTransitionController(duration: 0.55, operation: .backward)
     }
 }
 

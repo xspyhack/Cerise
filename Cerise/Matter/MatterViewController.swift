@@ -62,7 +62,8 @@ final class MatterViewController: BaseViewController {
         contentView.backgroundColor = .black
         view.addSubview(contentView)
         contentView.cerise.layout { builder in
-            builder.top == view.safeAreaLayoutGuide.topAnchor
+            //builder.top == view.safeAreaLayoutGuide.topAnchor
+            builder.top == view.topAnchor
             builder.leading == view.leadingAnchor
             builder.trailing == view.trailingAnchor
             builder.height == 300
@@ -130,4 +131,35 @@ extension MatterViewController: UIViewControllerPreviewingDelegate {
 }
 
 extension MatterViewController: CherryTransitioning {
+    func transitionController(_ transitionController: CherryTransitionController, didTransitionFrom fromViewController: UIViewController, to toViewController: UIViewController) {
+        guard toViewController == self else {
+            return
+        }
+
+        titleLabel.alpha = 1.0
+        whenLabel.alpha = 1.0
+        notesTextView.alpha = 1.0
+    }
+
+    func transitionController(_ transitionController: CherryTransitionController, willTransitionFrom fromViewController: UIViewController, to toViewController: UIViewController) {
+        guard toViewController == self else {
+            return
+        }
+
+        titleLabel.alpha = 0.0
+        whenLabel.alpha = 0.0
+        notesTextView.alpha = 0.0
+    }
+
+    func animateAlongsideTransitionController(_ transitionController: CherryTransitionController, from fromViewController: UIViewController, to toViewController: UIViewController) {
+        if toViewController == self {
+            titleLabel.alpha = 1.0
+            whenLabel.alpha = 1.0
+            notesTextView.alpha = 1.0
+        } else {
+            titleLabel.alpha = 0.0
+            whenLabel.alpha = 0.0
+            notesTextView.alpha = 0.0
+        }
+    }
 }
