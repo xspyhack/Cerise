@@ -126,6 +126,15 @@ class Router {
     }
 
     @discardableResult
+    static func route(to destination: Routable, coordinator: RoutingCoordinator) -> Bool {
+        return shared.router.route(to: destination, coordinator: coordinator)
+    }
+
+    static func responds(to destination: Routable, coordinator: RoutingCoordinator) -> Bool {
+        return shared.router.responds(to: destination, coordinator: coordinator)
+    }
+
+    @discardableResult
     static func route(to destination: Routable, isFromLaunching: Bool = false) -> Bool {
         guard let representation = shared.delegate?.coordinatorRepresentation() else {
             return false
