@@ -39,7 +39,16 @@ final class MatterViewController: BaseViewController {
         return textView
     }()
 
-    var viewModel: MatterViewModel?
+    let viewModel: MatterViewModelType
+
+    init(viewModel: MatterViewModelType) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,67 +89,21 @@ final class MatterViewController: BaseViewController {
             builder.bottom == view.bottomAnchor
         }
 
-        guard let viewModel = viewModel else {
-            return
-        }
+        // MARK: Model binding
 
-        configure(with: viewModel)
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-//        if let userInfo = userActivity?.userInfo {
-//            if let json = userInfo[Configuration.UserActivity.matterUserInfoKey] as? [String: Any], let sharedMatter = SharedMatter.with(json: json) {
-//
-//                let matter = Matter.from(sharedMatter)
-//                self.viewModel = MatterViewModel(matter: matter)
-//
-//                if let viewModel = self.viewModel {
-//                    configure(with: viewModel)
-//                }
-//            }
-//        }
-    }
-
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-
-        stopUserActivity()
-    }
-
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesBegan(touches, with: event)
-        view.endEditing(true)
-    }
-
-    override func restoreUserActivityState(_ activity: NSUserActivity) {
-        userActivity = activity
-
-        super.restoreUserActivityState(activity)
-    }
-
-    override func updateUserActivityState(_ activity: NSUserActivity) {
-        //activity.addUserInfoEntries(from: [Configuration.UserActivity.matterUserInfoKey: Matter.shared(with: matter).json])
-        super.updateUserActivityState(activity)
-    }
-}
-
-extension MatterViewController {
-    private func configure(with viewModel: MatterViewModel) {
         viewModel.title
             .drive(titleLabel.rx.text)
             .disposed(by: disposeBag)
 
-         viewModel.when
-             .drive(whenLabel.rx.text)
-             .disposed(by: disposeBag)
+        viewModel.when
+            .drive(whenLabel.rx.text)
+            .disposed(by: disposeBag)
+
+        viewModel.notes
+            .drive(notesTextView.rx.text)
+            .disposed(by: disposeBag)
 
         /*
-         viewModel.notes
-         .drive(notesTextView.rx.text)
-         .disposed(by: disposeBag)
-
          viewModel.tag
          .drive(onNext: { [weak self] textColor in
          self?.titleLabel.textColor = textColor
@@ -149,17 +112,9 @@ extension MatterViewController {
          .disposed(by: disposeBag)*/
     }
 
-    private func startUserActivity() {
-        //let activity = NSUserActivity(activityType: Configuration.UserActivity.watch)
-        //activity.title = "Watch Matter"
-        //activity.userInfo = [Configuration.UserActivity.matterUserInfoKey: Matter.shared(with: matter).json]
-
-        //userActivity = activity
-        userActivity?.becomeCurrent()
-    }
-
-    private func stopUserActivity() {
-        userActivity?.invalidate()
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        view.endEditing(true)
     }
 }
 

@@ -13,6 +13,9 @@ import RxDataSources
 
 protocol MatterViewModelType {
     var matter: Matter { get }
+    var title: Driver<String?> { get }
+    var when: Driver<String?> { get }
+    var notes: Driver<String?> { get }
 }
 
 struct MatterViewModel: MatterViewModelType {

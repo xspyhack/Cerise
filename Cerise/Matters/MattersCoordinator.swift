@@ -34,8 +34,4 @@ struct MattersCoodinator: Coordinating {
     func stop() {
         parentViewController?.children.first?.removeFromParent()
     }
-
-    func makeMatterViewController() -> UIViewController {
-        return MatterViewController()
-    }
 }

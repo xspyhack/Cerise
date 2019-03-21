@@ -18,8 +18,7 @@ struct MatterCoordinator: Coordinating {
     }
 
     func start() {
-        let viewController = MatterViewController()
-        viewController.viewModel = MatterViewModel(matter: matter)
+        let viewController = MatterViewController(viewModel: MatterViewModel(matter: matter))
         parentViewController?.present(viewController, animated: true, completion: nil)
     }
 

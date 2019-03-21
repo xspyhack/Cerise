@@ -26,7 +26,7 @@ final class MattersViewController: BaseViewController {
         return tableView
     }()
 
-    private(set) var viewModel: MattersViewModelType
+    let viewModel: MattersViewModelType
 
     private enum Constant {
         static let rowHeight: CGFloat = 68.0
@@ -70,8 +70,7 @@ final class MattersViewController: BaseViewController {
                 HapticGenerator.trigger(with: .impact)
             })
             .subscribe(onNext: { [unowned self] matter in
-                let vc = MatterViewController()
-                vc.viewModel = MatterViewModel(matter: matter)
+                let vc = MatterViewController(viewModel: MatterViewModel(matter: matter))
                 self.present(vc, animated: true, completion: nil)
             })
             .disposed(by: disposeBag)
@@ -140,8 +139,7 @@ extension MattersViewController: UIViewControllerPreviewingDelegate {
             return nil
         }
 
-        let viewController = MatterViewController()
-        viewController.viewModel = MatterViewModel(matter: matter)
+        let viewController = MatterViewController(viewModel: MatterViewModel(matter: matter))
         let cellRect = tableView.rectForRow(at: indexPath)
         previewingContext.sourceRect = previewingContext.sourceView.convert(cellRect, from: tableView)
 
