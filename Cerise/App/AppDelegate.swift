@@ -16,8 +16,8 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         setUpLogger()
+        setUpRouter()
         setUpAppearance()
-        Router.register()
         startMainStory()
         return true
     }
@@ -52,6 +52,10 @@ extension AppDelegate {
                 print("Log directory: \(fileManager.directory)")
             }
         }
+    }
+
+    private func setUpRouter() {
+        Router.register()
     }
 
     private func setUpAppearance() {
