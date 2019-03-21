@@ -71,6 +71,7 @@
 		FA90AAE02241F9A000B08682 /* ListUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA90AADF2241F9A000B08682 /* ListUpdater.swift */; };
 		FA90AAE22241FA8200B08682 /* ListUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA90AAE12241FA8200B08682 /* ListUpdate.swift */; };
 		FA90AAE42241FAFC00B08682 /* SafeDispatchQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA90AAE32241FAFC00B08682 /* SafeDispatchQueue.swift */; };
+		FA90AAE622433EAA00B08682 /* Observable+Optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA90AAE522433EA800B08682 /* Observable+Optional.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -154,6 +155,7 @@
 		FA90AADF2241F9A000B08682 /* ListUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListUpdater.swift; sourceTree = "<group>"; };
 		FA90AAE12241FA8200B08682 /* ListUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListUpdate.swift; sourceTree = "<group>"; };
 		FA90AAE32241FAFC00B08682 /* SafeDispatchQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeDispatchQueue.swift; sourceTree = "<group>"; };
+		FA90AAE522433EA800B08682 /* Observable+Optional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+Optional.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -360,6 +362,7 @@
 				78A8D0B0222AC51200885B6E /* UITableView+Rx.swift */,
 				78A8D0B3222AC51200885B6E /* UIView+Rx.swift */,
 				78A8D0AE222AC4BD00885B6E /* ObservableConvertibleType+Driver.swift */,
+				FA90AAE522433EA800B08682 /* Observable+Optional.swift */,
 				785C69C82241398D004DF721 /* RxTextFieldDelegateProxy.swift */,
 				785C69CA22413B06004DF721 /* UITextField+Rx.swift */,
 			);
@@ -534,6 +537,7 @@
 				78A8D09F222ABB8E00885B6E /* AppCoordinator.swift in Sources */,
 				78A8D0B4222AC51200885B6E /* UITableView+Rx.swift in Sources */,
 				78A8D0C0222AC77400885B6E /* TraitEnvironment.swift in Sources */,
+				FA90AAE622433EAA00B08682 /* Observable+Optional.swift in Sources */,
 				78A8D0B5222AC51200885B6E /* Operators.swift in Sources */,
 				FA90AADA2240F6B500B08682 /* Tagble.swift in Sources */,
 				78A8D09D222ABAEB00885B6E /* Router.swift in Sources */,

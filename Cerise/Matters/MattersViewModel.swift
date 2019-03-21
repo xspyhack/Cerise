@@ -97,13 +97,18 @@ struct MattersViewModel: MattersViewModelType {
 
         inputs.itemSelected
             .map { self.matter(at: $0) }
-            .filter { $0 != nil }
-            .map { $0! }
+            .filterNil()
             .bind(to: outputs.showMatterDetail)
             .disposed(by: disposeBag)
 
         inputs.itemSelected
             .bind(to: outputs.itemDeselected)
+            .disposed(by: disposeBag)
+
+        inputs.itemDeleted
+            .map { self.matter(at: $0) }
+            .filterNil()
+            .bind(to: Matter.didDelete)
             .disposed(by: disposeBag)
 
         Matter.didCreate
