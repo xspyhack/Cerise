@@ -27,20 +27,6 @@ final class ComposerViewController: BaseViewController {
         super.viewDidLoad()
 
         view.backgroundColor = .white
-//        navigationItem.largeTitleDisplayMode = .always
-//        navigationController?.navigationBar.prefersLargeTitles = true
-//
-//        let doneItem = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: nil)
-//        navigationItem.rightBarButtonItem = doneItem
-
-//        doneItem.rx.tap
-//            .do(onNext: {
-//                HapticGenerator.trigger(with: .impactMedium)
-//            })
-//            .subscribe(onNext: { [weak self] in
-//                self?.dismiss(animated: true, completion: nil)
-//            })
-//            .disposed(by: disposeBag)
 
         addChild(editorViewController)
         view.addSubview(editorViewController.view)
@@ -53,7 +39,7 @@ final class ComposerViewController: BaseViewController {
         postButton.setBackgroundImage(UIImage(color: UIColor.cerise.tint), for: .normal)
         postButton.layer.cornerRadius = 33
         postButton.layer.masksToBounds = true
-        postButton.setImage(UIImage(named: "post")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        postButton.setImage(UIImage(named: "Post")?.withRenderingMode(.alwaysTemplate), for: .normal)
         postButton.tintColor = UIColor.white
         postButton.imageEdgeInsets = UIEdgeInsets(top: 11, left: 11, bottom: 11, right: 11)
         view.addSubview(postButton)
