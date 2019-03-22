@@ -81,7 +81,9 @@ extension AppDelegate {
         // UITableView
         UITableViewHeaderFooterView.appearance().tintColor = .black
         let labelAppearance = UILabel.appearance(whenContainedInInstancesOf: [UITableViewHeaderFooterView.self])
-        labelAppearance.textColor = .white
+        labelAppearance.textColor = UIColor.white.withAlphaComponent(0.78)
         labelAppearance.shadowColor = .white
+        // font will be reset when reuse, damn it
+        //labelAppearance.font = UIFont.systemFont(ofSize: 14, weight: .medium)
     }
 }
