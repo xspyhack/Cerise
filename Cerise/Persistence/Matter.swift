@@ -16,6 +16,9 @@ struct Matter: Codable {
     /// The title for the matter.
     let title: String
 
+    /// The tag for the matter.
+    let tag: Tagble
+
     /// The original occurrence date of the matter.
     let occurrenceDate: Date
 
@@ -25,11 +28,12 @@ struct Matter: Codable {
     /// This will be removed after Swift 5.
     init(id: String,
          title: String,
-         tag: Tagble = .none,
+         tag: Tagble = Tagble.allCases.randomElement() ?? .none,
          occurrenceDate: Date,
          notes: String? = nil) {
         self.id = id
         self.title = title
+        self.tag = tag
         self.occurrenceDate = occurrenceDate
         self.notes = notes
     }

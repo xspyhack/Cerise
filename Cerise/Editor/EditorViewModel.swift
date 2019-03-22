@@ -42,6 +42,7 @@ struct EditorViewModel: EditorViewModelType {
 
     enum Section: Int, CaseIterable {
         case title = 0
+        case tag
         case when
         case notes
 
@@ -49,6 +50,8 @@ struct EditorViewModel: EditorViewModelType {
             switch self {
             case .title:
                 return "Title"
+            case .tag:
+                return "Tag"
             case .when:
                 return "When"
             case .notes:

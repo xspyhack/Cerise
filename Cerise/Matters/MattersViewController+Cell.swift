@@ -11,7 +11,7 @@ import UIKit
 protocol MatterCellModelType {
     var title: String { get }
     var days: Int { get }
-//    var tag: String { get }
+    var tag: String { get }
     var notes: String? { get }
 }
 
@@ -19,13 +19,13 @@ extension MattersViewController {
     struct MatterCellModel: MatterCellModelType {
         var title: String
         var days: Int
-//        var tag: String
+        var tag: String
         var notes: String?
 
         init(matter: Matter) {
             self.title = matter.title
             self.days = Date().cerise.absoluteDays(with: matter.occurrenceDate)
-//            self.tag = (Tag(rawValue: matter.tag) ?? .red).value
+            self.tag = matter.tag.rawValue
             self.notes = matter.notes
         }
     }
@@ -52,14 +52,6 @@ extension MattersViewController {
         override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
             super.init(style: style, reuseIdentifier: reuseIdentifier)
 
-            setup()
-        }
-
-        required init?(coder aDecoder: NSCoder) {
-            fatalError("init(coder:) has not been implemented")
-        }
-
-        private func setup() {
             selectionStyle = .none
             contentView.backgroundColor = UIColor.black
 
@@ -79,6 +71,10 @@ extension MattersViewController {
             }
         }
 
+        required init?(coder aDecoder: NSCoder) {
+            fatalError("init(coder:) has not been implemented")
+        }
+
         override var layoutMargins: UIEdgeInsets {
             get {
                 return UIEdgeInsets.zero
@@ -92,6 +88,6 @@ extension MattersViewController.MatterCell {
     func bind(with presenter: MatterCellModelType) {
         titleLabel.text = presenter.title
         daysLabel.text = (presenter.days > 0) ? "+\(presenter.days)" : "\(presenter.days)"
-        //daysLabel.textColor = UIColor(hex: presenter.tag)
+        daysLabel.textColor = UIColor(hex: presenter.tag)
     }
 }

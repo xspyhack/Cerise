@@ -8,9 +8,9 @@
 
 import Foundation
 
-/// Hong Kong MTR station colour
-enum Tagble: String, Codable {
-    case none = "#000000"
+/// Tag table (Hong Kong MTR station colour)
+enum Tagble: String, Codable, CaseIterable {
+    case none = "#de3163"
     case hengfachuen = "#b51921"
     case taikoo = "#b2103e"
     case kowloonbay = "#c41832"

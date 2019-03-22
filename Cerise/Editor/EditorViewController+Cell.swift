@@ -187,3 +187,49 @@ extension EditorViewController {
         }
     }
 }
+
+extension EditorViewController {
+    final class TagPickerCell: UITableViewCell, Reusable {
+
+        var tagPicked: ControlEvent<Tagble> {
+            return ControlEvent(events: tagitView.itemSelected)
+        }
+
+        private(set) lazy var titleLabel: UILabel = {
+            let label = UILabel()
+            label.textColor = UIColor.cerise.title
+            return label
+        }()
+
+        private(set) lazy var tagitView: TagitView = {
+            let view = TagitView(frame: .zero)
+            return view
+        }()
+
+        override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+            super.init(style: style, reuseIdentifier: reuseIdentifier)
+
+            contentView.addSubview(titleLabel)
+            titleLabel.cerise.layout { builder in
+                builder.centerY == contentView.centerYAnchor
+                builder.leading == contentView.leadingAnchor + 20
+            }
+
+            contentView.addSubview(tagitView)
+            tagitView.cerise.layout { builder in
+                builder.leading == titleLabel.trailingAnchor + 20
+                builder.trailing == contentView.trailingAnchor - 20
+                builder.centerY == contentView.centerYAnchor
+                builder.height == contentView.heightAnchor
+            }
+        }
+
+        required init?(coder aDecoder: NSCoder) {
+            fatalError("init(coder:) has not been implemented")
+        }
+
+        func setTag(_ tag: Tagble, animated: Bool) {
+            tagitView.select(tag: tag, animated: animated)
+        }
+    }
+}

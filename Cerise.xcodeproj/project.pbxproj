@@ -75,6 +75,9 @@
 		FA90AAE8224340DF00B08682 /* MatterCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA90AAE7224340DF00B08682 /* MatterCoordinator.swift */; };
 		FA90AAEA224348C100B08682 /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA90AAE9224348C100B08682 /* UIColor+Hex.swift */; };
 		FAB928082243718800E338A8 /* CherryTransitionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB928072243718800E338A8 /* CherryTransitionController.swift */; };
+		FAB9280A2244A1AC00E338A8 /* TagitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB928092244A1AC00E338A8 /* TagitView.swift */; };
+		FAB9280C2244A6F000E338A8 /* Shadowability.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB9280B2244A6F000E338A8 /* Shadowability.swift */; };
+		FAB9280E2244A7D800E338A8 /* Scalable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB9280D2244A7D800E338A8 /* Scalable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -162,6 +165,9 @@
 		FA90AAE7224340DF00B08682 /* MatterCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatterCoordinator.swift; sourceTree = "<group>"; };
 		FA90AAE9224348C100B08682 /* UIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
 		FAB928072243718800E338A8 /* CherryTransitionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CherryTransitionController.swift; sourceTree = "<group>"; };
+		FAB928092244A1AC00E338A8 /* TagitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagitView.swift; sourceTree = "<group>"; };
+		FAB9280B2244A6F000E338A8 /* Shadowability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shadowability.swift; sourceTree = "<group>"; };
+		FAB9280D2244A7D800E338A8 /* Scalable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scalable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -295,6 +301,7 @@
 				785C69C0223FDF38004DF721 /* EditorViewController.swift */,
 				785C69C6224136F5004DF721 /* EditorViewController+Cell.swift */,
 				FA90AADB2241F10100B08682 /* EditorViewModel.swift */,
+				FAB928092244A1AC00E338A8 /* TagitView.swift */,
 			);
 			path = Editor;
 			sourceTree = "<group>";
@@ -331,6 +338,7 @@
 			children = (
 				7849BE90223D3E5F0068503A /* AutoLayout */,
 				78A8D0AD222AC4B100885B6E /* Rx */,
+				78A8D0A6222AC08700885B6E /* Cerise.swift */,
 				78A8D0A4222AC06200885B6E /* Reusable.swift */,
 				78A8D09A222ABAEB00885B6E /* BaseViewController.swift */,
 				785C69C422408234004DF721 /* ModalPresentationController.swift */,
@@ -341,11 +349,12 @@
 				FA90AADF2241F9A000B08682 /* ListUpdater.swift */,
 				78A8D09B222ABAEB00885B6E /* Router.swift */,
 				FA90AAD32240EB2C00B08682 /* Logger.swift */,
+				FAB9280B2244A6F000E338A8 /* Shadowability.swift */,
+				FAB9280D2244A7D800E338A8 /* Scalable.swift */,
 				78A8D0A2222ABDAA00885B6E /* UIImage+Color.swift */,
 				78A8D0C1222AC84E00885B6E /* UIColor+Cerise.swift */,
 				FA90AAE9224348C100B08682 /* UIColor+Hex.swift */,
 				FA90AAD72240EDEC00B08682 /* Date+Cerise.swift */,
-				78A8D0A6222AC08700885B6E /* Cerise.swift */,
 				78A8D0AB222AC44100885B6E /* ModelService.swift */,
 				78A8D0B8222AC5EA00885B6E /* FeedbackController.swift */,
 				78A8D0C3222AD39200885B6E /* UIStoryboard+Cerise.swift */,
@@ -540,6 +549,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAB9280C2244A6F000E338A8 /* Shadowability.swift in Sources */,
 				FA90AAE42241FAFC00B08682 /* SafeDispatchQueue.swift in Sources */,
 				FA90AAE22241FA8200B08682 /* ListUpdate.swift in Sources */,
 				785C69C3223FDF7C004DF721 /* ComposerViewController.swift in Sources */,
@@ -562,8 +572,10 @@
 				785C69C92241398D004DF721 /* RxTextFieldDelegateProxy.swift in Sources */,
 				78A8D0B6222AC51200885B6E /* UIControl+Rx.swift in Sources */,
 				FA90AAE02241F9A000B08682 /* ListUpdater.swift in Sources */,
+				FAB9280A2244A1AC00E338A8 /* TagitView.swift in Sources */,
 				78A8D050222AA94600885B6E /* MainViewController.swift in Sources */,
 				785C69CB22413B06004DF721 /* UITextField+Rx.swift in Sources */,
+				FAB9280E2244A7D800E338A8 /* Scalable.swift in Sources */,
 				FAB928082243718800E338A8 /* CherryTransitionController.swift in Sources */,
 				78A8D0A3222ABDAA00885B6E /* UIImage+Color.swift in Sources */,
 				78A8D07C222AAA5C00885B6E /* MatterViewController.swift in Sources */,

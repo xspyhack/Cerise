@@ -105,13 +105,13 @@ final class MatterViewController: BaseViewController {
             .drive(notesTextView.rx.text)
             .disposed(by: disposeBag)
 
-        /*
          viewModel.tag
-         .drive(onNext: { [weak self] textColor in
-         self?.titleLabel.textColor = textColor
-         self?.whenLabel.textColor = textColor
-         })
-         .disposed(by: disposeBag)*/
+            .map { UIColor(hex: $0) }
+            .drive(onNext: { [weak self] color in
+                 self?.titleLabel.textColor = color
+                 self?.whenLabel.textColor = color
+            })
+            .disposed(by: disposeBag)
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

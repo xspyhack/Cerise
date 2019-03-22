@@ -10,12 +10,11 @@ import UIKit
 import RxSwift
 import RxCocoa
 import RxDataSources
-//import WatchConnectivity
 
 final class MattersViewController: BaseViewController {
     private(set) lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero)
-        tableView.cerise.register(reusableCell: MattersViewController.MatterCell.self)
+        tableView.cerise.register(reusableCell: MatterCell.self)
         tableView.rowHeight = Constant.rowHeight
         tableView.estimatedRowHeight = Constant.rowHeight
         tableView.sectionHeaderHeight = Constant.sectionHeaderHeight
@@ -49,9 +48,6 @@ final class MattersViewController: BaseViewController {
         super.viewDidLoad()
 
         title = "Matters"
-
-        //WatchSessionService.shared.start(withDelegate: self)
-        //definesPresentationContext = true
         registerForPreviewing(with: self, sourceView: tableView)
 
         view.addSubview(tableView)
@@ -155,11 +151,15 @@ extension MattersViewController: UIViewControllerPreviewingDelegate {
     }
 }
 
+// MARK: - CherryTransitioning
+
 extension MattersViewController: CherryTransitioning {
     var anchorView: UIView? {
         return anchorIndexPath.flatMap { tableView.cellForRow(at: $0) }
     }
 }
+
+// MARK: - UIViewControllerTransitioningDelegate
 
 extension MattersViewController: UIViewControllerTransitioningDelegate {
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
@@ -168,43 +168,5 @@ extension MattersViewController: UIViewControllerTransitioningDelegate {
 
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return CherryTransitionController(duration: 0.55, operation: .backward)
-    }
-}
-
-//extension MattersViewController: WCSessionDelegate {
-//
-//    func session(_ session: WCSession,
-//                 activationDidCompleteWith activationState: WCSessionActivationState,
-//                 error: Error?) {
-//        Defaults.watchState.value = activationState.rawValue
-//    }
-//
-//    func sessionDidBecomeInactive(_ session: WCSession) {
-//    }
-//
-//    func sessionDidDeactivate(_ session: WCSession) {
-//    }
-//}
-
-enum WatchState: Int {
-    case notActivated
-    case inactive
-    case activated
-    case notInstalled
-    case unpaired
-
-    var name: String {
-        switch self {
-        case .notActivated:
-            return "not activated"
-        case .inactive:
-            return "inactive"
-        case .activated:
-            return "activated"
-        case .notInstalled:
-            return "not installed"
-        case .unpaired:
-            return "unpaired"
-        }
     }
 }

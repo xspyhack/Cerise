@@ -13,15 +13,16 @@ import RxDataSources
 
 protocol MatterViewModelType {
     var matter: Matter { get }
-    var title: Driver<String?> { get }
-    var when: Driver<String?> { get }
+    var title: Driver<String> { get }
+    var tag: Driver<String> { get }
+    var when: Driver<String> { get }
     var notes: Driver<String?> { get }
 }
 
 struct MatterViewModel: MatterViewModelType {
-    var title: Driver<String?>
-    //var tag: Driver<UIColor?>
-    var when: Driver<String?>
+    var title: Driver<String>
+    var tag: Driver<String>
+    var when: Driver<String>
     var notes: Driver<String?>
 
     let matter: Matter
@@ -30,7 +31,7 @@ struct MatterViewModel: MatterViewModelType {
     init(matter: Matter) {
         self.matter = matter
         self.title = Driver.just(matter.title)
-        //self.tag = Driver.just(UIColor(hex: Tag(rawValue: matter.tag)?.value ?? Tag.none.value))
+        self.tag = Driver.just(matter.tag.rawValue)
         self.when = Driver.just(matter.occurrenceDate.cerise.yearMonthDay)
         self.notes = Driver.just(matter.notes)
     }

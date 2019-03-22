@@ -16,9 +16,10 @@ final class EditorViewController: BaseViewController {
     private(set) lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero)
         tableView.cerise.register(reusableCell: TextFieldCell.self)
-        tableView.cerise.register(reusableCell: TextViewCell.self)
+        tableView.cerise.register(reusableCell: TagPickerCell.self)
         tableView.cerise.register(reusableCell: DisclosureCell.self)
         tableView.cerise.register(reusableCell: DatePickerCell.self)
+        tableView.cerise.register(reusableCell: TextViewCell.self)
         tableView.dataSource = self
         tableView.delegate = self
         tableView.tableFooterView = UIView()
@@ -68,7 +69,8 @@ final class EditorViewController: BaseViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        let titleCell = tableView.cellForRow(at: IndexPath(row: EditorViewModel.Section.title.rawValue, section: 0)) as? TextFieldCell
+        let titleIndexPath = IndexPath(row: EditorViewModel.Section.title.rawValue, section: 0)
+        let titleCell = tableView.cellForRow(at: titleIndexPath) as? TextFieldCell
         titleCell?.textField.becomeFirstResponder()
     }
 }
@@ -155,6 +157,17 @@ extension EditorViewController: UITableViewDataSource {
                 })
                 .disposed(by: cell.rx.prepareForReuseBag)
             return cell
+        case .tag:
+            let cell: TagPickerCell = tableView.cerise.dequeueReusableCell(for: indexPath)
+            cell.titleLabel.text = section.annotation
+            cell.tagPicked
+                .distinctUntilChanged()
+                .do(onNext: { _ in
+                    HapticGenerator.trigger(with: .selection)
+                })
+                .bind(to: viewModel.tag)
+                .disposed(by: cell.rx.prepareForReuseBag)
+            return cell
         case .notes:
             let cell: TextViewCell = tableView.cerise.dequeueReusableCell(for: indexPath)
             cell.titleLabel.text = section.annotation
@@ -221,6 +234,15 @@ extension EditorViewController: UITableViewDelegate {
         } else {
             hideInlineDatePicker()
         }
+    }
+
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard indexPath.section == EditorViewModel.Section.tag.rawValue,
+            let tagPickerCell = cell as? TagPickerCell else {
+            return
+        }
+
+        tagPickerCell.setTag(viewModel.tag.value, animated: true)
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
