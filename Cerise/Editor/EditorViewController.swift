@@ -152,6 +152,9 @@ extension EditorViewController: UITableViewDataSource {
                 .disposed(by: cell.rx.prepareForReuseBag)
 
             cell.textFieldDidBeginEditing
+                .do(onNext: { _ in
+                    HapticGenerator.trigger(with: .selection)
+                })
                 .subscribe(onNext: { [weak self] in
                     self?.hideInlineDatePicker()
                 })
@@ -161,6 +164,10 @@ extension EditorViewController: UITableViewDataSource {
             let cell: TagPickerCell = tableView.cerise.dequeueReusableCell(for: indexPath)
             cell.titleLabel.text = section.annotation
             cell.tagPicked
+                .do(onNext: { [weak self] _ in
+                    self?.hideInlineDatePicker()
+                    self?.view.endEditing(true)
+                })
                 .distinctUntilChanged()
                 .do(onNext: { _ in
                     HapticGenerator.trigger(with: .selection)
@@ -173,6 +180,9 @@ extension EditorViewController: UITableViewDataSource {
             cell.titleLabel.text = section.annotation
 
             cell.textViewDidBeginEditing
+                .do(onNext: { _ in
+                    HapticGenerator.trigger(with: .selection)
+                })
                 .subscribe(onNext: { [weak self] in
                     self?.hideInlineDatePicker()
                 })
@@ -226,13 +236,30 @@ extension EditorViewController: UITableViewDelegate {
             tableView.deselectRow(at: indexPath, animated: true)
         }
 
-        // Selected date cell
-        if indexPath.section == EditorViewModel.Section.when.rawValue && indexPath.row == 0 {
-            view.endEditing(true)
-            // show date picker
-            displayInlineDatePicker(for: indexPath)
-        } else {
+        guard let section = EditorViewModel.Section(rawValue: indexPath.section) else {
+            return
+        }
+
+        switch section {
+        case .title:
             hideInlineDatePicker()
+        case .tag:
+            view.endEditing(true)
+            hideInlineDatePicker()
+        case .when:
+            if indexPath.row == 0 {
+                view.endEditing(true)
+                HapticGenerator.trigger(with: .selection)
+                // show date picker
+                displayInlineDatePicker(for: indexPath)
+            } else {
+                hideInlineDatePicker()
+            }
+        case .notes:
+            hideInlineDatePicker()
+
+            let notesCell = tableView.cellForRow(at: indexPath) as? TextViewCell
+            notesCell?.textView.becomeFirstResponder()
         }
     }
 
