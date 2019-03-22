@@ -56,6 +56,7 @@ final class MattersViewController: BaseViewController {
         }
 
         let refreshControl = UIRefreshControl()
+        refreshControl.tintColor = UIColor.gray.withAlphaComponent(0.16)
         tableView.refreshControl = refreshControl
 
         // MARK: ViewModel outputs binding
