@@ -164,10 +164,10 @@ extension MattersViewController: CherryTransitioning {
 
 extension MattersViewController: UIViewControllerTransitioningDelegate {
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return CherryTransitionController(duration: 0.65, operation: .forward)
+        return CherryTransitionController(duration: 0.45, operation: .forward)
     }
 
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return CherryTransitionController(duration: 0.55, operation: .backward)
+        return CherryTransitionController(duration: 0.45, operation: .backward)
     }
 }
