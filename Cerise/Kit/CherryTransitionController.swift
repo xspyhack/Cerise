@@ -115,7 +115,7 @@ extension CherryTransitionController: UIViewControllerAnimatedTransitioning {
 
         toMaskView.addSubview(toViewController.view)
         toViewController.view.bounds = CGRect(origin: .zero, size: finalFrame.size)
-        toViewController.view.frame.origin.y = -toMaskView.frame.minY
+        toViewController.view.frame.origin.y = -anchorRect.height * 2
         toViewController.view.layoutIfNeeded()
 
         mainAnimator.isUserInteractionEnabled = true
@@ -123,11 +123,9 @@ extension CherryTransitionController: UIViewControllerAnimatedTransitioning {
             toMaskView.alpha = 1.0
             toMaskView.frame = finalFrame
             toViewController.view.frame = finalFrame
-            let mid = finalFrame.midY - (anchorRect.midY - finalFrame.midY)
-            transitionView.center = CGPoint(x: finalFrame.midX, y: mid)
-            var transform = CGAffineTransform(scaleX: scale, y: scale)
-            transform = transform.concatenating(CGAffineTransform(translationX: 0, y: finalFrame.midY - anchorRect.midY))
-            transitionView.transform = transform
+            let midY = finalFrame.midY - (anchorRect.midY - finalFrame.midY)
+            transitionView.center = CGPoint(x: finalFrame.midX, y: midY)
+            transitionView.transform = CGAffineTransform(scaleX: scale, y: scale)
 
             fromViewController.animateAlongsideTransitionController?(self, from: fromViewController, to: toViewController)
             toViewController.animateAlongsideTransitionController?(self, from: fromViewController, to: toViewController)
@@ -172,7 +170,8 @@ extension CherryTransitionController: UIViewControllerAnimatedTransitioning {
         let initialFrame = transitionContext.initialFrame(for: fromViewController)
         let finalFrame = transitionContext.finalFrame(for: transitionContext.viewController(forKey: .to)!)
         let scale = finalFrame.height / anchorRect.height / 2
-        transitionView.center = CGPoint(x: finalFrame.midX, y: finalFrame.midY - (anchorRect.midY - finalFrame.midY))
+        let midY = finalFrame.midY - (anchorRect.midY - finalFrame.midY)
+        transitionView.center = CGPoint(x: finalFrame.midX, y: midY)
         transitionView.transform = CGAffineTransform(scaleX: scale, y: scale)
         containerView.addSubview(transitionView)
 
@@ -192,7 +191,7 @@ extension CherryTransitionController: UIViewControllerAnimatedTransitioning {
         mainAnimator.addAnimations {
             fromMaskView.alpha = 0
             fromMaskView.frame = anchorRect
-            fromView.frame.origin.y = -anchorRect.minY
+            fromView.frame.origin.y = -anchorRect.height * 2
             toView.frame = finalFrame
 
             transitionView.center = CGPoint(x: finalFrame.midX, y: finalFrame.midY)
