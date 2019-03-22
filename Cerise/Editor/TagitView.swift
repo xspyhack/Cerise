@@ -81,23 +81,11 @@ extension TagitView: UICollectionViewDataSource {
 
         let cell: ItemCell = collectionView.cerise.dequeueReusableCell(for: indexPath)
         cell.itemColor = UIColor(hex: tag.rawValue)
-//        cell.isSelected = tag == selecting
         return cell
     }
 }
 
 extension TagitView: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let cell = collectionView.cellForItem(at: indexPath) as? ItemCell,
-            let item = items.safe[indexPath.item] else {
-            return
-        }
-
-//        for cell in collectionView.visibleCells {
-//            (cell as? ItemCell)?.isSelected = false
-//        }
-//        cell.isSelected = true
-    }
 }
 
 extension TagitView {
@@ -145,6 +133,8 @@ extension TagitView {
 
         override init(frame: CGRect) {
             super.init(frame: frame)
+
+            contentView.applyShadow(style: .standard)
 
             contentView.addSubview(outerView)
             contentView.addSubview(gapView)
