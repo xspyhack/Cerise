@@ -72,7 +72,7 @@ struct EditorViewModel: EditorViewModelType {
 
     init() {
         self.title = BehaviorRelay(value: "")
-        self.tag = BehaviorRelay(value: .none)
+        self.tag = BehaviorRelay(value: Tagble.allCases.randomElement() ?? .none)
         self.when = BehaviorRelay(value: Date())
         self.notes = BehaviorRelay(value: "")
         let identifier = Driver<String>.just(UUID().uuidString)

@@ -269,7 +269,9 @@ extension EditorViewController: UITableViewDelegate {
             return
         }
 
-        tagPickerCell.setTag(viewModel.tag.value, animated: true)
+        DispatchQueue.main.async {
+            tagPickerCell.setTag(self.viewModel.tag.value, animated: true)
+        }
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
