@@ -56,6 +56,17 @@ struct Charmander {
             .map { try decoder.decode(type, from: $0) }
     }
 
+    func remove(forKey key: StoreKey) throws {
+        let url = try disk.url(atPath: path(forKey: key), in: directory)
+        try disk.remove(at: url)
+    }
+
+    func clear() throws {
+        let url = try disk.url(atPath: "\(folder)/", in: directory)
+        let urls = try disk.urls(at: url)
+        try urls.forEach(disk.remove)
+    }
+
     private func path(forKey key: StoreKey) -> String {
         return "\(folder)/\(key.identifier)"
     }
@@ -100,8 +111,8 @@ struct Disk {
 }
 
 extension Disk {
-    func validate(path: String) -> Bool {
-        return true
+    func remove(at url: URL) throws {
+        try fileManager.removeItem(at: url)
     }
 
     func fileExists(atPath path: String, isDirectory: UnsafeMutablePointer<ObjCBool>? = nil) -> Bool {

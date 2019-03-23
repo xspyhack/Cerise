@@ -124,6 +124,9 @@ struct MattersViewModel: MattersViewModelType {
             .disposed(by: disposeBag)
 
         Matter.didDelete
+            .do(onNext: { matter in
+                try? self.charmander.remove(forKey: matter.identifier)
+            })
             .subscribe(onNext: { matter in
                 guard let index = self.matters.value.index(of: matter) else {
                     return
@@ -135,6 +138,10 @@ struct MattersViewModel: MattersViewModelType {
             .disposed(by: disposeBag)
 
         Matter.didUpdate
+            .do(onNext: { matter in
+                try? self.charmander.remove(forKey: matter.identifier)
+                try? self.charmander.store(matter, forKey: matter.identifier)
+            })
             .subscribe(onNext: { matter in
                 guard let index = self.matters.value.index(of: matter) else {
                     return
