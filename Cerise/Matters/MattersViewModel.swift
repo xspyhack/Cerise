@@ -65,12 +65,13 @@ struct MattersViewModel: MattersViewModelType {
 
     private let disposeBag = DisposeBag()
     private(set) var matters: BehaviorRelay<[Matter]>
+    private let charmander = Charmander()
 
     init() {
-        let matters = BehaviorRelay<[Matter]>(value: Matter.mock())
-        self.matters = matters
+        let matters = try? charmander.retrieveAll(type: Matter.self)
+        self.matters = BehaviorRelay<[Matter]>(value: matters ?? [])
 
-        let sections: Driver<[MattersViewSection]> = matters.asObservable()
+        let sections: Driver<[MattersViewSection]> = self.matters.asObservable()
             .map { matters in
                 let comingCellModels = matters.filter { $0.occurrenceDate > Date() }
                     .map(MattersViewController.MatterCellModel.init) as [MatterCellModelType]
@@ -112,6 +113,9 @@ struct MattersViewModel: MattersViewModelType {
             .disposed(by: disposeBag)
 
         Matter.didCreate
+            .do(onNext: { matter in
+                try? self.charmander.store(matter, forKey: matter.identifier)
+            })
             .subscribe(onNext: { matter in
                 var matters = self.matters.value
                 matters.insert(matter, at: 0)
@@ -160,5 +164,11 @@ extension MattersViewModel {
 
     func index(of matter: Matter) -> Int? {
         return matters.value.index(of: matter)
+    }
+}
+
+extension Matter: StoreKey {
+    var identifier: String {
+        return id.replacingOccurrences(of: "-", with: "").lowercased()
     }
 }

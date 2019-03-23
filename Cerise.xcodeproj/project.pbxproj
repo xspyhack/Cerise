@@ -23,6 +23,7 @@
 		785C69C7224136F5004DF721 /* EditorViewController+Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785C69C6224136F5004DF721 /* EditorViewController+Cell.swift */; };
 		785C69C92241398D004DF721 /* RxTextFieldDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785C69C82241398D004DF721 /* RxTextFieldDelegateProxy.swift */; };
 		785C69CB22413B06004DF721 /* UITextField+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785C69CA22413B06004DF721 /* UITextField+Rx.swift */; };
+		785C69CD22462971004DF721 /* Charmander.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785C69CC22462971004DF721 /* Charmander.swift */; };
 		78A8D04E222AA94600885B6E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A8D04D222AA94600885B6E /* AppDelegate.swift */; };
 		78A8D050222AA94600885B6E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A8D04F222AA94600885B6E /* MainViewController.swift */; };
 		78A8D053222AA94600885B6E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78A8D051222AA94600885B6E /* Main.storyboard */; };
@@ -106,6 +107,7 @@
 		785C69C6224136F5004DF721 /* EditorViewController+Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EditorViewController+Cell.swift"; sourceTree = "<group>"; };
 		785C69C82241398D004DF721 /* RxTextFieldDelegateProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxTextFieldDelegateProxy.swift; sourceTree = "<group>"; };
 		785C69CA22413B06004DF721 /* UITextField+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Rx.swift"; sourceTree = "<group>"; };
+		785C69CC22462971004DF721 /* Charmander.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Charmander.swift; sourceTree = "<group>"; };
 		78A8D04A222AA94600885B6E /* Cerise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cerise.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78A8D04D222AA94600885B6E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		78A8D04F222AA94600885B6E /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -351,6 +353,7 @@
 				FA90AAD32240EB2C00B08682 /* Logger.swift */,
 				FAB9280B2244A6F000E338A8 /* Shadowability.swift */,
 				FAB9280D2244A7D800E338A8 /* Scalable.swift */,
+				785C69CC22462971004DF721 /* Charmander.swift */,
 				78A8D0A2222ABDAA00885B6E /* UIImage+Color.swift */,
 				78A8D0C1222AC84E00885B6E /* UIColor+Cerise.swift */,
 				FA90AAE9224348C100B08682 /* UIColor+Hex.swift */,
@@ -600,6 +603,7 @@
 				785C69C522408234004DF721 /* ModalPresentationController.swift in Sources */,
 				7849BE96223D3EE60068503A /* LayoutBuilder.swift in Sources */,
 				78A8D0BC222AC64400885B6E /* Environment.swift in Sources */,
+				785C69CD22462971004DF721 /* Charmander.swift in Sources */,
 				785C69BF223FDD51004DF721 /* HapticGenerator.swift in Sources */,
 				78A8D0BE222AC6AC00885B6E /* AppEnvironment.swift in Sources */,
 				78A8D0B9222AC5EA00885B6E /* FeedbackController.swift in Sources */,
