@@ -10,10 +10,18 @@ import UIKit
 
 extension Cerise where Base: UIColor {
     static var tint: UIColor {
-        return UIColor(named: "TINT") ?? UIColor(red: 222, green: 49, blue: 99, alpha: 1)
+        return UIColor(named: "TINT") ?? UIColor(red: 0.871, green: 0.192, blue: 0.388, alpha: 1.00)
+    }
+
+    static var dark: UIColor {
+        return UIColor(named: "DARK") ?? UIColor(red: 0.12, green: 0.13, blue: 0.13, alpha: 1.00)
     }
 
     static var title: UIColor {
+        return UIColor(named: "BK30")!
+    }
+
+    static var text: UIColor {
         return UIColor(named: "BK80")!
     }
 }

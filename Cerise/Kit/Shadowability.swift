@@ -25,12 +25,12 @@ struct Shadow {
             self.init(offset: CGSize(width: 0, height: 0.6),
                       blur: 2,
                       opacity: 0.3,
-                      color: .black)
+                      color: .white)
         case .wide:
             self.init(offset: CGSize(width: 0, height: 4),
                       blur: 6,
                       opacity: 0.2,
-                      color: .gray)
+                      color: .lightGray)
         }
     }
 

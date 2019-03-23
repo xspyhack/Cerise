@@ -29,7 +29,8 @@ extension EditorViewController {
         private(set) lazy var textField: UITextField = {
             let textField = UITextField()
             textField.textAlignment = .center
-            textField.textColor = UIColor.gray
+            textField.textColor = UIColor.cerise.text
+            textField.returnKeyType = .done
             return textField
         }()
 
@@ -38,6 +39,7 @@ extension EditorViewController {
         override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
             super.init(style: style, reuseIdentifier: reuseIdentifier)
 
+            selectionStyle = .none
             contentView.addSubview(textField)
             textField.cerise.layout { builder in
                 builder.edges == contentView.cerise.edgesAnchor
@@ -81,10 +83,11 @@ extension EditorViewController {
             let textView = UITextView()
             textView.delegate = self
             textView.isScrollEnabled = false
-            textView.textColor = UIColor.black
+            textView.textColor = UIColor.cerise.text
+            textView.backgroundColor = .clear
             textView.font = UIFont.systemFont(ofSize: 14.0)
             textView.textContainer.lineFragmentPadding = 0.0
-            textView.textContainerInset = UIEdgeInsets.zero
+            textView.textContainerInset = .zero
             textView.autocapitalizationType = .none
             textView.autocorrectionType = .no
             textView.spellCheckingType = .no
@@ -94,6 +97,7 @@ extension EditorViewController {
         override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
             super.init(style: style, reuseIdentifier: reuseIdentifier)
 
+            selectionStyle = .none
             textLabel?.textColor = UIColor.cerise.title
             contentView.addSubview(titleLabel)
             titleLabel.cerise.layout { builder in
@@ -141,6 +145,8 @@ extension EditorViewController {
             let datePicker = UIDatePicker()
             datePicker.tag = DatePickerCell.datePickerTag
             datePicker.datePickerMode = .date
+            datePicker.backgroundColor = UIColor.cerise.dark
+            datePicker.setValue(UIColor.cerise.text, forKey: "textColor")
             return datePicker
         }()
 
@@ -172,7 +178,10 @@ extension EditorViewController {
 
             accessoryType = .disclosureIndicator
             textLabel?.textColor = UIColor.cerise.title
-            detailTextLabel?.textColor = .white
+            detailTextLabel?.textColor = UIColor.cerise.text
+
+            selectedBackgroundView = UIView()
+            selectedBackgroundView?.backgroundColor = UIColor(named: "BK20")
 
             contentView.addSubview(titleLabel)
             titleLabel.cerise.layout { builder in

@@ -41,6 +41,10 @@ final class MatterViewController: BaseViewController {
         return textView
     }()
 
+    private enum Constant {
+        static let contentHeight: CGFloat = 300
+    }
+
     let viewModel: MatterViewModelType
 
     init(viewModel: MatterViewModelType) {
@@ -64,7 +68,6 @@ final class MatterViewController: BaseViewController {
         contentView.backgroundColor = .black
         view.addSubview(contentView)
         contentView.cerise.layout { builder in
-            //builder.top == view.safeAreaLayoutGuide.topAnchor
             builder.top == view.topAnchor
             builder.leading == view.leadingAnchor
             builder.trailing == view.trailingAnchor

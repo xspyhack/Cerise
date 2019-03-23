@@ -85,5 +85,11 @@ extension AppDelegate {
         labelAppearance.shadowColor = .white
         // font will be reset when reuse, damn it
         //labelAppearance.font = UIFont.systemFont(ofSize: 14, weight: .medium)
+
+        let textFieldAppearance = UITextField.appearance()
+        textFieldAppearance.keyboardAppearance = .dark
+
+        let textViewAppearance = UITextField.appearance()
+        textViewAppearance.keyboardAppearance = .dark
     }
 }

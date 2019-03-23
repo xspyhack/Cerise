@@ -26,7 +26,7 @@ final class ComposerViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor.cerise.dark
 
         addChild(editorViewController)
         view.addSubview(editorViewController.view)
@@ -87,7 +87,7 @@ extension ComposerViewController: UIViewControllerTransitioningDelegate {
         presentationController.contentHeight = (bounds.height / 5 * 4).rounded(.up)
         //presentationController.setContentScrollView(editorViewController.tableView)
         presentationController.handleView.backgroundColor = UIColor.cerise.tint
-        presentationController.bottomView.backgroundColor = .white
+        presentationController.bottomView.backgroundColor = UIColor.cerise.dark
         return presentationController
     }
 }

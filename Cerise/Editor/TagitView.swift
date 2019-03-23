@@ -112,7 +112,7 @@ extension TagitView {
 
         private lazy var gapView: UIView = {
             let view = UIView()
-            view.backgroundColor = UIColor.white
+            view.backgroundColor = UIColor.cerise.dark
             view.layer.cornerRadius = Constant.gapSize.width / 2.0
             view.isHidden = true
             return view

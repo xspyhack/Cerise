@@ -23,7 +23,9 @@ final class EditorViewController: BaseViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.tableFooterView = UIView()
+        tableView.backgroundColor = .clear
         tableView.alwaysBounceVertical = true
+        tableView.separatorColor = UIColor(named: "BK30")
         //tableView.contentInsetAdjustmentBehavior = .never
         return tableView
     }()
@@ -48,9 +50,6 @@ final class EditorViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        view.layer.cornerRadius = 8.0
-        view.clipsToBounds = true
 
         view.addSubview(tableView)
         tableView.cerise.layout { builder in
@@ -145,8 +144,7 @@ extension EditorViewController: UITableViewDataSource {
         switch section {
         case .title:
             let cell: TextFieldCell = tableView.cerise.dequeueReusableCell(for: indexPath)
-            cell.textField.placeholder = "What's the Matter"
-            cell.textField.returnKeyType = .done
+            cell.textField.attributedPlaceholder = NSAttributedString(string: "What's the Matter", attributes: [.foregroundColor: UIColor(named: "BK30") ?? .gray])
             cell.textChanged
                 .bind(to: viewModel.title)
                 .disposed(by: cell.rx.prepareForReuseBag)
@@ -221,7 +219,6 @@ extension EditorViewController: UITableViewDataSource {
                 let cell: DisclosureCell = tableView.cerise.dequeueReusableCell(for: indexPath)
                 cell.titleLabel.text = section.annotation
                 cell.detailTextLabel?.text = viewModel.when.value.cerise.yearMonthDay
-                cell.detailTextLabel?.textColor = UIColor.gray
                 return cell
             }
         }
@@ -264,6 +261,8 @@ extension EditorViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.backgroundColor = UIColor.cerise.dark
+
         guard indexPath.section == EditorViewModel.Section.tag.rawValue,
             let tagPickerCell = cell as? TagPickerCell else {
             return
