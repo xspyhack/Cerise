@@ -104,10 +104,17 @@ extension CherryTransitionController: UIViewControllerAnimatedTransitioning {
 
         let anchorRect = rect(of: anchorView, in: containerView)
         let finalFrame = transitionContext.finalFrame(for: toViewController)
+
+        let backgroundView = UIView()
+        backgroundView.frame = containerView.bounds
+        backgroundView.backgroundColor = .black
+        containerView.addSubview(backgroundView)
+
         let scale = finalFrame.height / anchorRect.height / 4
         transitionView.layer.anchorPoint = CGPoint(x: anchorRect.midX / finalFrame.width,
                                                    y: anchorRect.midY / finalFrame.height)
         transitionView.frame = finalFrame
+        transitionView.alpha = 0.92
         containerView.addSubview(transitionView)
 
         let toMaskView = UIView()
@@ -126,6 +133,7 @@ extension CherryTransitionController: UIViewControllerAnimatedTransitioning {
             toMaskView.alpha = 1.0
             toMaskView.frame = finalFrame
             toViewController.view.frame = finalFrame
+            transitionView.alpha = 0.0
             transitionView.transform = CGAffineTransform(scaleX: scale, y: scale)
 
             fromViewController.animateAlongsideTransitionController?(self, from: fromViewController, to: toViewController)
@@ -135,6 +143,7 @@ extension CherryTransitionController: UIViewControllerAnimatedTransitioning {
         mainAnimator.addCompletion { _ in
             toMaskView.removeFromSuperview()
             transitionView.removeFromSuperview()
+            backgroundView.removeFromSuperview()
 
             let completed = !transitionContext.transitionWasCancelled
             if completed {
@@ -167,6 +176,11 @@ extension CherryTransitionController: UIViewControllerAnimatedTransitioning {
             return
         }
 
+        let backgroundView = UIView()
+        backgroundView.frame = containerView.bounds
+        backgroundView.backgroundColor = .black
+        containerView.addSubview(backgroundView)
+
         let anchorRect = rect(of: anchorView, in: containerView)
         let initialFrame = transitionContext.initialFrame(for: fromViewController)
         let finalFrame = transitionContext.finalFrame(for: transitionContext.viewController(forKey: .to)!)
@@ -174,6 +188,7 @@ extension CherryTransitionController: UIViewControllerAnimatedTransitioning {
         transitionView.layer.anchorPoint = CGPoint(x: anchorRect.midX / finalFrame.width,
                                                    y: anchorRect.midY / finalFrame.height)
         transitionView.frame = initialFrame
+        transitionView.alpha = 0.1
         transitionView.transform = CGAffineTransform(scaleX: scale, y: scale)
         containerView.addSubview(transitionView)
 
@@ -195,6 +210,7 @@ extension CherryTransitionController: UIViewControllerAnimatedTransitioning {
             fromMaskView.frame = anchorRect
             fromView.frame.origin.y = -anchorRect.height * 2
             toView.frame = finalFrame
+            transitionView.alpha = 1.0
             transitionView.transform = .identity
         }
 
@@ -202,6 +218,7 @@ extension CherryTransitionController: UIViewControllerAnimatedTransitioning {
             fromView.removeFromSuperview()
             fromMaskView.removeFromSuperview()
             transitionView.removeFromSuperview()
+            backgroundView.removeFromSuperview()
 
             let completed = !transitionContext.transitionWasCancelled
             transitionContext.completeTransition(completed)
