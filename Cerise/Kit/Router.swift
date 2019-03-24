@@ -8,6 +8,7 @@
 
 import Foundation
 import Ditto
+import Keldeo
 import SafariServices
 
 struct RoutingCoordinator {
@@ -89,6 +90,16 @@ class Router {
             ("cerise://home", { context in
                 return true
             }),
+            ("cerise://add", { context in
+                let coordinator = context.coordinator
+                guard coordinator.viewController.presentedViewController == nil else {
+                    return false
+                }
+
+                let vc = ComposerViewController()
+                coordinator.show(vc)
+                return true
+            }),
             // 强制用浏览器打开链接
             // cerise://browser?link=[url]
             ("development://browser", { context in
@@ -110,6 +121,12 @@ class Router {
             }),
             // 清楚本地数据
             ("cerise://development/clean", { context in
+                let disk = Disk()
+                do {
+                    try disk.clear(.caches)
+                } catch {
+                    Log.e("Clean caches failed: \(error)")
+                }
                 return true
             }),
             // 切换网络环境

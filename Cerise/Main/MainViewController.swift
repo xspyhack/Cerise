@@ -35,3 +35,9 @@ extension MainViewController: CherryTransitioning {
         return mattersViewController.anchorView
     }
 }
+
+extension MainViewController: RoutingCoordinatorDelegate {
+    func coordinatorRepresentation() -> RoutingCoordinator.Representaion {
+        return .present(from: self, animated: true)
+    }
+}

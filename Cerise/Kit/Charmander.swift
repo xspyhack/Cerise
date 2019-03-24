@@ -115,6 +115,12 @@ extension Disk {
         try fileManager.removeItem(at: url)
     }
 
+    func clear(_ directory: Directory) throws {
+        let url = try self.url(atPath: "", in: directory)
+        let urls = try self.urls(at: url)
+        try urls.forEach(remove)
+    }
+
     func fileExists(atPath path: String, isDirectory: UnsafeMutablePointer<ObjCBool>? = nil) -> Bool {
         return fileManager.fileExists(atPath: path, isDirectory: isDirectory)
     }

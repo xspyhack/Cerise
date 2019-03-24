@@ -18,11 +18,12 @@ struct MainCoodinator: Coordinating {
 
     func start() {
         let viewController = Storyboard.main.viewController(of: MainViewController.self)
+        Router.shared.delegate = viewController
         navigationController?.setViewControllers([viewController], animated: true)
-        //navigationController?.pushViewController(viewController, animated: true)
     }
 
     func stop() {
+        Router.shared.delegate = nil
         navigationController?.popViewController(animated: true)
     }
 
