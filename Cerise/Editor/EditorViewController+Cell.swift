@@ -70,7 +70,7 @@ extension EditorViewController {
 
         var textViewDidChangeAction: ((CGFloat) -> Void)?
 
-        lazy var titleLabel: UILabel = {
+        private(set) lazy var titleLabel: UILabel = {
             let label = UILabel()
             label.textColor = UIColor.cerise.title
             return label
@@ -79,7 +79,7 @@ extension EditorViewController {
         private let textViewMinimumHeight: CGFloat = 30.0
         static let minimumHeight: CGFloat = 16 + 30 + 10 + 30 + 20
 
-        lazy var textView: UITextView = {
+        private(set) lazy var textView: UITextView = {
             let textView = UITextView()
             textView.delegate = self
             textView.isScrollEnabled = false
@@ -130,6 +130,14 @@ extension EditorViewController.TextViewCell: UITextViewDelegate {
         //textView.bounds = bounds
         //textViewHeightConstraint.constant = max(textViewMinixumHeight, size.height)
         textViewDidChangeAction?(size.height + 80.0)
+    }
+
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if text == "\n" {
+            textView.resignFirstResponder()
+            return false
+        }
+        return true
     }
 }
 

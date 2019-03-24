@@ -24,6 +24,7 @@
 		785C69C92241398D004DF721 /* RxTextFieldDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785C69C82241398D004DF721 /* RxTextFieldDelegateProxy.swift */; };
 		785C69CB22413B06004DF721 /* UITextField+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785C69CA22413B06004DF721 /* UITextField+Rx.swift */; };
 		785C69CD22462971004DF721 /* Charmander.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785C69CC22462971004DF721 /* Charmander.swift */; };
+		785C69CF22476B0E004DF721 /* UIScrollView+Cerise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785C69CE22476B0E004DF721 /* UIScrollView+Cerise.swift */; };
 		78A8D04E222AA94600885B6E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A8D04D222AA94600885B6E /* AppDelegate.swift */; };
 		78A8D050222AA94600885B6E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A8D04F222AA94600885B6E /* MainViewController.swift */; };
 		78A8D053222AA94600885B6E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78A8D051222AA94600885B6E /* Main.storyboard */; };
@@ -108,6 +109,7 @@
 		785C69C82241398D004DF721 /* RxTextFieldDelegateProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxTextFieldDelegateProxy.swift; sourceTree = "<group>"; };
 		785C69CA22413B06004DF721 /* UITextField+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Rx.swift"; sourceTree = "<group>"; };
 		785C69CC22462971004DF721 /* Charmander.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Charmander.swift; sourceTree = "<group>"; };
+		785C69CE22476B0E004DF721 /* UIScrollView+Cerise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Cerise.swift"; sourceTree = "<group>"; };
 		78A8D04A222AA94600885B6E /* Cerise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cerise.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78A8D04D222AA94600885B6E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		78A8D04F222AA94600885B6E /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -357,6 +359,7 @@
 				78A8D0A2222ABDAA00885B6E /* UIImage+Color.swift */,
 				78A8D0C1222AC84E00885B6E /* UIColor+Cerise.swift */,
 				FA90AAE9224348C100B08682 /* UIColor+Hex.swift */,
+				785C69CE22476B0E004DF721 /* UIScrollView+Cerise.swift */,
 				FA90AAD72240EDEC00B08682 /* Date+Cerise.swift */,
 				78A8D0AB222AC44100885B6E /* ModelService.swift */,
 				78A8D0B8222AC5EA00885B6E /* FeedbackController.swift */,
@@ -582,6 +585,7 @@
 				FAB928082243718800E338A8 /* CherryTransitionController.swift in Sources */,
 				78A8D0A3222ABDAA00885B6E /* UIImage+Color.swift in Sources */,
 				78A8D07C222AAA5C00885B6E /* MatterViewController.swift in Sources */,
+				785C69CF22476B0E004DF721 /* UIScrollView+Cerise.swift in Sources */,
 				78A8D0B7222AC51200885B6E /* UIView+Rx.swift in Sources */,
 				78A8D077222AAA5500885B6E /* MattersViewController+Cell.swift in Sources */,
 				FA90AADE2241F6AF00B08682 /* ComposerViewModel.swift in Sources */,

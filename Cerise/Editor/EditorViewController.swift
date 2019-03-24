@@ -9,6 +9,7 @@
 import UIKit
 import RxCocoa
 import RxSwift
+import Keldeo
 
 final class EditorViewController: BaseViewController {
     let viewModel: EditorViewModelType
@@ -25,8 +26,8 @@ final class EditorViewController: BaseViewController {
         tableView.tableFooterView = UIView()
         tableView.backgroundColor = .clear
         tableView.alwaysBounceVertical = true
-        tableView.separatorColor = UIColor(named: "BK30")
-        //tableView.contentInsetAdjustmentBehavior = .never
+        tableView.separatorColor = UIColor(named: "BK20")
+        tableView.contentInsetAdjustmentBehavior = .never
         return tableView
     }()
 
@@ -53,7 +54,10 @@ final class EditorViewController: BaseViewController {
 
         view.addSubview(tableView)
         tableView.cerise.layout { builder in
-            builder.edges == view.cerise.edgesAnchor
+            builder.top == view.topAnchor + 40
+            builder.leading == view.leadingAnchor
+            builder.trailing == view.trailingAnchor
+            builder.bottom == view.bottomAnchor
         }
 
         // MARK: ViewModel binding
@@ -177,6 +181,27 @@ extension EditorViewController: UITableViewDataSource {
             let cell: TextViewCell = tableView.cerise.dequeueReusableCell(for: indexPath)
             cell.titleLabel.text = section.annotation
 
+            let keyboardWillShow = NotificationCenter.default.rx.notification(UIResponder.keyboardWillShowNotification)
+                .filter { _ in UIApplication.shared.applicationState == .active }
+                .map { $0.cerise.animation }
+                .filterNil()
+
+            Observable<Notification.KeyboardAnimation>.zip(keyboardWillShow, cell.textViewDidBeginEditing) { animation, _ in animation }
+                .observeOn(MainScheduler.instance)
+                .subscribe(onNext: { animation in
+                    UIView.animate(
+                        withDuration: animation.duration,
+                        delay: 0, options: UIView.AnimationOptions(rawValue: animation.options),
+                        animations: {
+                            tableView.contentInset.bottom = animation.frame.height + 46
+                        },
+                        completion: { _ in
+                            tableView.cerise.scrollToBottom(animated: true)
+                        }
+                    )
+                })
+                .disposed(by: cell.rx.prepareForReuseBag)
+
             cell.textViewDidBeginEditing
                 .do(onNext: { _ in
                     HapticGenerator.trigger(with: .selection)
@@ -188,13 +213,35 @@ extension EditorViewController: UITableViewDataSource {
 
             cell.textViewDidChangeAction = { [unowned self] height in
                 if height != self.notesRowHeight && height >= Constant.minimumNotesRowHeight {
+                    tableView.bounces = false
                     tableView.beginUpdates()
                     self.notesRowHeight = height
                     tableView.endUpdates()
-                    // scroll to bottom
-                    // tableView.cerise.scrollToBottom()
+                    tableView.bounces = true
                 }
             }
+
+            let keyboardWillHide = NotificationCenter.default.rx.notification(UIResponder.keyboardWillHideNotification)
+                .filter { _ in UIApplication.shared.applicationState == .active }
+                .map { $0.cerise.animation }
+                .filterNil()
+
+            Observable<Notification.KeyboardAnimation>.zip(keyboardWillHide, cell.textViewDidEndEditing) { animation, _ in animation }
+                .observeOn(MainScheduler.instance)
+                .subscribe(onNext: { animation in
+                    UIView.animate(
+                        withDuration: animation.duration,
+                        delay: 0, options: UIView.AnimationOptions(rawValue: animation.options),
+                        animations: {
+                            tableView.contentInset.bottom = 0
+                            Log.d("keyboard height: \(animation.frame.height)")
+                        },
+                        completion: { _ in
+                            tableView.cerise.scrollToTop(animated: true)
+                        }
+                    )
+                })
+                .disposed(by: cell.rx.prepareForReuseBag)
 
             cell.textViewDidEndEditing
                 .withLatestFrom(cell.textView.rx.text.orEmpty)
@@ -279,5 +326,21 @@ extension EditorViewController: UITableViewDelegate {
         } else {
             return indexPath.section == EditorViewModel.Section.notes.rawValue ? notesRowHeight : Constant.rowHeight
         }
+    }
+}
+
+extension Notification: CeriseCompatible {
+    typealias KeyboardAnimation = (frame: CGRect, duration: TimeInterval, options: UInt)
+}
+
+extension Cerise where Base == Notification {
+
+    var animation: Notification.KeyboardAnimation? {
+        guard let frame = base.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect,
+            let animationDuration = base.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval,
+            let animationCurve = base.userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? UInt else {
+                return nil
+        }
+        return (frame: frame, duration: animationDuration, options: animationCurve)
     }
 }
