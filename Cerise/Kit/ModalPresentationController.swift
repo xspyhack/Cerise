@@ -140,7 +140,7 @@ final class ModalPresentationController: UIPresentationController {
                                   y: contentView.frame.maxY,
                                   width: presentedScrollView.frame.width,
                                   height: presentedScrollView.frame.height - contentHeight)
-        handleView.center = CGPoint(x: contentView.bounds.width / 2, y: 6 + handleView.bounds.height / 2)
+        handleView.center = CGPoint(x: contentView.bounds.width / 2, y: 10 + handleView.bounds.height / 2)
     }
 
     @objc

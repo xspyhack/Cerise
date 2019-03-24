@@ -36,12 +36,10 @@ final class ComposerViewController: BaseViewController {
         editorViewController.didMove(toParent: self)
 
         let postButton = UIButton(type: .custom)
-        postButton.setBackgroundImage(UIImage(color: UIColor.cerise.tint), for: .normal)
-        postButton.layer.cornerRadius = 33
+        //postButton.layer.cornerRadius = 33
         postButton.layer.masksToBounds = true
         postButton.setImage(UIImage(named: "Post")?.withRenderingMode(.alwaysTemplate), for: .normal)
-        postButton.tintColor = UIColor.white
-        postButton.imageEdgeInsets = UIEdgeInsets(top: 11, left: 11, bottom: 11, right: 11)
+        postButton.tintColor = UIColor.cerise.tint
         view.addSubview(postButton)
         postButton.cerise.layout { builder in
             builder.centerX == view.centerXAnchor

@@ -54,7 +54,7 @@ final class EditorViewController: BaseViewController {
 
         view.addSubview(tableView)
         tableView.cerise.layout { builder in
-            builder.top == view.topAnchor + 40
+            builder.top == view.topAnchor + 24
             builder.leading == view.leadingAnchor
             builder.trailing == view.trailingAnchor
             builder.bottom == view.bottomAnchor
