@@ -65,6 +65,12 @@ final class MattersViewController: BaseViewController {
             .bind(to: viewModel.inputs.addAction)
             .disposed(by: disposeBag)
 
+        rx.viewDidAppear
+            .skip(1)
+            .map { _ in () }
+            .bind(to: viewModel.inputs.refresh)
+            .disposed(by: disposeBag)
+
         viewModel.outputs.showMatterDetail
             .do(onNext: { _ in
                 HapticGenerator.trigger(with: .impact)

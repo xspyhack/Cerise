@@ -14,6 +14,7 @@ protocol MattersViewModelInputs {
     var addAction: PublishSubject<Void> { get }
     var itemDeleted: PublishSubject<IndexPath> { get }
     var itemSelected: PublishSubject<IndexPath> { get }
+    var refresh: PublishSubject<Void> { get }
 }
 
 protocol MattersViewModelOutputs {
@@ -51,6 +52,7 @@ struct MattersViewModel: MattersViewModelType {
         let addAction = PublishSubject<Void>()
         let itemDeleted = PublishSubject<IndexPath>()
         let itemSelected = PublishSubject<IndexPath>()
+        let refresh = PublishSubject<Void>()
     }
 
     struct Outputs: MattersViewModelOutputs {
@@ -110,6 +112,13 @@ struct MattersViewModel: MattersViewModelType {
             .map { self.matter(at: $0) }
             .filterNil()
             .bind(to: Matter.didDelete)
+            .disposed(by: disposeBag)
+
+        inputs.refresh
+            .subscribe(onNext: {
+                let matters = self.matters.value
+                self.matters.accept(matters)
+            })
             .disposed(by: disposeBag)
 
         Matter.didCreate

@@ -80,6 +80,7 @@
 		FAB9280A2244A1AC00E338A8 /* TagitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB928092244A1AC00E338A8 /* TagitView.swift */; };
 		FAB9280C2244A6F000E338A8 /* Shadowability.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB9280B2244A6F000E338A8 /* Shadowability.swift */; };
 		FAB9280E2244A7D800E338A8 /* Scalable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB9280D2244A7D800E338A8 /* Scalable.swift */; };
+		FAC8F77C22489E8F006DBD9C /* UIVIewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC8F77B22489E8F006DBD9C /* UIVIewController+Rx.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -172,6 +173,7 @@
 		FAB928092244A1AC00E338A8 /* TagitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagitView.swift; sourceTree = "<group>"; };
 		FAB9280B2244A6F000E338A8 /* Shadowability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shadowability.swift; sourceTree = "<group>"; };
 		FAB9280D2244A7D800E338A8 /* Scalable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scalable.swift; sourceTree = "<group>"; };
+		FAC8F77B22489E8F006DBD9C /* UIVIewController+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVIewController+Rx.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -389,6 +391,7 @@
 				FA90AAE522433EA800B08682 /* Observable+Optional.swift */,
 				785C69C82241398D004DF721 /* RxTextFieldDelegateProxy.swift */,
 				785C69CA22413B06004DF721 /* UITextField+Rx.swift */,
+				FAC8F77B22489E8F006DBD9C /* UIVIewController+Rx.swift */,
 			);
 			path = Rx;
 			sourceTree = "<group>";
@@ -565,6 +568,7 @@
 				78A8D0C0222AC77400885B6E /* TraitEnvironment.swift in Sources */,
 				FA90AAE622433EAA00B08682 /* Observable+Optional.swift in Sources */,
 				78A8D0B5222AC51200885B6E /* Operators.swift in Sources */,
+				FAC8F77C22489E8F006DBD9C /* UIVIewController+Rx.swift in Sources */,
 				FA90AADA2240F6B500B08682 /* Tagble.swift in Sources */,
 				78A8D09D222ABAEB00885B6E /* Router.swift in Sources */,
 				78A8D0AF222AC4BD00885B6E /* ObservableConvertibleType+Driver.swift in Sources */,
