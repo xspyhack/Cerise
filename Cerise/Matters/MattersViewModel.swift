@@ -9,6 +9,7 @@
 import RxSwift
 import RxCocoa
 import RxDataSources
+import Keldeo
 
 protocol MattersViewModelInputs {
     var addAction: PublishSubject<Void> { get }
@@ -116,6 +117,7 @@ struct MattersViewModel: MattersViewModelType {
 
         inputs.refresh
             .subscribe(onNext: {
+                Log.d("refreshing.")
                 let matters = self.matters.value
                 self.matters.accept(matters)
             })

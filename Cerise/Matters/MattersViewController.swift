@@ -65,8 +65,7 @@ final class MattersViewController: BaseViewController {
             .bind(to: viewModel.inputs.addAction)
             .disposed(by: disposeBag)
 
-        rx.viewDidAppear
-            .skip(1)
+        NotificationCenter.default.rx.notification(UIApplication.willEnterForegroundNotification)
             .map { _ in () }
             .bind(to: viewModel.inputs.refresh)
             .disposed(by: disposeBag)
@@ -140,6 +139,7 @@ final class MattersViewController: BaseViewController {
 
 extension MattersViewController: UIViewControllerPreviewingDelegate {
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        viewControllerToCommit.transitioningDelegate = self
         present(viewControllerToCommit, animated: true, completion: nil)
     }
 
