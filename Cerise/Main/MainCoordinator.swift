@@ -8,9 +8,11 @@
 
 import UIKit
 import RxCocoa
+import RxSwift
 
 struct MainCoodinator: Coordinating {
     weak var navigationController: UINavigationController?
+    private let disposeBag = DisposeBag()
 
     init(navigationController: UINavigationController?) {
         self.navigationController = navigationController
@@ -18,6 +20,12 @@ struct MainCoodinator: Coordinating {
 
     func start() {
         let viewController = Storyboard.main.viewController(of: MainViewController.self)
+        viewController.rx.viewDidLoad
+            .subscribe(onNext: { [unowned viewController] in
+                let coordinator = MattersCoodinator(parentViewController: viewController)
+                coordinator.start()
+            })
+            .disposed(by: disposeBag)
         Router.shared.delegate = viewController
         navigationController?.setViewControllers([viewController], animated: true)
     }

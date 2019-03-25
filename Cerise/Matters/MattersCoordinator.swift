@@ -18,9 +18,17 @@ struct MattersCoodinator: Coordinating {
     }
 
     func start() {
+        guard let parentViewController = parentViewController else {
+            return
+        }
+
         let viewModel = MattersViewModel()
         let viewController = MattersViewController(viewModel: viewModel)
-        parentViewController?.addChild(viewController)
+        parentViewController.addChild(viewController)
+        parentViewController.view.addSubview(viewController.view)
+        viewController.view.cerise.layout { builder in
+            builder.edges == parentViewController.view.cerise.edgesAnchor
+        }
         viewController.didMove(toParent: parentViewController)
 
         viewModel.outputs.showMatterDetail
