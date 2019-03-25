@@ -40,6 +40,7 @@ final class ComposerViewController: BaseViewController {
         postButton.layer.masksToBounds = true
         postButton.setImage(UIImage(named: "Post")?.withRenderingMode(.alwaysTemplate), for: .normal)
         postButton.tintColor = UIColor.cerise.tint
+        postButton.contentEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         view.addSubview(postButton)
         postButton.cerise.layout { builder in
             builder.centerX == view.centerXAnchor
@@ -48,6 +49,7 @@ final class ComposerViewController: BaseViewController {
         }
 
         // MARK: ViewModel binding
+
         let editorViewModel = editorViewController.viewModel
         let viewModel = ComposerViewModel(matter: editorViewModel.outputs.matter, validated: editorViewModel.outputs.validated)
 
@@ -83,7 +85,7 @@ extension ComposerViewController: UIViewControllerTransitioningDelegate {
                                                                  presenting: presenting)
         let bounds = UIApplication.shared.keyWindow?.bounds ?? UIScreen.main.bounds
         presentationController.contentHeight = (bounds.height / 5 * 4).rounded(.up)
-        //presentationController.setContentScrollView(editorViewController.tableView)
+        presentationController.setContentScrollView(editorViewController.tableView)
         presentationController.handleView.backgroundColor = UIColor.cerise.tint
         presentationController.bottomView.backgroundColor = UIColor.cerise.dark
         return presentationController
