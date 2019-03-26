@@ -59,7 +59,7 @@ final class TagitView: UIView {
     }
 
     func select(tag: Tagble, animated: Bool) {
-        guard let index = items.index(of: tag) else {
+        guard let index = items.firstIndex(of: tag) else {
             return
         }
 

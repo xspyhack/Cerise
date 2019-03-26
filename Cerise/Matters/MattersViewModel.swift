@@ -139,7 +139,7 @@ struct MattersViewModel: MattersViewModelType {
                 try? self.charmander.remove(forKey: matter.identifier)
             })
             .subscribe(onNext: { matter in
-                guard let index = self.matters.value.index(of: matter) else {
+                guard let index = self.matters.value.firstIndex(of: matter) else {
                     return
                 }
                 var matters = self.matters.value
@@ -154,7 +154,7 @@ struct MattersViewModel: MattersViewModelType {
                 try? self.charmander.store(matter, forKey: matter.identifier)
             })
             .subscribe(onNext: { matter in
-                guard let index = self.matters.value.index(of: matter) else {
+                guard let index = self.matters.value.firstIndex(of: matter) else {
                     return
                 }
                 var matters = self.matters.value
@@ -181,7 +181,7 @@ extension MattersViewModel {
     }
 
     func index(of matter: Matter) -> Int? {
-        return matters.value.index(of: matter)
+        return matters.value.firstIndex(of: matter)
     }
 }
 
