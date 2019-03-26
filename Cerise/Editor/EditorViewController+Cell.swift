@@ -91,6 +91,7 @@ extension EditorViewController {
             textView.autocapitalizationType = .none
             textView.autocorrectionType = .no
             textView.spellCheckingType = .no
+            textView.returnKeyType = .done
             return textView
         }()
 
