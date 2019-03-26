@@ -9,12 +9,12 @@
 import UIKit
 
 public extension Cerise where Base: UIView {
-    public func layout(using builder: (LayoutBuilder) -> Void) {
+    func layout(using builder: (LayoutBuilder) -> Void) {
         base.translatesAutoresizingMaskIntoConstraints = false
         builder(LayoutBuilder(view: base))
     }
 
-    public var edgesAnchor: [AnyLayoutAnchor] {
+    var edgesAnchor: [AnyLayoutAnchor] {
         return [
             AnyLayoutAnchor(base.topAnchor),
             AnyLayoutAnchor(base.leadingAnchor),
@@ -23,11 +23,11 @@ public extension Cerise where Base: UIView {
         ]
     }
 
-    public var centerAnchor: [AnyLayoutAnchor] {
+    var centerAnchor: [AnyLayoutAnchor] {
         return [AnyLayoutAnchor(base.centerXAnchor), AnyLayoutAnchor(base.centerYAnchor)]
     }
 
-    public var sizeAnchor: [NSLayoutDimension] {
+    var sizeAnchor: [NSLayoutDimension] {
         return [base.widthAnchor, base.heightAnchor]
     }
 }

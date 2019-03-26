@@ -13,12 +13,12 @@ extension String: CeriseCompatible {
 }
 
 public extension Cerise where Base == String {
-    public enum TrimmingType {
+    enum TrimmingType {
         case whitespace
         case whitespaceAndNewline
     }
 
-    public func trimming(_ trimmingType: TrimmingType) -> String {
+    func trimming(_ trimmingType: TrimmingType) -> String {
         switch trimmingType {
         case .whitespace:
             return base.trimmingCharacters(in: CharacterSet.whitespaces)
@@ -27,7 +27,7 @@ public extension Cerise where Base == String {
         }
     }
 
-    public var md5: String? {
+    var md5: String? {
         guard let str = base.cString(using: String.Encoding.utf8) else {
             return nil
         }
@@ -49,7 +49,7 @@ public extension Cerise where Base == String {
         return String(format: hash as String)
     }
 
-    public var words: [String] {
+    var words: [String] {
         let range = Range<String.Index>(uncheckedBounds: (lower: base.startIndex, upper: base.endIndex))
         var words = [String]()
 
@@ -62,12 +62,12 @@ public extension Cerise where Base == String {
         return words
     }
 
-    public func uppercased(_ maxLength: Int) -> String {
+    func uppercased(_ maxLength: Int) -> String {
         let index = self.base.index(self.base.startIndex, offsetBy: maxLength)
         return self.uppercased(upTo: index)
     }
 
-    public func uppercased(upTo index: String.Index) -> String {
+    func uppercased(upTo index: String.Index) -> String {
         let prefix = self.base.prefix(upTo: index)
         let suffix = self.base.suffix(from: index)
         return prefix.uppercased() + suffix

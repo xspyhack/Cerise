@@ -23,11 +23,11 @@ public protocol CeriseCompatible {
 }
 
 public extension CeriseCompatible {
-    public var cerise: Cerise<Self> {
+    var cerise: Cerise<Self> {
         return Cerise(self)
     }
 
-    public static var cerise: Cerise<Self>.Type {
+    static var cerise: Cerise<Self>.Type {
         return Cerise<Self>.self
     }
 }

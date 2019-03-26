@@ -17,34 +17,34 @@ public struct LayoutProperty<Anchor: LayoutAnchor> {
 }
 
 public extension LayoutProperty {
-    public func equal(to otherAnchor: Anchor, offset constant: CGFloat = 0) {
+    func equal(to otherAnchor: Anchor, offset constant: CGFloat = 0) {
         anchor.constraint(equalTo: otherAnchor,
                           constant: constant).isActive = true
     }
 
-    public func greaterThanOrEqual(to otherAnchor: Anchor,
-                                   offset constant: CGFloat = 0) {
+    func greaterThanOrEqual(to otherAnchor: Anchor,
+                            offset constant: CGFloat = 0) {
         anchor.constraint(greaterThanOrEqualTo: otherAnchor,
                           constant: constant).isActive = true
     }
 
-    public func lessThanOrEqual(to otherAnchor: Anchor,
-                                offset constant: CGFloat = 0) {
+    func lessThanOrEqual(to otherAnchor: Anchor,
+                         offset constant: CGFloat = 0) {
         anchor.constraint(lessThanOrEqualTo: otherAnchor,
                           constant: constant).isActive = true
     }
 }
 
 public extension LayoutProperty where Anchor: LayoutDimension {
-    public func equal(toConstant constant: CGFloat) {
+    func equal(toConstant constant: CGFloat) {
         anchor.constraint(equalToConstant: constant).isActive = true
     }
 
-    public func greaterThanOrEqual(toConstant constant: CGFloat) {
+    func greaterThanOrEqual(toConstant constant: CGFloat) {
         anchor.constraint(greaterThanOrEqualToConstant: constant).isActive = true
     }
 
-    public func lessThanOrEqual(toConstant constant: CGFloat) {
+    func lessThanOrEqual(toConstant constant: CGFloat) {
         anchor.constraint(lessThanOrEqualToConstant: constant).isActive = true
     }
 }
