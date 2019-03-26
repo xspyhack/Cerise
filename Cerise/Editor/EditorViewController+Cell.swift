@@ -227,6 +227,9 @@ extension EditorViewController {
         override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
             super.init(style: style, reuseIdentifier: reuseIdentifier)
 
+            selectedBackgroundView = UIView()
+            selectedBackgroundView?.backgroundColor = UIColor(named: "BK20")
+
             contentView.addSubview(titleLabel)
             titleLabel.cerise.layout { builder in
                 builder.centerY == contentView.centerYAnchor
