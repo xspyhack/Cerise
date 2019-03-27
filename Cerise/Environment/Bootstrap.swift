@@ -35,6 +35,7 @@ struct Bootstrap {
         }
     }
 
+    // swiftlint:disable line_length
     private func guiding() {
         let notes = """
                     👐 Welcome! It’s easy to get started and master Cerise, so let’s show you around.
@@ -65,4 +66,5 @@ struct Bootstrap {
             Log.e("Store getting started matter failed: \(error)")
         }
     }
+    // swiftlint:enble line_length
 }
