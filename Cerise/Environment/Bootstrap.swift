@@ -7,28 +7,36 @@
 //
 
 import Foundation
+import Keldeo
 
 struct Bootstrap {
-
+    private let charmander = Charmander()
     private let startedKey = "com.cerise.started"
 
     func start() {
         guard !UserDefaults.standard.bool(forKey: startedKey) else {
             return
         }
-
         UserDefaults.standard.set(true, forKey: startedKey)
 
-        func welcome() {
-            let matter = Matter(id: UUID().uuidString,
-                                title: "🍒 Welcome to Cerise",
-                                occurrenceDate: Date(),
-                                notes: "Cerise is a simple countdown app.")
-            Matter.didCreate.onNext(matter)
-        }
+        welcome()
+        guiding()
+    }
 
-        func guides() {
-            let notes = """
+    private func welcome() {
+        let matter = Matter(id: UUID().uuidString,
+                            title: "🍒 Welcome to Cerise",
+                            occurrenceDate: Date(),
+                            notes: "Cerise is a simple countdown app.")
+        do {
+            try charmander.store(matter, forKey: matter.identifier)
+        } catch {
+            Log.e("Store wlecome matter failed: \(error)")
+        }
+    }
+
+    private func guiding() {
+        let notes = """
                     👐 Welcome! It’s easy to get started and master Cerise, so let’s show you around.
 
                     Cerise has three parts:
@@ -43,15 +51,15 @@ struct Bootstrap {
                     Enjoy yourself. 🍻
                     """
 
-            let matter = Matter(id: UUID().uuidString,
-                                title: "🚀 Getting Started",
-                                occurrenceDate: Date(timeIntervalSinceNow: 233),
-                                notes: notes)
+        let matter = Matter(id: UUID().uuidString,
+                            title: "🚀 Getting Started",
+                            occurrenceDate: Date(timeIntervalSinceNow: 233),
+                            notes: notes)
 
-            Matter.didCreate.onNext(matter)
+        do {
+            try charmander.store(matter, forKey: matter.identifier)
+        } catch {
+            Log.e("Store getting started matter failed: \(error)")
         }
-
-        welcome()
-        guides()
     }
 }
