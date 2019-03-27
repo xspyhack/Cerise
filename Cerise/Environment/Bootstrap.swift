@@ -21,7 +21,7 @@ struct Bootstrap {
 
         func welcome() {
             let matter = Matter(id: UUID().uuidString,
-                                title: "Welcome to Cerise",
+                                title: "🍒 Welcome to Cerise",
                                 occurrenceDate: Date(),
                                 notes: "Cerise is a simple countdown app.")
             Matter.didCreate.onNext(matter)
@@ -29,22 +29,22 @@ struct Bootstrap {
 
         func guides() {
             let notes = """
-                    Welcome! It’s easy to get started and master Cerise, so let’s show you around.
+                    👐 Welcome! It’s easy to get started and master Cerise, so let’s show you around.
 
                     Cerise has three parts:
-                    Matters List: All your matters live here, there are UPCOMING and PAST sections.
-                    Matter Details: The matter's details contains 'Title', 'Tag', 'When' and 'Notes'.
-                    Editor: This is where you can add your matters.
+                    📚Matters List: All your matters live here, there are UPCOMING and PAST sections.
+                    📖Matter Details: The matter's details contains 'Title', 'Tag', 'When' and 'Notes'.
+                    📝Editor: This is where you can add your matters.
 
-                    Add a new matter: You can pull down in home page (Matters List) to add a new matter.
+                    🖋Add a new matter: You can pull down in home page (Matters List) to add a new matter.
 
-                    View matter details: You can tap a matter in Matters List to view the matter details, or use 3D Touch to preview. And then you can use 3D Touch to pop back to Matters List page.
+                    👀View matter details: You can tap a matter in Matters List to view the matter details, or use 3D Touch to preview. And then you can use 3D Touch to pop back to Matters List page.
 
-                    Enjoy yourself.
+                    Enjoy yourself. 🍻
                     """
 
             let matter = Matter(id: UUID().uuidString,
-                                title: "Getting Started",
+                                title: "🚀 Getting Started",
                                 occurrenceDate: Date(timeIntervalSinceNow: 233),
                                 notes: notes)
 
