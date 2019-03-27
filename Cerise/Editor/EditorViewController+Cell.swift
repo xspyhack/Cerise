@@ -92,6 +92,8 @@ extension EditorViewController {
             textView.autocorrectionType = .no
             textView.spellCheckingType = .no
             textView.returnKeyType = .done
+            textView.keyboardDismissMode = .interactive
+            textView.keyboardAppearance = .dark
             return textView
         }()
 

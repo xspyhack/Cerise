@@ -25,12 +25,13 @@ final class MatterViewController: BaseViewController {
         label.font = UIFont.systemFont(ofSize: 36, weight: .bold)
         label.textColor = .white
         label.textAlignment = .center
+        label.numberOfLines = 0
         return label
     }()
 
     private(set) lazy var notesTextView: UITextView = {
         let textView = UITextView()
-        textView.textContainerInset = UIEdgeInsets(top: 24.0, left: 16.0, bottom: 24.0, right: 16.0)
+        textView.textContainerInset = UIEdgeInsets(top: 18.0, left: 12.0, bottom: 18.0, right: 12.0)
         textView.textColor = .white
         textView.font = UIFont.systemFont(ofSize: 16)
         textView.backgroundColor = UIColor(named: "BK10")?.withAlphaComponent(0.5)
