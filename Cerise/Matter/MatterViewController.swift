@@ -32,7 +32,7 @@ final class MatterViewController: BaseViewController {
     private(set) lazy var notesTextView: UITextView = {
         let textView = UITextView()
         textView.textContainerInset = UIEdgeInsets(top: 18.0, left: 12.0, bottom: 18.0, right: 12.0)
-        textView.textColor = .white
+        textView.textColor = UIColor.cerise.text
         textView.font = UIFont.systemFont(ofSize: 16)
         textView.backgroundColor = UIColor(named: "BK10")?.withAlphaComponent(0.5)
         textView.keyboardDismissMode = .interactive
@@ -109,7 +109,11 @@ final class MatterViewController: BaseViewController {
             .disposed(by: disposeBag)
 
         viewModel.notes
-            .drive(notesTextView.rx.text)
+            .filterNil()
+            .map { text in
+                Renderer().render(text: text)
+            }
+            .drive(notesTextView.rx.attributedText)
             .disposed(by: disposeBag)
 
          viewModel.tag

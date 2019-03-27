@@ -65,6 +65,11 @@
 		78A8D0C2222AC84E00885B6E /* UIColor+Cerise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A8D0C1222AC84E00885B6E /* UIColor+Cerise.swift */; };
 		78A8D0C4222AD39200885B6E /* UIStoryboard+Cerise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A8D0C3222AD39200885B6E /* UIStoryboard+Cerise.swift */; };
 		78A8D0C6222AD4C100885B6E /* String+Uppercased.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A8D0C5222AD4C100885B6E /* String+Uppercased.swift */; };
+		FA4CFD31224B5AE80063088C /* MarkupNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4CFD2C224B5AE80063088C /* MarkupNode.swift */; };
+		FA4CFD32224B5AE80063088C /* MarkupTokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4CFD2D224B5AE80063088C /* MarkupTokenizer.swift */; };
+		FA4CFD33224B5AE80063088C /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4CFD2E224B5AE80063088C /* Renderer.swift */; };
+		FA4CFD34224B5AE80063088C /* MarkupToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4CFD2F224B5AE80063088C /* MarkupToken.swift */; };
+		FA4CFD35224B5AE80063088C /* MarkupParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4CFD30224B5AE80063088C /* MarkupParser.swift */; };
 		FA90AAD42240EB2C00B08682 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA90AAD32240EB2C00B08682 /* Logger.swift */; };
 		FA90AAD62240EC9A00B08682 /* Keldeo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA90AAD52240EC9900B08682 /* Keldeo.framework */; };
 		FA90AAD82240EDEC00B08682 /* Date+Cerise.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA90AAD72240EDEC00B08682 /* Date+Cerise.swift */; };
@@ -159,6 +164,11 @@
 		78A8D0C1222AC84E00885B6E /* UIColor+Cerise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Cerise.swift"; sourceTree = "<group>"; };
 		78A8D0C3222AD39200885B6E /* UIStoryboard+Cerise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+Cerise.swift"; sourceTree = "<group>"; };
 		78A8D0C5222AD4C100885B6E /* String+Uppercased.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Uppercased.swift"; sourceTree = "<group>"; };
+		FA4CFD2C224B5AE80063088C /* MarkupNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkupNode.swift; sourceTree = "<group>"; };
+		FA4CFD2D224B5AE80063088C /* MarkupTokenizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkupTokenizer.swift; sourceTree = "<group>"; };
+		FA4CFD2E224B5AE80063088C /* Renderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
+		FA4CFD2F224B5AE80063088C /* MarkupToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkupToken.swift; sourceTree = "<group>"; };
+		FA4CFD30224B5AE80063088C /* MarkupParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkupParser.swift; sourceTree = "<group>"; };
 		FA90AAD32240EB2C00B08682 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		FA90AAD52240EC9900B08682 /* Keldeo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Keldeo.framework; path = Carthage/Build/iOS/Keldeo.framework; sourceTree = "<group>"; };
 		FA90AAD72240EDEC00B08682 /* Date+Cerise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Cerise.swift"; sourceTree = "<group>"; };
@@ -344,6 +354,7 @@
 		78A8D099222ABACC00885B6E /* Kit */ = {
 			isa = PBXGroup;
 			children = (
+				FA4CFD2B224B5AA60063088C /* Markup */,
 				7849BE90223D3E5F0068503A /* AutoLayout */,
 				78A8D0AD222AC4B100885B6E /* Rx */,
 				78A8D0A6222AC08700885B6E /* Cerise.swift */,
@@ -352,6 +363,7 @@
 				785C69C422408234004DF721 /* ModalPresentationController.swift */,
 				FAB928072243718800E338A8 /* CherryTransitionController.swift */,
 				7849BE8E223D26150068503A /* Coordinating.swift */,
+				FA4CFD2E224B5AE80063088C /* Renderer.swift */,
 				785C69BE223FDD51004DF721 /* HapticGenerator.swift */,
 				FA90AAE12241FA8200B08682 /* ListUpdate.swift */,
 				FA90AADF2241F9A000B08682 /* ListUpdater.swift */,
@@ -407,6 +419,17 @@
 				78368A96224AFF8A003E57A1 /* Bootstrap.swift */,
 			);
 			path = Environment;
+			sourceTree = "<group>";
+		};
+		FA4CFD2B224B5AA60063088C /* Markup */ = {
+			isa = PBXGroup;
+			children = (
+				FA4CFD2C224B5AE80063088C /* MarkupNode.swift */,
+				FA4CFD30224B5AE80063088C /* MarkupParser.swift */,
+				FA4CFD2F224B5AE80063088C /* MarkupToken.swift */,
+				FA4CFD2D224B5AE80063088C /* MarkupTokenizer.swift */,
+			);
+			path = Markup;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -575,6 +598,7 @@
 				FA90AADA2240F6B500B08682 /* Tagble.swift in Sources */,
 				78A8D09D222ABAEB00885B6E /* Router.swift in Sources */,
 				78A8D0AF222AC4BD00885B6E /* ObservableConvertibleType+Driver.swift in Sources */,
+				FA4CFD33224B5AE80063088C /* Renderer.swift in Sources */,
 				78A8D0A7222AC08700885B6E /* Cerise.swift in Sources */,
 				78A8D0AA222AC19A00885B6E /* Matter.swift in Sources */,
 				7849BE9A223D3FE50068503A /* AutoLayout.swift in Sources */,
@@ -583,11 +607,14 @@
 				78A8D075222AAA5500885B6E /* MattersViewController.swift in Sources */,
 				78A8D076222AAA5500885B6E /* MattersViewModel.swift in Sources */,
 				785C69C92241398D004DF721 /* RxTextFieldDelegateProxy.swift in Sources */,
+				FA4CFD35224B5AE80063088C /* MarkupParser.swift in Sources */,
 				78A8D0B6222AC51200885B6E /* UIControl+Rx.swift in Sources */,
 				FA90AAE02241F9A000B08682 /* ListUpdater.swift in Sources */,
+				FA4CFD34224B5AE80063088C /* MarkupToken.swift in Sources */,
 				FAB9280A2244A1AC00E338A8 /* TagitView.swift in Sources */,
 				78A8D050222AA94600885B6E /* MainViewController.swift in Sources */,
 				785C69CB22413B06004DF721 /* UITextField+Rx.swift in Sources */,
+				FA4CFD32224B5AE80063088C /* MarkupTokenizer.swift in Sources */,
 				FAB9280E2244A7D800E338A8 /* Scalable.swift in Sources */,
 				FAB928082243718800E338A8 /* CherryTransitionController.swift in Sources */,
 				78A8D0A3222ABDAA00885B6E /* UIImage+Color.swift in Sources */,
@@ -598,6 +625,7 @@
 				FA90AADE2241F6AF00B08682 /* ComposerViewModel.swift in Sources */,
 				78A8D09C222ABAEB00885B6E /* BaseViewController.swift in Sources */,
 				78A8D0A5222AC06200885B6E /* Reusable.swift in Sources */,
+				FA4CFD31224B5AE80063088C /* MarkupNode.swift in Sources */,
 				FA90AADC2241F10100B08682 /* EditorViewModel.swift in Sources */,
 				FA90AAD42240EB2C00B08682 /* Logger.swift in Sources */,
 				7849BE94223D3EB60068503A /* LayoutProperty.swift in Sources */,

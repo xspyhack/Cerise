@@ -7,6 +7,7 @@
 //
 
 import RxSwift
+import RxCocoa
 
 public protocol OptionalType {
     associatedtype Wrapped
@@ -32,6 +33,17 @@ public extension ObservableType where Self.E: OptionalType {
                 return Observable<E.Wrapped>.empty()
             }
             return Observable<E.Wrapped>.just(value)
+        }
+    }
+}
+
+public extension Driver where SharedSequence.E: OptionalType {
+    func filterNil() -> Driver<E.Wrapped> {
+        return self.flatMap { element -> Driver<E.Wrapped> in
+            guard let value = element.value else {
+                return Driver<E.Wrapped>.empty()
+            }
+            return Driver<E.Wrapped>.just(value)
         }
     }
 }

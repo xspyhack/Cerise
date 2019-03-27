@@ -24,6 +24,22 @@ extension Cerise where Base: UIColor {
     static var text: UIColor {
         return UIColor(named: "BK80")!
     }
+
+    static var description: UIColor {
+        return UIColor(named: "BK70")!
+    }
+
+    static var bold: UIColor {
+        return UIColor(named: "BK90")!
+    }
+
+    static var code: UIColor {
+        return UIColor(named: "BK90")!
+    }
+
+    static var codeBackground: UIColor {
+        return UIColor(named: "BK95")!
+    }
 }
 
 /*

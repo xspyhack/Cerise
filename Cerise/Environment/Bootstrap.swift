@@ -40,15 +40,16 @@ struct Bootstrap {
                     👐 Welcome! It’s easy to get started and master Cerise, so let’s show you around.
 
                     Cerise has three parts:
-                    📚 Matters List: All your matters live here, there are UPCOMING and PAST sections.
-                    📖 Matter Details: The matter's details contains 'Title', 'Tag', 'When' and 'Notes'.
-                    📝 Editor: This is where you can add your matters.
 
-                    🖋 Add a new matter: You can pull down in home page (Matters List) to add a new matter.
+                    *📚 _Matters List_*: All your matters live here, there are /UPCOMING/ and /PAST/ sections.
+                    *📖 _Matter Details_*: The matter's details contains /Title/, /Tag/, /When/ and /Notes/.
+                    *📝 _Editor_*: This is where you can add your matters.
 
-                    👀 View matter details: You can tap a matter in Matters List to view the matter details, or use 3D Touch to preview. And then you can use 3D Touch to pop back to Matters List page.
+                    *🖋 Add a new matter*: You can `pull down` in home page (_Matters List_) to add a new matter.
 
-                    ❌ Delete a matter: You can use swipe left gesture to delete a matter in the Matters List.
+                    *👀 View matter details*: You can `tap` a matter in _Matters List_ to view the matter details, or use `3D Touch` to preview. And then you can use `3D Touch` to pop back to _Matters List_ page.
+
+                    *❌ Delete a matter*: You can use `swipe left` gesture to ~delete~ a matter in the _Matters List_.
 
                     Enjoy yourself. 🍻
                     """
