@@ -18,6 +18,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         setUpLogger()
         setUpRouter()
         setUpAppearance()
+        bootstrap()
         startMainStory()
         return true
     }
@@ -28,6 +29,10 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 extension AppDelegate {
+    func bootstrap() {
+        Bootstrap().start()
+    }
+
     func startMainStory() {
         let rootViewController = UINavigationController()
         window?.rootViewController = rootViewController

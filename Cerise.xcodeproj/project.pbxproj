@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		78368A97224AFF8A003E57A1 /* Bootstrap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78368A96224AFF8A003E57A1 /* Bootstrap.swift */; };
 		7849BE8C222BC2640068503A /* MattersCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7849BE8B222BC2640068503A /* MattersCoordinator.swift */; };
 		7849BE8D222BC4680068503A /* RxAtomic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78A8D08F222ABA9700885B6E /* RxAtomic.framework */; };
 		7849BE8F223D26150068503A /* Coordinating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7849BE8E223D26150068503A /* Coordinating.swift */; };
@@ -94,6 +95,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		78368A96224AFF8A003E57A1 /* Bootstrap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bootstrap.swift; sourceTree = "<group>"; };
 		7849BE8B222BC2640068503A /* MattersCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MattersCoordinator.swift; sourceTree = "<group>"; };
 		7849BE8E223D26150068503A /* Coordinating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinating.swift; sourceTree = "<group>"; };
 		7849BE91223D3E7B0068503A /* LayoutAnchor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutAnchor.swift; sourceTree = "<group>"; };
@@ -402,6 +404,7 @@
 				78A8D0BB222AC64400885B6E /* Environment.swift */,
 				78A8D0BD222AC6AC00885B6E /* AppEnvironment.swift */,
 				78A8D0BF222AC77300885B6E /* TraitEnvironment.swift */,
+				78368A96224AFF8A003E57A1 /* Bootstrap.swift */,
 			);
 			path = Environment;
 			sourceTree = "<group>";
@@ -618,6 +621,7 @@
 				78A8D0C6222AD4C100885B6E /* String+Uppercased.swift in Sources */,
 				78A8D0A1222ABBEA00885B6E /* MainCoordinator.swift in Sources */,
 				78A8D0C2222AC84E00885B6E /* UIColor+Cerise.swift in Sources */,
+				78368A97224AFF8A003E57A1 /* Bootstrap.swift in Sources */,
 				78A8D07D222AAA5C00885B6E /* MatterViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
