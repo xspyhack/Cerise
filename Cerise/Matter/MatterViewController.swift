@@ -30,7 +30,7 @@ final class MatterViewController: BaseViewController {
 
     private(set) lazy var notesTextView: UITextView = {
         let textView = UITextView()
-        textView.textContainerInset = UIEdgeInsets(top: 12.0, left: 8.0, bottom: 12.0, right: 8.0)
+        textView.textContainerInset = UIEdgeInsets(top: 24.0, left: 16.0, bottom: 24.0, right: 16.0)
         textView.textColor = .white
         textView.font = UIFont.systemFont(ofSize: 16)
         textView.backgroundColor = UIColor(named: "BK10")?.withAlphaComponent(0.5)
@@ -43,6 +43,8 @@ final class MatterViewController: BaseViewController {
 
     private enum Constant {
         static let contentHeight: CGFloat = 300
+        static let margin: CGFloat = 24
+        static let whenLabelBottom: CGFloat = 24
     }
 
     let viewModel: MatterViewModelType
@@ -71,19 +73,19 @@ final class MatterViewController: BaseViewController {
             builder.top == view.topAnchor
             builder.leading == view.leadingAnchor
             builder.trailing == view.trailingAnchor
-            builder.height == 300
+            builder.height == Constant.contentHeight
         }
 
         contentView.addSubview(titleLabel)
         titleLabel.cerise.layout { builder in
-            builder.leading == contentView.leadingAnchor + 24
-            builder.trailing == contentView.trailingAnchor - 24
+            builder.leading == contentView.leadingAnchor + Constant.margin
+            builder.trailing == contentView.trailingAnchor - Constant.margin
             builder.centerY == contentView.centerYAnchor
         }
 
         contentView.addSubview(whenLabel)
         whenLabel.cerise.layout { builder in
-            builder.bottom == contentView.bottomAnchor - 8
+            builder.bottom == contentView.bottomAnchor - Constant.whenLabelBottom
             builder.centerX == contentView.centerXAnchor
         }
 
