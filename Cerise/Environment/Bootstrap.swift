@@ -55,7 +55,7 @@ struct Bootstrap {
 
         let matter = Matter(id: UUID().uuidString,
                             title: "🚀 Getting Started",
-                            occurrenceDate: Date(timeIntervalSinceNow: 233),
+                            occurrenceDate: Date(timeIntervalSinceNow: 233_333),
                             notes: notes)
 
         do {
