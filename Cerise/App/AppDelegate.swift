@@ -18,7 +18,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         setUpLogger()
         setUpRouter()
         setUpAppearance()
-        bootstrap()
+        startBootstrap()
         startMainStory()
         return true
     }
@@ -29,8 +29,9 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 extension AppDelegate {
-    func bootstrap() {
-        Bootstrap().start()
+    func startBootstrap() {
+        let bootstrap = Bootstrap()
+        bootstrap.start()
     }
 
     func startMainStory() {
