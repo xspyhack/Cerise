@@ -12,6 +12,11 @@ final class ComposerViewController: BaseViewController {
 
     private lazy var editorViewController = EditorViewController(viewModel: EditorViewModel())
 
+    private enum Constant {
+        static let postButtonSize = CGSize(width: 60, height: 60)
+        static let postButtonBottom: CGFloat = 60
+    }
+
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nil, bundle: nil)
 
@@ -36,16 +41,17 @@ final class ComposerViewController: BaseViewController {
         editorViewController.didMove(toParent: self)
 
         let postButton = UIButton(type: .custom)
-        //postButton.layer.cornerRadius = 33
+        postButton.layer.cornerRadius = min(Constant.postButtonSize.width, Constant.postButtonSize.height) / 2
         postButton.layer.masksToBounds = true
         postButton.setImage(UIImage(named: "Post")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        postButton.setBackgroundImage(UIImage(color: UIColor(named: "BK30") ?? .gray), for: .highlighted)
         postButton.tintColor = UIColor.cerise.tint
         postButton.contentEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         view.addSubview(postButton)
         postButton.cerise.layout { builder in
             builder.centerX == view.centerXAnchor
-            builder.bottom == view.safeAreaLayoutGuide.bottomAnchor - 60
-            builder.size == CGSize(width: 66, height: 66)
+            builder.bottom == view.safeAreaLayoutGuide.bottomAnchor - Constant.postButtonBottom
+            builder.size == Constant.postButtonSize
         }
 
         // MARK: ViewModel binding
