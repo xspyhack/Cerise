@@ -83,7 +83,7 @@ final class ModalPresentationController: UIPresentationController {
             return
         }
 
-        HapticGenerator.trigger(with: .impactLight)
+        //HapticGenerator.trigger(with: .impactLight)
 
         presentedScrollView.addSubview(contentView)
         contentView.addSubview(presentedViewController.view)
