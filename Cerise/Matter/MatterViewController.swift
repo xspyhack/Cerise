@@ -66,7 +66,13 @@ final class MatterViewController: BaseViewController {
         view.backgroundColor = .black
         navigationItem.largeTitleDisplayMode = .always
         navigationController?.navigationBar.prefersLargeTitles = true
-        registerForPreviewing(with: self, sourceView: view)
+
+        if traitCollection.forceTouchCapability == .available {
+            registerForPreviewing(with: self, sourceView: view)
+        } else {
+            // Fall back to other non 3D Touch features.
+            registerForPopping()
+        }
 
         let contentView = UIView()
         contentView.backgroundColor = .black
@@ -130,6 +136,15 @@ final class MatterViewController: BaseViewController {
         super.touchesBegan(touches, with: event)
         view.endEditing(true)
     }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        if traitCollection.forceTouchCapability == .available {
+            registerForPreviewing(with: self, sourceView: view)
+        } else {
+            // Fall back to other non 3D Touch features.
+            registerForPopping()
+        }
+    }
 }
 
 extension MatterViewController: UIViewControllerPreviewingDelegate {
@@ -140,6 +155,20 @@ extension MatterViewController: UIViewControllerPreviewingDelegate {
         HapticGenerator.trigger(with: .impactHeavy)
         dismiss(animated: true, completion: nil)
         return nil
+    }
+
+    private func registerForPopping() {
+        let holdGestureRecognizer = UILongPressGestureRecognizer()
+        holdGestureRecognizer.rx.event
+            .filter { $0.state == .began }
+            .do(onNext: { _ in
+                HapticGenerator.trigger(with: .impactHeavy)
+            })
+            .subscribe(onNext: { [weak self] _ in
+                self?.dismiss(animated: true, completion: nil)
+            })
+            .disposed(by: disposeBag)
+        view.addGestureRecognizer(holdGestureRecognizer)
     }
 }
 
