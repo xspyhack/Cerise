@@ -37,6 +37,7 @@ final class MatterViewController: BaseViewController {
         textView.backgroundColor = UIColor(named: "BK10")?.withAlphaComponent(0.5)
         textView.keyboardDismissMode = .interactive
         textView.keyboardAppearance = .dark
+        textView.dataDetectorTypes = .all
         textView.isEditable = false
         textView.isSelectable = false
         return textView
