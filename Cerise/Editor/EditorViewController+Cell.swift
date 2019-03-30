@@ -9,9 +9,10 @@
 import UIKit
 import RxCocoa
 import RxSwift
+import Keldeo
 
 extension EditorViewController {
-    final class TextFieldCell: UITableViewCell, Reusable {
+    final class TextFieldCell: RxTableViewCell, Reusable {
         var textChanged: ControlEvent<String> {
             let source = textField.rx.text.orEmpty
                 .map { $0.cerise.trimming(.whitespaceAndNewline) }
@@ -34,8 +35,6 @@ extension EditorViewController {
             return textField
         }()
 
-        private let disposeBag = DisposeBag()
-
         override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
             super.init(style: style, reuseIdentifier: reuseIdentifier)
 
@@ -53,7 +52,7 @@ extension EditorViewController {
 }
 
 extension EditorViewController {
-    final class TextViewCell: UITableViewCell, Reusable {
+    final class TextViewCell: RxTableViewCell, Reusable {
         var textChanged: ControlEvent<String> {
             let source = textView.rx.text.orEmpty
                 .map { $0.cerise.trimming(.whitespaceAndNewline) }
@@ -145,7 +144,7 @@ extension EditorViewController.TextViewCell: UITextViewDelegate {
 }
 
 extension EditorViewController {
-    final class DatePickerCell: UITableViewCell, Reusable {
+    final class DatePickerCell: RxTableViewCell, Reusable {
         static let datePickerTag = 99
 
         var datePicked: ControlEvent<Date> {
@@ -160,8 +159,6 @@ extension EditorViewController {
             datePicker.setValue(UIColor.cerise.text, forKey: "textColor")
             return datePicker
         }()
-
-        private let disposeBag = DisposeBag()
 
         override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
             super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -209,7 +206,7 @@ extension EditorViewController {
 }
 
 extension EditorViewController {
-    final class TagPickerCell: UITableViewCell, Reusable {
+    final class TagPickerCell: RxTableViewCell, Reusable {
 
         var tagPicked: ControlEvent<Tagble> {
             return ControlEvent(events: tagitView.itemSelected)

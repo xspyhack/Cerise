@@ -151,7 +151,7 @@ extension EditorViewController: UITableViewDataSource {
             cell.textField.attributedPlaceholder = NSAttributedString(string: "What's the Matter", attributes: [.foregroundColor: UIColor(named: "BK30") ?? .gray])
             cell.textChanged
                 .bind(to: viewModel.title)
-                .disposed(by: cell.rx.prepareForReuseBag)
+                .disposed(by: cell.reusableBag)
 
             cell.textFieldDidBeginEditing
                 .do(onNext: { _ in
@@ -160,7 +160,14 @@ extension EditorViewController: UITableViewDataSource {
                 .subscribe(onNext: { [weak self] in
                     self?.hideInlineDatePicker()
                 })
-                .disposed(by: cell.rx.prepareForReuseBag)
+                .disposed(by: cell.reusableBag)
+
+            cell.textFieldDidEndEditing
+                .do(onNext: { [unowned cell] _ in
+                    cell.textField.resignFirstResponder()
+                })
+                .subscribe()
+                .disposed(by: cell.reusableBag)
             return cell
         case .tag:
             let cell: TagPickerCell = tableView.cerise.dequeueReusableCell(for: indexPath)
@@ -175,7 +182,7 @@ extension EditorViewController: UITableViewDataSource {
                     HapticGenerator.trigger(with: .selection)
                 })
                 .bind(to: viewModel.tag)
-                .disposed(by: cell.rx.prepareForReuseBag)
+                .disposed(by: cell.reusableBag)
             return cell
         case .notes:
             let cell: TextViewCell = tableView.cerise.dequeueReusableCell(for: indexPath)
@@ -200,7 +207,7 @@ extension EditorViewController: UITableViewDataSource {
                         }
                     )
                 })
-                .disposed(by: cell.rx.prepareForReuseBag)
+                .disposed(by: cell.reusableBag)
 
             cell.textViewDidBeginEditing
                 .do(onNext: { _ in
@@ -209,7 +216,7 @@ extension EditorViewController: UITableViewDataSource {
                 .subscribe(onNext: { [weak self] in
                     self?.hideInlineDatePicker()
                 })
-                .disposed(by: cell.rx.prepareForReuseBag)
+                .disposed(by: cell.reusableBag)
 
             cell.textViewDidChangeAction = { [unowned self] height in
                 if height != self.notesRowHeight && height >= Constant.minimumNotesRowHeight {
@@ -241,7 +248,7 @@ extension EditorViewController: UITableViewDataSource {
                         }
                     )
                 })
-                .disposed(by: cell.rx.prepareForReuseBag)
+                .disposed(by: cell.reusableBag)
 
             cell.textViewDidEndEditing
                 .withLatestFrom(cell.textView.rx.text.orEmpty)
@@ -251,7 +258,7 @@ extension EditorViewController: UITableViewDataSource {
 
             cell.textChanged
                 .bind(to: viewModel.notes)
-                .disposed(by: cell.rx.prepareForReuseBag)
+                .disposed(by: cell.reusableBag)
 
             return cell
         case .when:
@@ -260,7 +267,7 @@ extension EditorViewController: UITableViewDataSource {
                 cell.datePicked
                     .distinctUntilChanged()
                     .bind(to: viewModel.when)
-                    .disposed(by: cell.rx.prepareForReuseBag)
+                    .disposed(by: cell.reusableBag)
                 return cell
             } else {
                 let cell: DisclosureCell = tableView.cerise.dequeueReusableCell(for: indexPath)

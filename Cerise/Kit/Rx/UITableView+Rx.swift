@@ -44,3 +44,14 @@ extension Reactive where Base: UITableViewCell {
 }
 
 private var _prepareForReuseBag: Void = ()
+
+// Just for fucking release version bug in Swift 5
+class RxTableViewCell: UITableViewCell {
+    private(set) var reusableBag = DisposeBag()
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+
+        reusableBag = DisposeBag()
+    }
+}
