@@ -254,7 +254,7 @@ extension EditorViewController: UITableViewDataSource {
                 .withLatestFrom(cell.textView.rx.text.orEmpty)
                 .map { $0.cerise.trimming(.whitespaceAndNewline) }
                 .bind(to: viewModel.notes)
-                .disposed(by: cell.rx.prepareForReuseBag)
+                .disposed(by: cell.reusableBag)
 
             cell.textChanged
                 .bind(to: viewModel.notes)
