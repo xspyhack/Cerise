@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7820D0F22256C1E100DE79AE /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7820D0F12256C1E100DE79AE /* SettingsViewController.swift */; };
+		7820D0F42256C53500DE79AE /* UIScrollView+Refresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7820D0F32256C53500DE79AE /* UIScrollView+Refresh.swift */; };
+		7820D0F62256DA2600DE79AE /* CherryRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7820D0F52256DA2600DE79AE /* CherryRefreshControl.swift */; };
+		7820D0F82256E81D00DE79AE /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7820D0F72256E81D00DE79AE /* Preferences.swift */; };
+		7820D0FA2256EA9E00DE79AE /* UIBarButtonItem+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7820D0F92256EA9E00DE79AE /* UIBarButtonItem+Rx.swift */; };
 		78368A97224AFF8A003E57A1 /* Bootstrap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78368A96224AFF8A003E57A1 /* Bootstrap.swift */; };
 		7849BE8C222BC2640068503A /* MattersCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7849BE8B222BC2640068503A /* MattersCoordinator.swift */; };
 		7849BE8D222BC4680068503A /* RxAtomic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78A8D08F222ABA9700885B6E /* RxAtomic.framework */; };
@@ -100,6 +105,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7820D0F12256C1E100DE79AE /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		7820D0F32256C53500DE79AE /* UIScrollView+Refresh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Refresh.swift"; sourceTree = "<group>"; };
+		7820D0F52256DA2600DE79AE /* CherryRefreshControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CherryRefreshControl.swift; sourceTree = "<group>"; };
+		7820D0F72256E81D00DE79AE /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
+		7820D0F92256EA9E00DE79AE /* UIBarButtonItem+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Rx.swift"; sourceTree = "<group>"; };
 		78368A96224AFF8A003E57A1 /* Bootstrap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bootstrap.swift; sourceTree = "<group>"; };
 		7849BE8B222BC2640068503A /* MattersCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MattersCoordinator.swift; sourceTree = "<group>"; };
 		7849BE8E223D26150068503A /* Coordinating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinating.swift; sourceTree = "<group>"; };
@@ -212,6 +222,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7820D0F02256C1C000DE79AE /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				7820D0F12256C1E100DE79AE /* SettingsViewController.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		7849BE90223D3E5F0068503A /* AutoLayout */ = {
 			isa = PBXGroup;
 			children = (
@@ -260,6 +278,7 @@
 				78A8D071222AA9EC00885B6E /* Matters */,
 				78A8D06F222AA9DD00885B6E /* Matter */,
 				78A8D070222AA9E200885B6E /* Editor */,
+				7820D0F02256C1C000DE79AE /* Settings */,
 				78A8D0A8222AC19000885B6E /* Persistence */,
 				78A8D0BA222AC62A00885B6E /* Environment */,
 				78A8D099222ABACC00885B6E /* Kit */,
@@ -381,6 +400,8 @@
 				78A8D0B8222AC5EA00885B6E /* FeedbackController.swift */,
 				78A8D0C3222AD39200885B6E /* UIStoryboard+Cerise.swift */,
 				78A8D0C5222AD4C100885B6E /* String+Uppercased.swift */,
+				7820D0F32256C53500DE79AE /* UIScrollView+Refresh.swift */,
+				7820D0F52256DA2600DE79AE /* CherryRefreshControl.swift */,
 			);
 			path = Kit;
 			sourceTree = "<group>";
@@ -406,6 +427,7 @@
 				785C69C82241398D004DF721 /* RxTextFieldDelegateProxy.swift */,
 				785C69CA22413B06004DF721 /* UITextField+Rx.swift */,
 				FAC8F77B22489E8F006DBD9C /* UIVIewController+Rx.swift */,
+				7820D0F92256EA9E00DE79AE /* UIBarButtonItem+Rx.swift */,
 			);
 			path = Rx;
 			sourceTree = "<group>";
@@ -417,6 +439,7 @@
 				78A8D0BD222AC6AC00885B6E /* AppEnvironment.swift */,
 				78A8D0BF222AC77300885B6E /* TraitEnvironment.swift */,
 				78368A96224AFF8A003E57A1 /* Bootstrap.swift */,
+				7820D0F72256E81D00DE79AE /* Preferences.swift */,
 			);
 			path = Environment;
 			sourceTree = "<group>";
@@ -616,6 +639,7 @@
 				785C69CB22413B06004DF721 /* UITextField+Rx.swift in Sources */,
 				FA4CFD32224B5AE80063088C /* MarkupTokenizer.swift in Sources */,
 				FAB9280E2244A7D800E338A8 /* Scalable.swift in Sources */,
+				7820D0F62256DA2600DE79AE /* CherryRefreshControl.swift in Sources */,
 				FAB928082243718800E338A8 /* CherryTransitionController.swift in Sources */,
 				78A8D0A3222ABDAA00885B6E /* UIImage+Color.swift in Sources */,
 				78A8D07C222AAA5C00885B6E /* MatterViewController.swift in Sources */,
@@ -634,6 +658,7 @@
 				78A8D04E222AA94600885B6E /* AppDelegate.swift in Sources */,
 				785C69C7224136F5004DF721 /* EditorViewController+Cell.swift in Sources */,
 				7849BE98223D3FA10068503A /* UIView+Layout.swift in Sources */,
+				7820D0F82256E81D00DE79AE /* Preferences.swift in Sources */,
 				78A8D0AC222AC44100885B6E /* ModelService.swift in Sources */,
 				7849BE8C222BC2640068503A /* MattersCoordinator.swift in Sources */,
 				7849BE9D223E1F180068503A /* SafeCollection.swift in Sources */,
@@ -647,9 +672,12 @@
 				78A8D0BE222AC6AC00885B6E /* AppEnvironment.swift in Sources */,
 				78A8D0B9222AC5EA00885B6E /* FeedbackController.swift in Sources */,
 				78A8D0C6222AD4C100885B6E /* String+Uppercased.swift in Sources */,
+				7820D0F22256C1E100DE79AE /* SettingsViewController.swift in Sources */,
 				78A8D0A1222ABBEA00885B6E /* MainCoordinator.swift in Sources */,
 				78A8D0C2222AC84E00885B6E /* UIColor+Cerise.swift in Sources */,
+				7820D0FA2256EA9E00DE79AE /* UIBarButtonItem+Rx.swift in Sources */,
 				78368A97224AFF8A003E57A1 /* Bootstrap.swift in Sources */,
+				7820D0F42256C53500DE79AE /* UIScrollView+Refresh.swift in Sources */,
 				78A8D07D222AAA5C00885B6E /* MatterViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

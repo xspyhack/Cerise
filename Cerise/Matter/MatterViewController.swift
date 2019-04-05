@@ -74,9 +74,30 @@ final class MatterViewController: BaseViewController {
             registerForPopping()
         }
 
+        let closeButton = UIButton(type: .custom)
+        closeButton.layer.cornerRadius = 8
+        closeButton.layer.masksToBounds = true
+        closeButton.setBackgroundImage(UIImage(color: UIColor(named: "BK30") ?? .gray), for: .highlighted)
+        closeButton.setTitle("×", for: .normal)
+        closeButton.setTitleColor(UIColor.cerise.tint, for: .normal)
+        closeButton.setTitleColor(UIColor.cerise.tint.withAlphaComponent(0.3), for: .highlighted)
+        closeButton.titleLabel?.font = UIFont.systemFont(ofSize: 40)
+        closeButton.tintColor = UIColor.cerise.tint
+        closeButton.contentEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+        view.addSubview(closeButton)
+        closeButton.cerise.layout { builder in
+            builder.leading == view.leadingAnchor + 8
+            builder.top == view.safeAreaLayoutGuide.topAnchor + 8
+            builder.height == 40.0
+        }
+        Preferences.accessibility.map { $0 == .normal }
+            .bind(to: closeButton.rx.isVisible)
+            .disposed(by: disposeBag)
+
         let contentView = UIView()
         contentView.backgroundColor = .black
         view.addSubview(contentView)
+        view.sendSubviewToBack(contentView)
         contentView.cerise.layout { builder in
             builder.top == view.topAnchor
             builder.leading == view.leadingAnchor
@@ -106,6 +127,15 @@ final class MatterViewController: BaseViewController {
         }
 
         // MARK: Model binding
+
+        closeButton.rx.tap
+            .do(onNext: { _ in
+                HapticGenerator.trigger(with: .impactHeavy)
+            })
+            .subscribe(onNext: { [weak self] _ in
+                self?.dismiss(animated: true, completion: nil)
+            })
+            .disposed(by: disposeBag)
 
         viewModel.title
             .drive(titleLabel.rx.text)

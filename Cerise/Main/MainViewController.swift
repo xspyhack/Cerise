@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class MainViewController: UIViewController {
+final class MainViewController: BaseViewController {
     private var containerView: UIView = UIView()
 
     private lazy var mattersViewController = MattersViewController()
@@ -21,12 +21,22 @@ final class MainViewController: UIViewController {
         navigationItem.largeTitleDisplayMode = .always
         navigationController?.navigationBar.prefersLargeTitles = true
 
+        let addItem = UIBarButtonItem(barButtonSystemItem: .add, target: nil, action: nil)
+        navigationItem.rightBarButtonItem = addItem
+        Preferences.accessibility.map { $0 == .normal }
+            .bind(to: addItem.rx.isVisible)
+            .disposed(by: disposeBag)
+
         addChild(mattersViewController)
         view.addSubview(mattersViewController.view)
         mattersViewController.view.cerise.layout { builder in
             builder.edges == view.cerise.edgesAnchor
         }
         mattersViewController.didMove(toParent: self)
+
+        addItem.rx.tap
+            .bind(to: mattersViewController.viewModel.inputs.addAction)
+            .disposed(by: disposeBag)
     }
 }
 

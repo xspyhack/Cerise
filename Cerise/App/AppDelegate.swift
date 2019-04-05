@@ -98,4 +98,8 @@ extension AppDelegate {
         let textViewAppearance = UITextField.appearance()
         textViewAppearance.keyboardAppearance = .dark
     }
+
+    private func setUpPreferences() {
+        Preferences.setUp()
+    }
 }

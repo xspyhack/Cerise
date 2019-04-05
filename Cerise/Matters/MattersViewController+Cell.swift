@@ -54,6 +54,11 @@ extension MattersViewController {
 
             selectionStyle = .none
             contentView.backgroundColor = UIColor.black
+            /*
+            let selectedView = UIView()
+            selectedView.backgroundColor = UIColor(named: "BK10") ?? .gray
+            selectedBackgroundView = selectedView
+             */
 
             contentView.addSubview(titleLabel)
             contentView.addSubview(daysLabel)

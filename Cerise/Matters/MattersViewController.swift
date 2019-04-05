@@ -55,7 +55,7 @@ final class MattersViewController: BaseViewController {
             builder.edges == view.cerise.edgesAnchor
         }
 
-        let refreshControl = UIRefreshControl()
+        let refreshControl = CherryRefreshControl()
         refreshControl.tintColor = UIColor.gray.withAlphaComponent(0.16)
         tableView.refreshControl = refreshControl
 
@@ -82,6 +82,7 @@ final class MattersViewController: BaseViewController {
             .disposed(by: disposeBag)
 
         viewModel.outputs.addNewMatter
+            .observeOn(MainScheduler.instance)
             .do(onNext: { [unowned self] in
                 HapticGenerator.trigger(with: .impact)
                 self.tableView.refreshControl?.endRefreshing()
@@ -89,7 +90,9 @@ final class MattersViewController: BaseViewController {
             .delay(0.25, scheduler: MainScheduler.instance)
             .subscribe(onNext: { [unowned self] in
                 let vc = ComposerViewController()
-                self.present(vc, animated: true, completion: nil)
+                self.present(vc, animated: true) { [weak self] in
+                    self?.tableView.setContentOffset(.zero, animated: true)
+                }
             })
             .disposed(by: disposeBag)
 
@@ -162,7 +165,7 @@ extension MattersViewController: UIViewControllerPreviewingDelegate {
 
 extension MattersViewController: CherryTransitioning {
     var anchorView: UIView? {
-        return anchorIndexPath.flatMap { tableView.cellForRow(at: $0) }
+        return anchorIndexPath.flatMap { tableView.cellForRow(at: $0)?.contentView }
     }
 }
 

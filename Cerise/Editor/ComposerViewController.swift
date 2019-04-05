@@ -40,6 +40,20 @@ final class ComposerViewController: BaseViewController {
         }
         editorViewController.didMove(toParent: self)
 
+        let doneButton = UIButton(type: .system)
+        doneButton.layer.cornerRadius = 8
+        doneButton.layer.masksToBounds = true
+        doneButton.setBackgroundImage(UIImage(color: UIColor(named: "BK30") ?? .gray), for: .highlighted)
+        doneButton.setTitle("Done", for: .normal)
+        doneButton.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .bold)
+        doneButton.tintColor = UIColor.cerise.tint
+        doneButton.contentEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+        view.addSubview(doneButton)
+        doneButton.cerise.layout { builder in
+            builder.trailing == view.trailingAnchor - 8
+            builder.top == view.topAnchor + 2
+        }
+
         let postButton = UIButton(type: .custom)
         postButton.layer.cornerRadius = min(Constant.postButtonSize.width, Constant.postButtonSize.height) / 2
         postButton.layer.masksToBounds = true
@@ -54,6 +68,19 @@ final class ComposerViewController: BaseViewController {
             builder.size == Constant.postButtonSize
         }
 
+        Preferences.accessibility
+            .subscribe(onNext: { style in
+                switch style {
+                case .normal:
+                    doneButton.isHidden = false
+                    postButton.isHidden = true
+                case .modern:
+                    doneButton.isHidden = true
+                    postButton.isHidden = false
+                }
+            })
+            .disposed(by: disposeBag)
+
         // MARK: ViewModel binding
 
         let editorViewModel = editorViewController.viewModel
@@ -63,8 +90,16 @@ final class ComposerViewController: BaseViewController {
             .bind(to: viewModel.inputs.post)
             .disposed(by: disposeBag)
 
+        doneButton.rx.tap
+            .bind(to: viewModel.inputs.post)
+            .disposed(by: disposeBag)
+
         viewModel.outputs.isPostEnabled
             .drive(postButton.rx.isEnabled)
+            .disposed(by: disposeBag)
+
+        viewModel.outputs.isPostEnabled
+            .drive(doneButton.rx.isEnabled)
             .disposed(by: disposeBag)
 
         viewModel.outputs.dismiss
