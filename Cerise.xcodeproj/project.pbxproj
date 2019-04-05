@@ -12,6 +12,7 @@
 		7820D0F62256DA2600DE79AE /* CherryRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7820D0F52256DA2600DE79AE /* CherryRefreshControl.swift */; };
 		7820D0F82256E81D00DE79AE /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7820D0F72256E81D00DE79AE /* Preferences.swift */; };
 		7820D0FA2256EA9E00DE79AE /* UIBarButtonItem+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7820D0F92256EA9E00DE79AE /* UIBarButtonItem+Rx.swift */; };
+		7820D0FE2257608700DE79AE /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7820D0FD2257608700DE79AE /* Settings.bundle */; };
 		78368A97224AFF8A003E57A1 /* Bootstrap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78368A96224AFF8A003E57A1 /* Bootstrap.swift */; };
 		7849BE8C222BC2640068503A /* MattersCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7849BE8B222BC2640068503A /* MattersCoordinator.swift */; };
 		7849BE8D222BC4680068503A /* RxAtomic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78A8D08F222ABA9700885B6E /* RxAtomic.framework */; };
@@ -110,6 +111,7 @@
 		7820D0F52256DA2600DE79AE /* CherryRefreshControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CherryRefreshControl.swift; sourceTree = "<group>"; };
 		7820D0F72256E81D00DE79AE /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		7820D0F92256EA9E00DE79AE /* UIBarButtonItem+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Rx.swift"; sourceTree = "<group>"; };
+		7820D0FD2257608700DE79AE /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		78368A96224AFF8A003E57A1 /* Bootstrap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bootstrap.swift; sourceTree = "<group>"; };
 		7849BE8B222BC2640068503A /* MattersCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MattersCoordinator.swift; sourceTree = "<group>"; };
 		7849BE8E223D26150068503A /* Coordinating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinating.swift; sourceTree = "<group>"; };
@@ -287,6 +289,7 @@
 				78A8D084222AAA8000885B6E /* Colors.xcassets */,
 				78A8D056222AA94700885B6E /* LaunchScreen.storyboard */,
 				78A8D059222AA94700885B6E /* Info.plist */,
+				7820D0FD2257608700DE79AE /* Settings.bundle */,
 			);
 			path = Cerise;
 			sourceTree = "<group>";
@@ -544,6 +547,7 @@
 				78A8D085222AAA8000885B6E /* Colors.xcassets in Resources */,
 				78A8D087222AAC1C00885B6E /* Matters.storyboard in Resources */,
 				78A8D053222AA94600885B6E /* Main.storyboard in Resources */,
+				7820D0FE2257608700DE79AE /* Settings.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

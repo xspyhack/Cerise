@@ -18,6 +18,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         setUpLogger()
         setUpRouter()
         setUpAppearance()
+        setUpPreferences()
         startBootstrap()
         startMainStory()
         return true

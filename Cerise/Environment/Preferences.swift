@@ -11,34 +11,58 @@ import RxCocoa
 import RxSwift
 
 enum Preferences {
-    enum Accessibility: Int, CaseIterable {
+    enum Accessibility: String, CaseIterable {
         case normal
         case modern
 
         var title: String {
-            switch self {
-            case .normal:
-                return "Normal"
-            case .modern:
-                return "Modern"
-            }
+            return rawValue
         }
+
+        static let key = "accessibility" + Preferences.suffix
     }
 
     static let accessibility = BehaviorRelay<Accessibility>(value: .normal)
 
+    enum Info: String {
+        case version
+        case build
+        case git
+
+        var key: String {
+            return rawValue + Preferences.suffix
+        }
+    }
+
+    private static let suffix = "_preference"
     private static let disposeBag = DisposeBag()
 
     static func setUp() {
-        let key = "com.cerise.accessibility"
-        if let accessibility = Accessibility(rawValue: UserDefaults.standard.integer(forKey: key)) {
-            Preferences.accessibility.accept(accessibility)
+        func updateAccessibility() {
+            let value = UserDefaults.standard.string(forKey: Accessibility.key) ?? "Normal"
+            if let accessibility = Accessibility(rawValue: value.lowercased()) {
+                Preferences.accessibility.accept(accessibility)
+            }
         }
 
+        updateAccessibility()
+
         Preferences.accessibility
+            .distinctUntilChanged()
             .subscribe(onNext: { style in
-                UserDefaults.standard.set(style.rawValue, forKey: key)
+                UserDefaults.standard.set(style.rawValue.capitalized, forKey: Accessibility.key)
             })
             .disposed(by: disposeBag)
+
+        NotificationCenter.default.rx.notification(UserDefaults.didChangeNotification)
+            .subscribe(onNext: { _ in
+                updateAccessibility()
+            })
+            .disposed(by: disposeBag)
+
+        // Info
+        let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+        let build = Bundle.main.object(forInfoDictionaryKey: String(kCFBundleVersionKey)) as! String
+        UserDefaults.standard.set("\(version) (\(build))", forKey: Info.version.key)
     }
 }
