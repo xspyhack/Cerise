@@ -69,7 +69,7 @@ final class MatterViewController: BaseViewController {
 
         if traitCollection.forceTouchCapability == .available {
             registerForPreviewing(with: self, sourceView: view)
-        } else {
+        } else if traitCollection.forceTouchCapability == .unavailable {
             // Fall back to other non 3D Touch features.
             registerForPopping()
         }
