@@ -21,10 +21,26 @@ final class MainViewController: BaseViewController {
         navigationItem.largeTitleDisplayMode = .always
         navigationController?.navigationBar.prefersLargeTitles = true
 
+        let logoItem = UIBarButtonItem(image: UIImage(named: "Logo"), style: .plain, target: nil, action: nil)
+        navigationItem.leftBarButtonItem = logoItem
+
         let addItem = UIBarButtonItem(barButtonSystemItem: .add, target: nil, action: nil)
         navigationItem.rightBarButtonItem = addItem
-        Preferences.accessibility.map { $0 == .normal }
-            .bind(to: addItem.rx.isVisible)
+
+        Preferences.accessibility
+            .subscribe(onNext: { [weak navigationItem] style in
+                switch style {
+                case .normal:
+                    navigationItem?.leftBarButtonItem = logoItem
+                    navigationItem?.rightBarButtonItem = addItem
+                case .modern:
+                    navigationItem?.leftBarButtonItem = nil
+                    navigationItem?.rightBarButtonItem = logoItem
+                case .clean:
+                    navigationItem?.leftBarButtonItem = nil
+                    navigationItem?.rightBarButtonItem = nil
+                }
+            })
             .disposed(by: disposeBag)
 
         addChild(mattersViewController)
@@ -33,6 +49,13 @@ final class MainViewController: BaseViewController {
             builder.edges == view.cerise.edgesAnchor
         }
         mattersViewController.didMove(toParent: self)
+
+        logoItem.rx.tap
+            .subscribe(onNext: { [weak self] in
+                let vc = SettingsViewController()
+                self?.present(vc, animated: true, completion: nil)
+            })
+            .disposed(by: disposeBag)
 
         addItem.rx.tap
             .bind(to: mattersViewController.viewModel.inputs.addAction)
