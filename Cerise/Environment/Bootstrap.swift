@@ -46,9 +46,9 @@ struct Bootstrap {
                     *📖 _Matter Details_*: The matter's details contains /Title/, /Tag/, /When/ and /Notes/.
                     *📝 _Editor_*: This is where you can add your matters.
 
-                    *🖋 Add a new matter*: You can `pull down` in home page (_Matters List_) to add a new matter.
+                    *🖋 Add a new matter*: You can `pull down` or `tap +` in home page (_Matters List_) to add a new matter.
 
-                    *👀 View matter details*: You can `tap` a matter in _Matters List_ to view the matter details, or use `3D Touch` to preview. And then you can use `3D Touch` to pop back to _Matters List_ page.
+                    *👀 View matter details*: You can `tap` a matter in _Matters List_ to view the matter details, or use `3D Touch` to preview (If 3D Touch is available). And then you can use `3D Touch` to pop back to _Matters List_ page (If 3D Touch is available).
 
                     *❌ Delete a matter*: You can use `swipe left` gesture to ~delete~ a matter in the _Matters List_.
 
