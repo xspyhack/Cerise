@@ -40,6 +40,20 @@ final class ComposerViewController: BaseViewController {
         }
         editorViewController.didMove(toParent: self)
 
+        let cancelButton = UIButton(type: .system)
+        cancelButton.layer.cornerRadius = 8
+        cancelButton.layer.masksToBounds = true
+        cancelButton.setBackgroundImage(UIImage(color: UIColor(named: "BK30") ?? .gray), for: .highlighted)
+        cancelButton.setTitle("Cancel", for: .normal) // ×
+        cancelButton.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .medium)
+        cancelButton.tintColor = UIColor.cerise.tint
+        cancelButton.contentEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+        view.addSubview(cancelButton)
+        cancelButton.cerise.layout { builder in
+            builder.leading == view.leadingAnchor + 8
+            builder.top == view.topAnchor + 2
+        }
+
         let doneButton = UIButton(type: .system)
         doneButton.layer.cornerRadius = 8
         doneButton.layer.masksToBounds = true
@@ -72,9 +86,11 @@ final class ComposerViewController: BaseViewController {
             .subscribe(onNext: { style in
                 switch style {
                 case .normal:
+                    cancelButton.isHidden = false
                     doneButton.isHidden = false
                     postButton.isHidden = true
                 case .modern:
+                    cancelButton.isHidden = true
                     doneButton.isHidden = true
                     postButton.isHidden = false
                 }
@@ -92,6 +108,10 @@ final class ComposerViewController: BaseViewController {
 
         doneButton.rx.tap
             .bind(to: viewModel.inputs.post)
+            .disposed(by: disposeBag)
+
+        cancelButton.rx.tap
+            .bind(to: viewModel.inputs.cancel)
             .disposed(by: disposeBag)
 
         viewModel.outputs.isPostEnabled
