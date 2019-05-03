@@ -14,9 +14,14 @@ enum Preferences {
     enum Accessibility: String, CaseIterable {
         case normal
         case modern
+        case clean
 
         var title: String {
-            return rawValue
+            return rawValue.capitalized
+        }
+
+        var isVerbose: Bool {
+            return self == .normal
         }
 
         static let key = "accessibility" + Preferences.suffix

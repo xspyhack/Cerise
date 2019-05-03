@@ -83,17 +83,11 @@ final class ComposerViewController: BaseViewController {
         }
 
         Preferences.accessibility
-            .subscribe(onNext: { style in
-                switch style {
-                case .normal:
-                    cancelButton.isHidden = false
-                    doneButton.isHidden = false
-                    postButton.isHidden = true
-                case .modern:
-                    cancelButton.isHidden = true
-                    doneButton.isHidden = true
-                    postButton.isHidden = false
-                }
+            .map { $0.isVerbose }
+            .subscribe(onNext: { verbose in
+                cancelButton.isHidden = !verbose
+                doneButton.isHidden = !verbose
+                postButton.isHidden = verbose
             })
             .disposed(by: disposeBag)
 
