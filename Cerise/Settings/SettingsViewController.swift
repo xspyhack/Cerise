@@ -24,7 +24,7 @@ final class SettingsViewController: BaseViewController {
         tableView.separatorColor = UIColor(named: "BK20")
         tableView.allowsSelection = true
         tableView.allowsMultipleSelection = false
-        tableView.tableFooterView = UIView()
+        tableView.tableFooterView = FooterView()
         return tableView
     }()
 
@@ -109,6 +109,26 @@ extension SettingsViewController {
             } else {
                 accessoryType = .none
             }
+        }
+    }
+
+    class FooterView: UIView {
+        override init(frame: CGRect) {
+            super.init(frame: frame)
+
+            let label = UILabel()
+            label.font = UIFont.systemFont(ofSize: 12)
+            label.text = "iPhone Settings -> Cerise -> Accessibility"
+            label.textColor = UIColor.cerise.description
+
+            addSubview(label)
+            label.cerise.layout { builder in
+                builder.center == self.cerise.centerAnchor
+            }
+        }
+
+        required init?(coder aDecoder: NSCoder) {
+            fatalError("init(coder:) has not been implemented")
         }
     }
 }
