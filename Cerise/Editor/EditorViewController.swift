@@ -190,8 +190,7 @@ extension EditorViewController: UITableViewDataSource {
 
             let keyboardWillShow = NotificationCenter.default.rx.notification(UIResponder.keyboardWillShowNotification)
                 .filter { _ in UIApplication.shared.applicationState == .active }
-                .map { $0.cerise.animation }
-                .filterNil()
+                .compactMap { $0.cerise.animation }
 
             Observable<Notification.KeyboardAnimation>.zip(keyboardWillShow, cell.textViewDidBeginEditing) { animation, _ in animation }
                 .observeOn(MainScheduler.instance)
@@ -230,8 +229,7 @@ extension EditorViewController: UITableViewDataSource {
 
             let keyboardWillHide = NotificationCenter.default.rx.notification(UIResponder.keyboardWillHideNotification)
                 .filter { _ in UIApplication.shared.applicationState == .active }
-                .map { $0.cerise.animation }
-                .filterNil()
+                .compactMap { $0.cerise.animation }
 
             Observable<Notification.KeyboardAnimation>.zip(keyboardWillHide, cell.textViewDidEndEditing) { animation, _ in animation }
                 .observeOn(MainScheduler.instance)

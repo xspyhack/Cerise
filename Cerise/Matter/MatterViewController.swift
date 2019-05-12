@@ -147,9 +147,7 @@ final class MatterViewController: BaseViewController {
 
         viewModel.notes
             .filterNil()
-            .map { text in
-                Renderer().render(text: text)
-            }
+            .map { Renderer().render(text: $0) }
             .drive(notesTextView.rx.attributedText)
             .disposed(by: disposeBag)
 

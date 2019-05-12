@@ -15,10 +15,9 @@ final class TagitView: UIView {
 
     var itemSelected: ControlEvent<Tagble> {
         let source = collectionView.rx.itemSelected
-            .map { [unowned self] in
+            .compactMap { [unowned self] in
                 return self.items.safe[$0.item]
             }
-            .filterNil()
         return ControlEvent(events: source)
     }
 

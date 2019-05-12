@@ -75,8 +75,7 @@ final class SettingsViewController: BaseViewController {
 
         rx.viewDidAppear
             .take(1)
-            .map { _ in items.value.firstIndex(of: Preferences.accessibility.value) }
-            .filterNil()
+            .compactMap { _ in items.value.firstIndex(of: Preferences.accessibility.value) }
             .map { IndexPath(row: $0, section: 0) }
             .subscribe(onNext: { [weak tableView] indexPath in
                 tableView?.selectRow(at: indexPath, animated: true, scrollPosition: .none)

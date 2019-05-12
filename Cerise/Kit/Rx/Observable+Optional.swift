@@ -21,29 +21,38 @@ extension Optional: OptionalType {
     }
 }
 
-public extension ObservableType where Self.E: OptionalType {
+public extension ObservableType where Self.Element: OptionalType {
     /**
      Unwraps and filters out `nil` elements.
      - returns: `Observable` of source `Observable`'s elements, with `nil` elements filtered out.
      */
 
-    func filterNil() -> Observable<E.Wrapped> {
-        return self.flatMap { element -> Observable<E.Wrapped> in
+    func filterNil() -> Observable<Element.Wrapped> {
+        return self.flatMap { element -> Observable<Element.Wrapped> in
             guard let value = element.value else {
-                return Observable<E.Wrapped>.empty()
+                return Observable<Element.Wrapped>.empty()
             }
-            return Observable<E.Wrapped>.just(value)
+            return Observable<Element.Wrapped>.just(value)
         }
     }
 }
 
-public extension Driver where SharedSequence.E: OptionalType {
-    func filterNil() -> Driver<E.Wrapped> {
-        return self.flatMap { element -> Driver<E.Wrapped> in
+public extension Driver where SharedSequence.Element: OptionalType {
+    func filterNil() -> Driver<Element.Wrapped> {
+        return self.flatMap { element -> Driver<Element.Wrapped> in
             guard let value = element.value else {
-                return Driver<E.Wrapped>.empty()
+                return Driver<Element.Wrapped>.empty()
             }
-            return Driver<E.Wrapped>.just(value)
+            return Driver<Element.Wrapped>.just(value)
+        }
+    }
+
+    func compactMap<Result>(_ transform: @escaping (Element) throws -> Result?) -> Driver<Result> {
+        return self.flatMap { element -> Driver<Result> in
+            guard let value = try? transform(element) else {
+                return Driver<Result>.empty()
+            }
+            return Driver<Result>.just(value)
         }
     }
 }

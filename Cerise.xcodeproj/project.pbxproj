@@ -71,6 +71,7 @@
 		78A8D0C2222AC84E00885B6E /* UIColor+Cerise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A8D0C1222AC84E00885B6E /* UIColor+Cerise.swift */; };
 		78A8D0C4222AD39200885B6E /* UIStoryboard+Cerise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A8D0C3222AD39200885B6E /* UIStoryboard+Cerise.swift */; };
 		78A8D0C6222AD4C100885B6E /* String+Uppercased.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A8D0C5222AD4C100885B6E /* String+Uppercased.swift */; };
+		FA0097CF228829F90069EBBE /* RxRelay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA0097CE228829F90069EBBE /* RxRelay.framework */; };
 		FA4CFD31224B5AE80063088C /* MarkupNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4CFD2C224B5AE80063088C /* MarkupNode.swift */; };
 		FA4CFD32224B5AE80063088C /* MarkupTokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4CFD2D224B5AE80063088C /* MarkupTokenizer.swift */; };
 		FA4CFD33224B5AE80063088C /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4CFD2E224B5AE80063088C /* Renderer.swift */; };
@@ -176,6 +177,7 @@
 		78A8D0C1222AC84E00885B6E /* UIColor+Cerise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Cerise.swift"; sourceTree = "<group>"; };
 		78A8D0C3222AD39200885B6E /* UIStoryboard+Cerise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+Cerise.swift"; sourceTree = "<group>"; };
 		78A8D0C5222AD4C100885B6E /* String+Uppercased.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Uppercased.swift"; sourceTree = "<group>"; };
+		FA0097CE228829F90069EBBE /* RxRelay.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxRelay.framework; path = Carthage/Build/iOS/RxRelay.framework; sourceTree = "<group>"; };
 		FA4CFD2C224B5AE80063088C /* MarkupNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkupNode.swift; sourceTree = "<group>"; };
 		FA4CFD2D224B5AE80063088C /* MarkupTokenizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkupTokenizer.swift; sourceTree = "<group>"; };
 		FA4CFD2E224B5AE80063088C /* Renderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
@@ -205,6 +207,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA0097CF228829F90069EBBE /* RxRelay.framework in Frameworks */,
 				FA90AAD62240EC9A00B08682 /* Keldeo.framework in Frameworks */,
 				78A8D098222ABAB200885B6E /* RxSwift.framework in Frameworks */,
 				78A8D094222ABAA600885B6E /* RxCocoa.framework in Frameworks */,
@@ -361,6 +364,7 @@
 		78A8D08A222ABA8F00885B6E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FA0097CE228829F90069EBBE /* RxRelay.framework */,
 				FA90AAD52240EC9900B08682 /* Keldeo.framework */,
 				78A8D097222ABAB200885B6E /* RxSwift.framework */,
 				78A8D095222ABAAC00885B6E /* RxDataSources.framework */,
@@ -576,6 +580,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Differentiator.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RxAtomic.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Keldeo.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RxRelay.framework",
 			);
 			name = "Carthage Copy Framework";
 			outputFileListPaths = (

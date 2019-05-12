@@ -104,14 +104,12 @@ struct MattersViewModel: MattersViewModelType {
             .disposed(by: disposeBag)
 
         inputs.itemSelected
-            .map { self.matter(at: $0) }
-            .filterNil()
+            .compactMap { self.matter(at: $0) }
             .bind(to: outputs.showMatterDetail)
             .disposed(by: disposeBag)
 
         inputs.itemDeleted
-            .map { self.matter(at: $0) }
-            .filterNil()
+            .compactMap { self.matter(at: $0) }
             .bind(to: Matter.didDelete)
             .disposed(by: disposeBag)
 

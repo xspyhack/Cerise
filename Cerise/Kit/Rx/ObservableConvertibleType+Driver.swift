@@ -10,8 +10,8 @@ import RxCocoa
 import RxSwift
 
 // ref: https://github.com/ReactiveX/RxSwift/blob/2.6.0/RxCocoa/Common/CocoaUnits/Driver/ObservableConvertibleType+Driver.swift
-extension ObservableConvertibleType where E == Void {
-    func asDriver() -> Driver<E> {
+extension ObservableConvertibleType where Element == Void {
+    func asDriver() -> Driver<Element> {
         return self.asDriver(onErrorJustReturn: Void())
     }
 }
