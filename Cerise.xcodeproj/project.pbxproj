@@ -71,6 +71,7 @@
 		78A8D0C2222AC84E00885B6E /* UIColor+Cerise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A8D0C1222AC84E00885B6E /* UIColor+Cerise.swift */; };
 		78A8D0C4222AD39200885B6E /* UIStoryboard+Cerise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A8D0C3222AD39200885B6E /* UIStoryboard+Cerise.swift */; };
 		78A8D0C6222AD4C100885B6E /* String+Uppercased.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A8D0C5222AD4C100885B6E /* String+Uppercased.swift */; };
+		78D5391522B60A9600FEA6F9 /* Appearances.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D5391422B60A9600FEA6F9 /* Appearances.swift */; };
 		FA0097CF228829F90069EBBE /* RxRelay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA0097CE228829F90069EBBE /* RxRelay.framework */; };
 		FA4CFD31224B5AE80063088C /* MarkupNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4CFD2C224B5AE80063088C /* MarkupNode.swift */; };
 		FA4CFD32224B5AE80063088C /* MarkupTokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4CFD2D224B5AE80063088C /* MarkupTokenizer.swift */; };
@@ -177,6 +178,7 @@
 		78A8D0C1222AC84E00885B6E /* UIColor+Cerise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Cerise.swift"; sourceTree = "<group>"; };
 		78A8D0C3222AD39200885B6E /* UIStoryboard+Cerise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+Cerise.swift"; sourceTree = "<group>"; };
 		78A8D0C5222AD4C100885B6E /* String+Uppercased.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Uppercased.swift"; sourceTree = "<group>"; };
+		78D5391422B60A9600FEA6F9 /* Appearances.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appearances.swift; sourceTree = "<group>"; };
 		FA0097CE228829F90069EBBE /* RxRelay.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxRelay.framework; path = Carthage/Build/iOS/RxRelay.framework; sourceTree = "<group>"; };
 		FA4CFD2C224B5AE80063088C /* MarkupNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkupNode.swift; sourceTree = "<group>"; };
 		FA4CFD2D224B5AE80063088C /* MarkupTokenizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkupTokenizer.swift; sourceTree = "<group>"; };
@@ -447,6 +449,7 @@
 				78A8D0BF222AC77300885B6E /* TraitEnvironment.swift */,
 				78368A96224AFF8A003E57A1 /* Bootstrap.swift */,
 				7820D0F72256E81D00DE79AE /* Preferences.swift */,
+				78D5391422B60A9600FEA6F9 /* Appearances.swift */,
 			);
 			path = Environment;
 			sourceTree = "<group>";
@@ -619,6 +622,7 @@
 				FAB9280C2244A6F000E338A8 /* Shadowability.swift in Sources */,
 				FA90AAE42241FAFC00B08682 /* SafeDispatchQueue.swift in Sources */,
 				FA90AAE22241FA8200B08682 /* ListUpdate.swift in Sources */,
+				78D5391522B60A9600FEA6F9 /* Appearances.swift in Sources */,
 				785C69C3223FDF7C004DF721 /* ComposerViewController.swift in Sources */,
 				FA90AAEA224348C100B08682 /* UIColor+Hex.swift in Sources */,
 				78A8D09F222ABB8E00885B6E /* AppCoordinator.swift in Sources */,

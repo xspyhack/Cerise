@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Keldeo
 
 @UIApplicationMain
 final class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,7 +16,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         setUpLogger()
         setUpRouter()
-        setUpAppearance()
+        setUpAppearances()
         setUpPreferences()
         startBootstrap()
         startMainStory()
@@ -47,57 +46,15 @@ extension AppDelegate {
 
 extension AppDelegate {
     private func setUpLogger() {
-        let formatter = LogFormatter()
-
-        if Environment.type == .debug {
-            let consoleLogger = ConsoleLogger(level: .debug, formatter: formatter)
-            Logger.shared.add(AnyLogger(consoleLogger))
-        } else {
-            let fileManager = DefaultFileManager()
-            if let fileLogger = FileLogger(level: .info, formatter: formatter, fileManager: fileManager) {
-                Logger.shared.add(AnyLogger(fileLogger))
-                print("Log directory: \(fileManager.directory)")
-            }
-        }
+        Logger.setUp()
     }
 
     private func setUpRouter() {
         Router.register()
     }
 
-    private func setUpAppearance() {
-        window?.tintColor = UIColor.cerise.tint
-        window?.backgroundColor = .white
-
-        // UINavigationBar
-        let appearance = UINavigationBar.appearance()
-        appearance.barTintColor = UIColor.black.withAlphaComponent(0.9)
-        appearance.tintColor = UIColor.cerise.tint
-        //appearance.setBackgroundImage(UIImage(color: UIColor.red.withAlphaComponent(0.99)), for: .default)
-        appearance.shadowImage = UIImage()
-        appearance.isTranslucent = false
-        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.cerise.tint]
-        appearance.titleTextAttributes = [.foregroundColor: UIColor.cerise.tint]
-
-        // UITabBar
-        UITabBar.appearance().shadowImage = UIImage()
-        UITabBar.appearance().backgroundImage = UIImage(color: UIColor.black.withAlphaComponent(0.99))
-        UITabBar.appearance().tintColor = UIColor(named: "BK20") // tabbar active
-        UITabBar.appearance().unselectedItemTintColor = UIColor(named: "BK70") // tabbar inactive
-
-        // UITableView
-        UITableViewHeaderFooterView.appearance().tintColor = .black
-        let labelAppearance = UILabel.appearance(whenContainedInInstancesOf: [UITableViewHeaderFooterView.self])
-        labelAppearance.textColor = UIColor.white.withAlphaComponent(0.78)
-        labelAppearance.shadowColor = .white
-        // font will be reset when reuse, damn it
-        //labelAppearance.font = UIFont.systemFont(ofSize: 14, weight: .medium)
-
-        let textFieldAppearance = UITextField.appearance()
-        textFieldAppearance.keyboardAppearance = .dark
-
-        let textViewAppearance = UITextField.appearance()
-        textViewAppearance.keyboardAppearance = .dark
+    private func setUpAppearances() {
+        Appearances.setUp()
     }
 
     private func setUpPreferences() {
