@@ -14,7 +14,13 @@ enum Appearances {
         setUpNavigationBar()
         setUpTabBar()
         setUpTableView()
-        //setUpTextView() // Terminating app due to uncaught exception `NSInternalInconsistencyException`, reason: `Please file a radar on UIKit with this log if you see this assertion. selectorString = setKeyboardAppearance:, exercisedImplementation = { "setKeyboardAppearance:" = (); }`
+        /**
+         Terminating app due to uncaught exception `NSInternalInconsistencyException`,
+         reason: `Please file a radar on UIKit with this log if you see this assertion.
+         selectorString = setKeyboardAppearance:,
+         exercisedImplementation = { "setKeyboardAppearance:" = (); }`
+         */
+        //setUpTextView()
         setUpTextField()
     }
 
