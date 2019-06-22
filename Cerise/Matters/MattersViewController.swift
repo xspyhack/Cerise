@@ -77,6 +77,7 @@ final class MattersViewController: BaseViewController {
             .subscribe(onNext: { [unowned self] matter in
                 let vc = MatterViewController(viewModel: MatterViewModel(matter: matter))
                 vc.transitioningDelegate = self
+                vc.modalPresentationStyle = .currentContext
                 self.present(vc, animated: true, completion: nil)
             })
             .disposed(by: disposeBag)
