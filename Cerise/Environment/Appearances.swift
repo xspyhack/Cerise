@@ -32,11 +32,10 @@ enum Appearances {
 
     private static func setUpNavigationBar() {
         let appearance = UINavigationBar.appearance()
-        appearance.barTintColor = UIColor.black.withAlphaComponent(0.9)
+        appearance.barTintColor = UIColor.black.withAlphaComponent(0.99)
         appearance.tintColor = UIColor.cerise.tint
-        //appearance.setBackgroundImage(UIImage(color: UIColor.red.withAlphaComponent(0.99)), for: .default)
+        appearance.setBackgroundImage(UIImage(color: UIColor.black.withAlphaComponent(0.99)), for: .default)
         appearance.shadowImage = UIImage()
-        appearance.isTranslucent = false
         appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.cerise.tint]
         appearance.titleTextAttributes = [.foregroundColor: UIColor.cerise.tint]
     }

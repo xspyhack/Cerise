@@ -20,7 +20,6 @@ final class MattersViewController: BaseViewController {
         tableView.sectionHeaderHeight = Constant.sectionHeaderHeight
         tableView.sectionFooterHeight = Constant.sectionFooterHeight
         tableView.backgroundColor = UIColor.clear
-        tableView.contentInsetAdjustmentBehavior = .never
         tableView.separatorStyle = .none
         return tableView
     }()
@@ -91,9 +90,7 @@ final class MattersViewController: BaseViewController {
             .delay(.milliseconds(Int(0.25 * 1_000.0)), scheduler: MainScheduler.instance)
             .subscribe(onNext: { [unowned self] in
                 let vc = ComposerViewController()
-                self.present(vc, animated: true) { [weak self] in
-                    self?.tableView.setContentOffset(.zero, animated: true)
-                }
+                self.present(vc, animated: true)
             })
             .disposed(by: disposeBag)
 

@@ -75,6 +75,7 @@ struct MattersViewModel: MattersViewModelType {
         self.matters = BehaviorRelay<[Matter]>(value: matters ?? [])
 
         let sections: Driver<[MattersViewSection]> = self.matters.asObservable()
+            .delay(.milliseconds(Int(0.1 * 1_000.0)), scheduler: MainScheduler.instance)
             .map { matters in
                 let comingCellModels = matters.filter { $0.occurrenceDate > Date() }
                     .map(MattersViewController.MatterCellModel.init) as [MatterCellModelType]
