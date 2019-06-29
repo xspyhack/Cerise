@@ -10,23 +10,23 @@ import UIKit
 
 extension Cerise where Base: UIColor {
     static var tint: UIColor {
-        return UIColor(named: "TINT") ?? UIColor(red: 0.871, green: 0.192, blue: 0.388, alpha: 1.00)
+        return UIColor(named: "TINT")!
     }
 
     static var dark: UIColor {
-        return UIColor(named: "DARK") ?? UIColor(red: 0.12, green: 0.13, blue: 0.13, alpha: 1.00)
+        return UIColor(named: "DARK")!
     }
 
     static var lightText: UIColor {
-        return UIColor(named: "lightText") ?? UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.6)
+        return UIColor(named: "lightText")!
     }
 
     static var darkText: UIColor {
-        return UIColor(named: "lightText") ?? UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
+        return UIColor(named: "darkText")!
     }
 
     static var darkContent: UIColor {
-        return UIColor(named: "DKCT") ?? UIColor(red: 0.16, green: 0.16, blue: 0.19, alpha: 1.00)
+        return UIColor(named: "DKCT")!
     }
 
     static var title: UIColor {
@@ -52,6 +52,24 @@ extension Cerise where Base: UIColor {
     static var codeBackground: UIColor {
         return UIColor(named: "BK95")!
     }
+
+#if DEBUG
+    static var allColors: [UIColor] {
+        return [
+            self.tint,
+            self.dark,
+            self.lightText,
+            self.darkText,
+            self.darkContent,
+            self.title,
+            self.text,
+            self.description,
+            self.bold,
+            self.code,
+            self.codeBackground,
+        ]
+    }
+#endif
 }
 
 /*
@@ -67,5 +85,4 @@ extension Cerise where Base: UIColor {
  racecourse #5fc0a7
  tai wai #0376c2
  central #c41832
- 
  */
