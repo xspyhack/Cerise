@@ -34,6 +34,7 @@
 		788365FF22C4765100152D94 /* UIColorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788365FE22C4765100152D94 /* UIColorTests.swift */; };
 		7883660022C4783600152D94 /* UIColor+Cerise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A8D0C1222AC84E00885B6E /* UIColor+Cerise.swift */; };
 		7883660122C4783D00152D94 /* Cerise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A8D0A6222AC08700885B6E /* Cerise.swift */; };
+		7883660322C7ACDC00152D94 /* ModalNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7883660222C7ACDC00152D94 /* ModalNavigationController.swift */; };
 		78A8D04E222AA94600885B6E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A8D04D222AA94600885B6E /* AppDelegate.swift */; };
 		78A8D050222AA94600885B6E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A8D04F222AA94600885B6E /* MainViewController.swift */; };
 		78A8D053222AA94600885B6E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78A8D051222AA94600885B6E /* Main.storyboard */; };
@@ -135,6 +136,7 @@
 		785C69CC22462971004DF721 /* Charmander.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Charmander.swift; sourceTree = "<group>"; };
 		785C69CE22476B0E004DF721 /* UIScrollView+Cerise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Cerise.swift"; sourceTree = "<group>"; };
 		788365FE22C4765100152D94 /* UIColorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorTests.swift; sourceTree = "<group>"; };
+		7883660222C7ACDC00152D94 /* ModalNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalNavigationController.swift; sourceTree = "<group>"; };
 		78A8D04A222AA94600885B6E /* Cerise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cerise.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78A8D04D222AA94600885B6E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		78A8D04F222AA94600885B6E /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -392,6 +394,7 @@
 				78A8D0A4222AC06200885B6E /* Reusable.swift */,
 				78A8D09A222ABAEB00885B6E /* BaseViewController.swift */,
 				785C69C422408234004DF721 /* ModalPresentationController.swift */,
+				7883660222C7ACDC00152D94 /* ModalNavigationController.swift */,
 				FAB928072243718800E338A8 /* CherryTransitionController.swift */,
 				7849BE8E223D26150068503A /* Coordinating.swift */,
 				FA4CFD2E224B5AE80063088C /* Renderer.swift */,
@@ -658,6 +661,7 @@
 				FAB928082243718800E338A8 /* CherryTransitionController.swift in Sources */,
 				78A8D0A3222ABDAA00885B6E /* UIImage+Color.swift in Sources */,
 				78A8D07C222AAA5C00885B6E /* MatterViewController.swift in Sources */,
+				7883660322C7ACDC00152D94 /* ModalNavigationController.swift in Sources */,
 				785C69CF22476B0E004DF721 /* UIScrollView+Cerise.swift in Sources */,
 				78A8D0B7222AC51200885B6E /* UIView+Rx.swift in Sources */,
 				78A8D077222AAA5500885B6E /* MattersViewController+Cell.swift in Sources */,

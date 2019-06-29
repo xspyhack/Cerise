@@ -15,7 +15,7 @@ final class ModalPresentationController: UIPresentationController {
 
     private lazy var presentedScrollView: PresentedScrollView = {
         let scrollView = PresentedScrollView()
-        scrollView.contentInsetAdjustmentBehavior = .never
+        //scrollView.contentInsetAdjustmentBehavior = .never
         scrollView.alwaysBounceVertical = true
         scrollView.showsVerticalScrollIndicator = false
         scrollView.delegate = self

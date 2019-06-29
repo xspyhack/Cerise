@@ -31,28 +31,30 @@ final class ComposerViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        title = "New Matter"
+        navigationItem.largeTitleDisplayMode = .always
+        navigationController?.navigationBar.prefersLargeTitles = false
         view.backgroundColor = UIColor.cerise.dark
 
-        addChild(editorViewController)
-        view.addSubview(editorViewController.view)
-        editorViewController.view.cerise.layout { builder in
-            builder.edges == view.cerise.edgesAnchor
-        }
-        editorViewController.didMove(toParent: self)
+        let navigationBar = UINavigationBar()
+        navigationBar.prefersLargeTitles = true
+        navigationBar.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+        navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
 
-        let cancelButton = UIButton(type: .system)
-        cancelButton.layer.cornerRadius = 8
-        cancelButton.layer.masksToBounds = true
-        cancelButton.setBackgroundImage(UIImage(color: UIColor(named: "BK30") ?? .gray), for: .highlighted)
-        cancelButton.setTitle("Cancel", for: .normal) // ×
-        cancelButton.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .medium)
-        cancelButton.tintColor = UIColor.cerise.tint
-        cancelButton.contentEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
-        view.addSubview(cancelButton)
-        cancelButton.cerise.layout { builder in
-            builder.leading == view.leadingAnchor + 8
-            builder.top == view.topAnchor + 2
+        let navigationItem = UINavigationItem()
+        navigationItem.title = "New Matter"
+        navigationBar.items = [navigationItem]
+
+        view.addSubview(navigationBar)
+        navigationBar.cerise.layout { builder in
+            builder.leading == view.leadingAnchor
+            builder.trailing == view.trailingAnchor
+            builder.height == 96
+            builder.top == view.topAnchor
         }
+
+        let cancelItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: nil, action: nil)
+        navigationItem.leftBarButtonItem = cancelItem
 
         let doneButton = UIButton(type: .system)
         doneButton.layer.cornerRadius = 8
@@ -62,34 +64,47 @@ final class ComposerViewController: BaseViewController {
         doneButton.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .bold)
         doneButton.tintColor = UIColor.cerise.tint
         doneButton.contentEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
-        view.addSubview(doneButton)
-        doneButton.cerise.layout { builder in
-            builder.trailing == view.trailingAnchor - 8
-            builder.top == view.topAnchor + 2
-        }
+        let doneItem = UIBarButtonItem(customView: doneButton)
+        navigationItem.rightBarButtonItem = doneItem
 
         let postButton = UIButton(type: .custom)
-        postButton.layer.cornerRadius = min(Constant.postButtonSize.width, Constant.postButtonSize.height) / 2
+        postButton.setImage(UIImage(named: "Post"), for: .normal)
+        postButton.setBackgroundImage(UIImage(color: UIColor.cerise.tint), for: .normal)
+        postButton.tintColor = .white
+        postButton.layer.cornerRadius = 16
         postButton.layer.masksToBounds = true
-        postButton.setImage(UIImage(named: "Post")?.withRenderingMode(.alwaysTemplate), for: .normal)
-        postButton.setBackgroundImage(UIImage(color: UIColor(named: "BK30") ?? .gray), for: .highlighted)
-        postButton.tintColor = UIColor.cerise.tint
-        postButton.contentEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
-        view.addSubview(postButton)
+
+        navigationBar.addSubview(postButton)
         postButton.cerise.layout { builder in
-            builder.centerX == view.centerXAnchor
-            builder.bottom == view.safeAreaLayoutGuide.bottomAnchor - Constant.postButtonBottom
-            builder.size == Constant.postButtonSize
+            builder.size == CGSize(width: 32, height: 32)
+            builder.trailing == navigationBar.trailingAnchor - 12
+            builder.bottom == navigationBar.bottomAnchor - 12
         }
 
         Preferences.accessibility
-            .map { $0.isVerbose }
-            .subscribe(onNext: { verbose in
-                cancelButton.isHidden = !verbose
+            .subscribe(onNext: { style in
+                let verbose = style.isVerbose
                 doneButton.isHidden = !verbose
                 postButton.isHidden = verbose
+
+                switch style {
+                case .clean:
+                    navigationItem.leftBarButtonItem = nil
+                default:
+                    navigationItem.leftBarButtonItem = cancelItem
+                }
             })
             .disposed(by: disposeBag)
+
+        addChild(editorViewController)
+        view.addSubview(editorViewController.view)
+        editorViewController.view.cerise.layout { builder in
+            builder.top == navigationBar.bottomAnchor
+            builder.leading == view.leadingAnchor
+            builder.trailing == view.trailingAnchor
+            builder.bottom == view.bottomAnchor
+        }
+        editorViewController.didMove(toParent: self)
 
         // MARK: ViewModel binding
 
@@ -100,11 +115,11 @@ final class ComposerViewController: BaseViewController {
             .bind(to: viewModel.inputs.post)
             .disposed(by: disposeBag)
 
-        doneButton.rx.tap
+        doneItem.rx.tap
             .bind(to: viewModel.inputs.post)
             .disposed(by: disposeBag)
 
-        cancelButton.rx.tap
+        cancelItem.rx.tap
             .bind(to: viewModel.inputs.cancel)
             .disposed(by: disposeBag)
 
@@ -113,7 +128,7 @@ final class ComposerViewController: BaseViewController {
             .disposed(by: disposeBag)
 
         viewModel.outputs.isPostEnabled
-            .drive(doneButton.rx.isEnabled)
+            .drive(doneItem.rx.isEnabled)
             .disposed(by: disposeBag)
 
         viewModel.outputs.dismiss
