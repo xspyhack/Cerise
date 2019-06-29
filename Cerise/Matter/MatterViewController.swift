@@ -106,13 +106,17 @@ final class MatterViewController: BaseViewController {
         }
 
         contentView.addSubview(titleLabel)
+        contentView.addSubview(whenLabel)
+        titleLabel.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
+        whenLabel.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
+
         titleLabel.cerise.layout { builder in
             builder.leading == contentView.leadingAnchor + Constant.margin
             builder.trailing == contentView.trailingAnchor - Constant.margin
             builder.centerY == contentView.centerYAnchor
+            builder.bottom <= whenLabel.topAnchor - Constant.margin
         }
 
-        contentView.addSubview(whenLabel)
         whenLabel.cerise.layout { builder in
             builder.bottom == contentView.bottomAnchor - Constant.whenLabelBottom
             builder.centerX == contentView.centerXAnchor

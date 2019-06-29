@@ -32,6 +32,9 @@
 		785C69CB22413B06004DF721 /* UITextField+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785C69CA22413B06004DF721 /* UITextField+Rx.swift */; };
 		785C69CD22462971004DF721 /* Charmander.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785C69CC22462971004DF721 /* Charmander.swift */; };
 		785C69CF22476B0E004DF721 /* UIScrollView+Cerise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785C69CE22476B0E004DF721 /* UIScrollView+Cerise.swift */; };
+		788365FF22C4765100152D94 /* UIColorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788365FE22C4765100152D94 /* UIColorTests.swift */; };
+		7883660022C4783600152D94 /* UIColor+Cerise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A8D0C1222AC84E00885B6E /* UIColor+Cerise.swift */; };
+		7883660122C4783D00152D94 /* Cerise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A8D0A6222AC08700885B6E /* Cerise.swift */; };
 		78A8D04E222AA94600885B6E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A8D04D222AA94600885B6E /* AppDelegate.swift */; };
 		78A8D050222AA94600885B6E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A8D04F222AA94600885B6E /* MainViewController.swift */; };
 		78A8D053222AA94600885B6E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78A8D051222AA94600885B6E /* Main.storyboard */; };
@@ -132,6 +135,7 @@
 		785C69CA22413B06004DF721 /* UITextField+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Rx.swift"; sourceTree = "<group>"; };
 		785C69CC22462971004DF721 /* Charmander.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Charmander.swift; sourceTree = "<group>"; };
 		785C69CE22476B0E004DF721 /* UIScrollView+Cerise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Cerise.swift"; sourceTree = "<group>"; };
+		788365FE22C4765100152D94 /* UIColorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorTests.swift; sourceTree = "<group>"; };
 		78A8D04A222AA94600885B6E /* Cerise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cerise.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78A8D04D222AA94600885B6E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		78A8D04F222AA94600885B6E /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -303,6 +307,7 @@
 			isa = PBXGroup;
 			children = (
 				78A8D062222AA94800885B6E /* CeriseTests.swift */,
+				788365FE22C4765100152D94 /* UIColorTests.swift */,
 				78A8D064222AA94800885B6E /* Info.plist */,
 			);
 			path = CeriseTests;
@@ -700,6 +705,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				78A8D063222AA94800885B6E /* CeriseTests.swift in Sources */,
+				788365FF22C4765100152D94 /* UIColorTests.swift in Sources */,
+				7883660122C4783D00152D94 /* Cerise.swift in Sources */,
+				7883660022C4783600152D94 /* UIColor+Cerise.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -854,6 +862,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = DJ5N6T769K;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -864,6 +873,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.xspyhack.Cerise;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -876,6 +886,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = DJ5N6T769K;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -886,6 +897,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.xspyhack.Cerise;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
