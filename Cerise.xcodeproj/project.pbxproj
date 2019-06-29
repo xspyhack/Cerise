@@ -15,7 +15,6 @@
 		7820D0FE2257608700DE79AE /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7820D0FD2257608700DE79AE /* Settings.bundle */; };
 		78368A97224AFF8A003E57A1 /* Bootstrap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78368A96224AFF8A003E57A1 /* Bootstrap.swift */; };
 		7849BE8C222BC2640068503A /* MattersCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7849BE8B222BC2640068503A /* MattersCoordinator.swift */; };
-		7849BE8D222BC4680068503A /* RxAtomic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78A8D08F222ABA9700885B6E /* RxAtomic.framework */; };
 		7849BE8F223D26150068503A /* Coordinating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7849BE8E223D26150068503A /* Coordinating.swift */; };
 		7849BE92223D3E7B0068503A /* LayoutAnchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7849BE91223D3E7B0068503A /* LayoutAnchor.swift */; };
 		7849BE94223D3EB60068503A /* LayoutProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7849BE93223D3EB60068503A /* LayoutProperty.swift */; };
@@ -218,7 +217,6 @@
 				78A8D098222ABAB200885B6E /* RxSwift.framework in Frameworks */,
 				78A8D094222ABAA600885B6E /* RxCocoa.framework in Frameworks */,
 				78A8D08E222ABA9200885B6E /* Ditto.framework in Frameworks */,
-				7849BE8D222BC4680068503A /* RxAtomic.framework in Frameworks */,
 				78A8D096222ABAAC00885B6E /* RxDataSources.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -586,7 +584,6 @@
 				"$(SRCROOT)/Carthage/Build/iOS/RxDataSources.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Ditto.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Differentiator.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/RxAtomic.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Keldeo.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RxRelay.framework",
 			);
