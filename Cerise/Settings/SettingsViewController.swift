@@ -94,6 +94,7 @@ extension SettingsViewController {
             contentView.backgroundColor = UIColor.cerise.darkContent
             textLabel?.textColor = .white
             textLabel?.font = UIFont.systemFont(ofSize: 18, weight: .regular)
+            tintColor = UIColor.cerise.tint
         }
 
         required init?(coder aDecoder: NSCoder) {
