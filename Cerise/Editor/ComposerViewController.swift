@@ -56,15 +56,7 @@ final class ComposerViewController: BaseViewController {
         let cancelItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: nil, action: nil)
         navigationItem.leftBarButtonItem = cancelItem
 
-        let doneButton = UIButton(type: .system)
-        doneButton.layer.cornerRadius = 8
-        doneButton.layer.masksToBounds = true
-        doneButton.setBackgroundImage(UIImage(color: UIColor(named: "BK30") ?? .gray), for: .highlighted)
-        doneButton.setTitle("Done", for: .normal)
-        doneButton.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .bold)
-        doneButton.tintColor = UIColor.cerise.tint
-        doneButton.contentEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
-        let doneItem = UIBarButtonItem(customView: doneButton)
+        let doneItem = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: nil)
         navigationItem.rightBarButtonItem = doneItem
 
         let postButton = UIButton(type: .custom)
@@ -83,15 +75,18 @@ final class ComposerViewController: BaseViewController {
 
         Preferences.accessibility
             .subscribe(onNext: { style in
-                let verbose = style.isVerbose
-                doneButton.isHidden = !verbose
-                postButton.isHidden = verbose
+                postButton.isHidden = style.isVerbose
 
                 switch style {
+                case .normal:
+                    navigationItem.leftBarButtonItem = cancelItem
+                    navigationItem.rightBarButtonItem = doneItem
+                case .modern:
+                    navigationItem.leftBarButtonItem = cancelItem
+                    navigationItem.rightBarButtonItem = nil
                 case .clean:
                     navigationItem.leftBarButtonItem = nil
-                default:
-                    navigationItem.leftBarButtonItem = cancelItem
+                    navigationItem.rightBarButtonItem = nil
                 }
             })
             .disposed(by: disposeBag)
