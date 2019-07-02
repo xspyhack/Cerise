@@ -33,7 +33,7 @@ final class ComposerViewController: BaseViewController {
 
         title = "New Matter"
         navigationItem.largeTitleDisplayMode = .always
-        navigationController?.navigationBar.prefersLargeTitles = false
+        navigationController?.navigationBar.prefersLargeTitles = true
         view.backgroundColor = UIColor.cerise.dark
 
         let navigationBar = UINavigationBar()
