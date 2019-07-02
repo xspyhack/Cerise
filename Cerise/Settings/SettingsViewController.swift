@@ -94,6 +94,7 @@ extension SettingsViewController {
             contentView.backgroundColor = UIColor.cerise.darkContent
             textLabel?.textColor = .white
             textLabel?.font = UIFont.systemFont(ofSize: 18, weight: .regular)
+            tintColor = UIColor.cerise.tint
         }
 
         required init?(coder aDecoder: NSCoder) {
@@ -143,7 +144,7 @@ extension SettingsViewController: UIViewControllerTransitioningDelegate {
         let presentationController = ModalPresentationController(presentedViewController: presented,
                                                                  presenting: presenting)
         let bounds = UIApplication.shared.keyWindow?.bounds ?? UIScreen.main.bounds
-        presentationController.contentHeight = (bounds.height / 5 * 2).rounded(.up)
+        presentationController.contentHeight = (bounds.height / 5 * 2).rounded(.up) + 42
         presentationController.setContentScrollView(tableView)
         presentationController.handleView.backgroundColor = UIColor.cerise.tint
         presentationController.bottomView.backgroundColor = UIColor.cerise.dark

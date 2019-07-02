@@ -15,7 +15,6 @@
 		7820D0FE2257608700DE79AE /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7820D0FD2257608700DE79AE /* Settings.bundle */; };
 		78368A97224AFF8A003E57A1 /* Bootstrap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78368A96224AFF8A003E57A1 /* Bootstrap.swift */; };
 		7849BE8C222BC2640068503A /* MattersCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7849BE8B222BC2640068503A /* MattersCoordinator.swift */; };
-		7849BE8D222BC4680068503A /* RxAtomic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78A8D08F222ABA9700885B6E /* RxAtomic.framework */; };
 		7849BE8F223D26150068503A /* Coordinating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7849BE8E223D26150068503A /* Coordinating.swift */; };
 		7849BE92223D3E7B0068503A /* LayoutAnchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7849BE91223D3E7B0068503A /* LayoutAnchor.swift */; };
 		7849BE94223D3EB60068503A /* LayoutProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7849BE93223D3EB60068503A /* LayoutProperty.swift */; };
@@ -35,6 +34,7 @@
 		788365FF22C4765100152D94 /* UIColorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788365FE22C4765100152D94 /* UIColorTests.swift */; };
 		7883660022C4783600152D94 /* UIColor+Cerise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A8D0C1222AC84E00885B6E /* UIColor+Cerise.swift */; };
 		7883660122C4783D00152D94 /* Cerise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A8D0A6222AC08700885B6E /* Cerise.swift */; };
+		7883660322C7ACDC00152D94 /* ModalNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7883660222C7ACDC00152D94 /* ModalNavigationController.swift */; };
 		78A8D04E222AA94600885B6E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A8D04D222AA94600885B6E /* AppDelegate.swift */; };
 		78A8D050222AA94600885B6E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A8D04F222AA94600885B6E /* MainViewController.swift */; };
 		78A8D053222AA94600885B6E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78A8D051222AA94600885B6E /* Main.storyboard */; };
@@ -136,6 +136,7 @@
 		785C69CC22462971004DF721 /* Charmander.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Charmander.swift; sourceTree = "<group>"; };
 		785C69CE22476B0E004DF721 /* UIScrollView+Cerise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Cerise.swift"; sourceTree = "<group>"; };
 		788365FE22C4765100152D94 /* UIColorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorTests.swift; sourceTree = "<group>"; };
+		7883660222C7ACDC00152D94 /* ModalNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalNavigationController.swift; sourceTree = "<group>"; };
 		78A8D04A222AA94600885B6E /* Cerise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cerise.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78A8D04D222AA94600885B6E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		78A8D04F222AA94600885B6E /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -218,7 +219,6 @@
 				78A8D098222ABAB200885B6E /* RxSwift.framework in Frameworks */,
 				78A8D094222ABAA600885B6E /* RxCocoa.framework in Frameworks */,
 				78A8D08E222ABA9200885B6E /* Ditto.framework in Frameworks */,
-				7849BE8D222BC4680068503A /* RxAtomic.framework in Frameworks */,
 				78A8D096222ABAAC00885B6E /* RxDataSources.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -394,6 +394,7 @@
 				78A8D0A4222AC06200885B6E /* Reusable.swift */,
 				78A8D09A222ABAEB00885B6E /* BaseViewController.swift */,
 				785C69C422408234004DF721 /* ModalPresentationController.swift */,
+				7883660222C7ACDC00152D94 /* ModalNavigationController.swift */,
 				FAB928072243718800E338A8 /* CherryTransitionController.swift */,
 				7849BE8E223D26150068503A /* Coordinating.swift */,
 				FA4CFD2E224B5AE80063088C /* Renderer.swift */,
@@ -586,7 +587,6 @@
 				"$(SRCROOT)/Carthage/Build/iOS/RxDataSources.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Ditto.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Differentiator.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/RxAtomic.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Keldeo.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RxRelay.framework",
 			);
@@ -661,6 +661,7 @@
 				FAB928082243718800E338A8 /* CherryTransitionController.swift in Sources */,
 				78A8D0A3222ABDAA00885B6E /* UIImage+Color.swift in Sources */,
 				78A8D07C222AAA5C00885B6E /* MatterViewController.swift in Sources */,
+				7883660322C7ACDC00152D94 /* ModalNavigationController.swift in Sources */,
 				785C69CF22476B0E004DF721 /* UIScrollView+Cerise.swift in Sources */,
 				78A8D0B7222AC51200885B6E /* UIView+Rx.swift in Sources */,
 				78A8D077222AAA5500885B6E /* MattersViewController+Cell.swift in Sources */,
@@ -862,7 +863,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = DJ5N6T769K;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -873,7 +873,6 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.xspyhack.Cerise;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -886,7 +885,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = DJ5N6T769K;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -897,7 +895,6 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.xspyhack.Cerise;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

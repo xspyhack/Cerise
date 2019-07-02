@@ -125,9 +125,9 @@ extension TagitView {
         }()
 
         private struct Constant {
-            static let outerSize = CGSize(width: 16.0, height: 16.0)
-            static let gapSize = CGSize(width: 14.0, height: 14.0)
-            static let innerSize = CGSize(width: 10.0, height: 10.0)
+            static let outerSize = CGSize(width: 20.0, height: 20.0)
+            static let gapSize = CGSize(width: 18.0, height: 18.0)
+            static let innerSize = CGSize(width: 14.0, height: 14.0)
         }
 
         override init(frame: CGRect) {
