@@ -123,11 +123,12 @@ final class MattersViewController: BaseViewController {
 
         dataSource.titleForHeaderInSection = { dataSource, index in
             let section = dataSource[index]
-            return section.model
+            return section.model.title
         }
 
-        dataSource.titleForFooterInSection = { _, _ in
-            return " "
+        dataSource.titleForFooterInSection = { dataSource, section in
+            let section = dataSource[section]
+            return section.model.footer
         }
 
         dataSource.canEditRowAtIndexPath = { _, _ in
