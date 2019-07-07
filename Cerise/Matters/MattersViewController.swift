@@ -141,6 +141,7 @@ final class MattersViewController: BaseViewController {
 extension MattersViewController: UIViewControllerPreviewingDelegate {
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
         viewControllerToCommit.transitioningDelegate = self
+        viewControllerToCommit.modalPresentationStyle = .currentContext
         present(viewControllerToCommit, animated: true, completion: nil)
     }
 
