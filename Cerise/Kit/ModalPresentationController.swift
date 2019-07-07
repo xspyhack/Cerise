@@ -9,9 +9,14 @@
 import UIKit
 
 final class ModalPresentationController: UIPresentationController {
-    var contentHeight = ceil(UIScreen.main.bounds.height / 5 * 4)
+    private var maximumContentHeight: CGFloat
+    var preferredContentHeight: CGFloat
     var dismissalOffsetThreshold: CGFloat = -20
     var dismissOnTapped: Bool = false
+
+    private var contentHeight: CGFloat {
+        return min(maximumContentHeight, preferredContentHeight)
+    }
 
     private lazy var presentedScrollView: PresentedScrollView = {
         let scrollView = PresentedScrollView()
@@ -63,6 +68,10 @@ final class ModalPresentationController: UIPresentationController {
     }()
 
     override init(presentedViewController: UIViewController, presenting presentingViewController: UIViewController?) {
+        let sceneBounds = UIApplication.shared.keyWindow?.bounds ?? UIScreen.main.bounds
+        maximumContentHeight = (sceneBounds.height - UIApplication.shared.statusBarFrame.height).rounded(.up)
+        preferredContentHeight = (sceneBounds.height / 5 * 4).rounded(.up)
+
         super.init(presentedViewController: presentedViewController, presenting: presentingViewController)
     }
 

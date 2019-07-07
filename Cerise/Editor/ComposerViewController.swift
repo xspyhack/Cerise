@@ -149,7 +149,7 @@ extension ComposerViewController: UIViewControllerTransitioningDelegate {
         let presentationController = ModalPresentationController(presentedViewController: presented,
                                                                  presenting: presenting)
         let bounds = UIApplication.shared.keyWindow?.bounds ?? UIScreen.main.bounds
-        presentationController.contentHeight = (bounds.height / 5 * 4).rounded(.up)
+        presentationController.preferredContentHeight = (bounds.height / 5 * 4).rounded(.up)
         presentationController.setContentScrollView(editorViewController.tableView)
         presentationController.handleView.backgroundColor = UIColor.cerise.tint
         presentationController.bottomView.backgroundColor = UIColor.cerise.dark
