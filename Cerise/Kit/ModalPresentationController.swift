@@ -168,6 +168,7 @@ final class ModalPresentationController: UIPresentationController {
             return
         }
 
+        self.contentScrollView = contentScrollView
         contentScrollViewObservation?.invalidate()
         containerScrollViewObservation?.invalidate()
         presentedScrollView.contentScrollView = contentScrollView
