@@ -13,8 +13,10 @@ final class ComposerViewController: BaseViewController {
     private lazy var editorViewController = EditorViewController(viewModel: EditorViewModel())
 
     private enum Constant {
-        static let postButtonSize = CGSize(width: 60, height: 60)
-        static let postButtonBottom: CGFloat = 60
+        static let navigationBarHeight: CGFloat = 96.0
+        static let largeTitleViewHeight: CGFloat = 52.0
+        static let largeTitleLabelHeight: CGFloat = 40.0
+        static let postButtonSize = CGSize(width: 32, height: 32)
     }
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -31,9 +33,6 @@ final class ComposerViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = "New Matter"
-        navigationItem.largeTitleDisplayMode = .always
-        navigationController?.navigationBar.prefersLargeTitles = true
         view.backgroundColor = UIColor.cerise.dark
 
         let navigationBar = UINavigationBar()
@@ -42,14 +41,13 @@ final class ComposerViewController: BaseViewController {
         navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
 
         let navigationItem = UINavigationItem()
-        navigationItem.title = "New Matter"
         navigationBar.items = [navigationItem]
 
         view.addSubview(navigationBar)
         navigationBar.cerise.layout { builder in
             builder.leading == view.leadingAnchor
             builder.trailing == view.trailingAnchor
-            builder.height == 96
+            builder.height == Constant.navigationBarHeight
             builder.top == view.topAnchor
         }
 
@@ -59,18 +57,40 @@ final class ComposerViewController: BaseViewController {
         let doneItem = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: nil)
         navigationItem.rightBarButtonItem = doneItem
 
+        let largeTitleView = UIView()
+        navigationBar.addSubview(largeTitleView)
+        largeTitleView.cerise.layout { builder in
+            builder.height == Constant.largeTitleViewHeight
+            builder.leading == navigationBar.leadingAnchor
+            builder.trailing == navigationBar.trailingAnchor
+            builder.bottom == navigationBar.bottomAnchor
+        }
+
         let postButton = UIButton(type: .custom)
         postButton.setImage(UIImage(named: "Post"), for: .normal)
         postButton.setBackgroundImage(UIImage(color: UIColor.cerise.tint), for: .normal)
         postButton.tintColor = .white
-        postButton.layer.cornerRadius = 16
+        postButton.layer.cornerRadius = Constant.postButtonSize.height / 2
         postButton.layer.masksToBounds = true
 
-        navigationBar.addSubview(postButton)
+        largeTitleView.addSubview(postButton)
         postButton.cerise.layout { builder in
-            builder.size == CGSize(width: 32, height: 32)
-            builder.trailing == navigationBar.trailingAnchor - 12
-            builder.bottom == navigationBar.bottomAnchor - 12
+            builder.size == Constant.postButtonSize
+            builder.trailing == largeTitleView.trailingAnchor - 16.0
+            builder.bottom == largeTitleView.bottomAnchor - 12
+        }
+
+        let largeTitleLabel = UILabel()
+        largeTitleLabel.text = "New Matter"
+        largeTitleLabel.textColor = .white
+        largeTitleLabel.cerise.apply(UILabel.cerise.largeTitle)
+
+        largeTitleView.addSubview(largeTitleLabel)
+        largeTitleLabel.cerise.layout { builder in
+            builder.centerY == largeTitleView.centerYAnchor
+            builder.leading == largeTitleView.leadingAnchor + 16.0
+            builder.trailing == postButton.leadingAnchor - 10.0
+            builder.height == Constant.largeTitleLabelHeight
         }
 
         Preferences.accessibility
@@ -105,6 +125,11 @@ final class ComposerViewController: BaseViewController {
 
         let editorViewModel = editorViewController.viewModel
         let viewModel = ComposerViewModel(matter: editorViewModel.outputs.matter, validated: editorViewModel.outputs.validated)
+
+        editorViewModel.title
+            .map { $0 == "" ? "New Matter" : $0 }
+            .bind(to: largeTitleLabel.rx.text)
+            .disposed(by: disposeBag)
 
         postButton.rx.tap
             .bind(to: viewModel.inputs.post)
@@ -149,7 +174,7 @@ extension ComposerViewController: UIViewControllerTransitioningDelegate {
         let presentationController = ModalPresentationController(presentedViewController: presented,
                                                                  presenting: presenting)
         let bounds = UIApplication.shared.keyWindow?.bounds ?? UIScreen.main.bounds
-        presentationController.contentHeight = (bounds.height / 5 * 4).rounded(.up)
+        presentationController.preferredContentHeight = (bounds.height / 5 * 4).rounded(.up)
         presentationController.setContentScrollView(editorViewController.tableView)
         presentationController.handleView.backgroundColor = UIColor.cerise.tint
         presentationController.bottomView.backgroundColor = UIColor.cerise.dark
