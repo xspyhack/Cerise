@@ -220,10 +220,13 @@ extension EditorViewController: UITableViewDataSource {
             cell.textViewDidChangeAction = { [unowned self] height in
                 if height != self.notesRowHeight && height >= Constant.minimumNotesRowHeight {
                     tableView.bounces = false
-                    tableView.beginUpdates()
-                    self.notesRowHeight = height
-                    tableView.endUpdates()
-                    tableView.bounces = true
+                    UIView.performWithoutAnimation {
+                        tableView.performBatchUpdates({
+                            self.notesRowHeight = height
+                        }, completion: { _ in
+                            tableView.bounces = true
+                        })
+                    }
                 }
             }
 
@@ -329,7 +332,7 @@ extension EditorViewController: UITableViewDelegate {
         if indexPath == datePickerIndexPath {
             return Constant.pickerRowHeight
         } else {
-            return indexPath.section == EditorViewModel.Section.notes.rawValue ? notesRowHeight : Constant.rowHeight
+            return indexPath.section == EditorViewModel.Section.notes.rawValue ? notesRowHeight.rounded(.up) : Constant.rowHeight
         }
     }
 }
