@@ -32,9 +32,9 @@ protocol MattersViewModelType {
     func matter(at indexPath: IndexPath) -> Matter?
 }
 
-typealias MattersViewSection = SectionModel<String, MatterCellModelType>
+typealias MattersViewSection = SectionModel<Section, MatterCellModelType>
 
-private enum Section: Int {
+enum Section: Int {
     case upcoming
     case past
 
@@ -44,6 +44,15 @@ private enum Section: Int {
             return "UPCOMING"
         case .past:
             return "PAST"
+        }
+    }
+
+    var footer: String? {
+        switch self {
+        case .upcoming:
+            return " "
+        case .past:
+            return nil
         }
     }
 }
@@ -79,11 +88,11 @@ struct MattersViewModel: MattersViewModelType {
             .map { matters in
                 let comingCellModels = matters.filter { $0.occurrenceDate > Date() }
                     .map(MattersViewController.MatterCellModel.init) as [MatterCellModelType]
-                let comingSection = MattersViewSection(model: Section.upcoming.title, items: comingCellModels)
+                let comingSection = MattersViewSection(model: Section.upcoming, items: comingCellModels)
 
                 let pastCellModels = matters.filter { $0.occurrenceDate <= Date() }
                     .map(MattersViewController.MatterCellModel.init) as [MatterCellModelType]
-                let pastSection = MattersViewSection(model: Section.past.title, items: pastCellModels)
+                let pastSection = MattersViewSection(model: Section.past, items: pastCellModels)
 
                 return [comingSection, pastSection]
             }

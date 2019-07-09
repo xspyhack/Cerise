@@ -164,7 +164,6 @@ final class ModalPresentationController: UIPresentationController {
         presentedViewController.dismiss(animated: true, completion: nil)
     }
 
-    private var isContentScrollViewScrollingToTop: Bool = false
     private var lastOffsetY: CGFloat = 0
     private var isScrollingUp = false
     private var offsetObservation: NSKeyValueObservation?
@@ -200,14 +199,7 @@ final class ModalPresentationController: UIPresentationController {
                 }
 
                 let oldY = oldValue.y
-                var newY = newValue.y
-
-                if self.isContentScrollViewScrollingToTop {
-                    shouldBypass = true
-                    contentScrollView.setContentOffset(.zero, animated: true)
-                    shouldBypass = false
-                    newY = 0
-                }
+                let newY = newValue.y
 
                 var finalDeltaY: CGFloat = 0
                 if oldY != newY {
