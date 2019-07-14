@@ -36,10 +36,9 @@ extension AppDelegate {
     }
 
     func startMainStory() {
-        let rootViewController = UINavigationController()
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = UIHostingController(rootView: NavigationView {
-            MatterListView()
+            MatterList()
         })
         window?.makeKeyAndVisible()
     }

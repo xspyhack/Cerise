@@ -1,5 +1,5 @@
 //
-//  MatterDetailView.swift
+//  MatterDetail.swift
 //  Cerise
 //
 //  Created by bl4ckra1sond3tre on 2019/7/14.
@@ -8,11 +8,13 @@
 
 import SwiftUI
 
-struct MatterDetailView : View {
+struct MatterDetail : View {
+    var matter: Matter
+
     var body: some View {
         VStack() {
             VStack() {
-                Text("Title")
+                Text(matter.title)
                 Spacer()
                 Text("2019-9-9")
                     .padding(20)
@@ -28,7 +30,7 @@ struct MatterDetailView : View {
 #if DEBUG
 struct MatterDetailView_Previews : PreviewProvider {
     static var previews: some View {
-        MatterDetailView()
+        MatterDetail(matter: Matter.mock()[0])
     }
 }
 #endif
