@@ -67,7 +67,7 @@ extension Disk {
                                          attributes: nil)
     }
 
-    func createDirectoryNecessary(at url: URL) throws {
+    func createDirectoryIfNecessary(at url: URL) throws {
         let directory = url.deletingLastPathComponent()
 
         var isDirectory: ObjCBool = false

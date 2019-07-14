@@ -71,10 +71,11 @@ struct EditorViewModel: EditorViewModelType {
     private let disposeBag = DisposeBag()
 
     init() {
-        self.title = BehaviorRelay(value: "")
-        self.tag = BehaviorRelay(value: Tagble.allCases.randomElement() ?? .none)
-        self.when = BehaviorRelay(value: Date())
-        self.notes = BehaviorRelay(value: "")
+        let draft = try? Draft.retrieve(Matter.self)
+        self.title = BehaviorRelay(value: draft?.title ?? "")
+        self.tag = BehaviorRelay(value: draft?.tag ?? Tagble.allCases.randomElement() ?? .none)
+        self.when = BehaviorRelay(value: draft?.occurrenceDate ?? Date())
+        self.notes = BehaviorRelay(value: draft?.notes ?? "")
         let identifier = Driver<String>.just(UUID().uuidString)
         self.inputs = Inputs()
 

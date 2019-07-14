@@ -25,6 +25,7 @@
 		7849BE9A223D3FE50068503A /* AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7849BE99223D3FE50068503A /* AutoLayout.swift */; };
 		7849BE9D223E1F180068503A /* SafeCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7849BE9C223E1F180068503A /* SafeCollection.swift */; };
 		784A648122DB180900DF63E6 /* Disk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784A648022DB180900DF63E6 /* Disk.swift */; };
+		784A648322DB188E00DF63E6 /* Draft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784A648222DB188E00DF63E6 /* Draft.swift */; };
 		785C69BF223FDD51004DF721 /* HapticGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785C69BE223FDD51004DF721 /* HapticGenerator.swift */; };
 		785C69C1223FDF38004DF721 /* EditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785C69C0223FDF38004DF721 /* EditorViewController.swift */; };
 		785C69C3223FDF7C004DF721 /* ComposerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785C69C2223FDF7C004DF721 /* ComposerViewController.swift */; };
@@ -132,6 +133,7 @@
 		7849BE99223D3FE50068503A /* AutoLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoLayout.swift; sourceTree = "<group>"; };
 		7849BE9C223E1F180068503A /* SafeCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeCollection.swift; sourceTree = "<group>"; };
 		784A648022DB180900DF63E6 /* Disk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Disk.swift; sourceTree = "<group>"; };
+		784A648222DB188E00DF63E6 /* Draft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Draft.swift; sourceTree = "<group>"; };
 		785C69BE223FDD51004DF721 /* HapticGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticGenerator.swift; sourceTree = "<group>"; };
 		785C69C0223FDF38004DF721 /* EditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorViewController.swift; sourceTree = "<group>"; };
 		785C69C2223FDF7C004DF721 /* ComposerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposerViewController.swift; sourceTree = "<group>"; };
@@ -413,6 +415,7 @@
 				FAB9280D2244A7D800E338A8 /* Scalable.swift */,
 				785C69CC22462971004DF721 /* Charmander.swift */,
 				784A648022DB180900DF63E6 /* Disk.swift */,
+				784A648222DB188E00DF63E6 /* Draft.swift */,
 				78A8D0A2222ABDAA00885B6E /* UIImage+Color.swift */,
 				1F1DF46A22CF3C5A0054EA48 /* UILabel+LargeTitle.swift */,
 				1F1DF46C22CF3D6D0054EA48 /* ViewStyle.swift */,
@@ -696,6 +699,7 @@
 				7849BE8F223D26150068503A /* Coordinating.swift in Sources */,
 				785C69C522408234004DF721 /* ModalPresentationController.swift in Sources */,
 				7849BE96223D3EE60068503A /* LayoutBuilder.swift in Sources */,
+				784A648322DB188E00DF63E6 /* Draft.swift in Sources */,
 				78A8D0BC222AC64400885B6E /* Environment.swift in Sources */,
 				785C69CD22462971004DF721 /* Charmander.swift in Sources */,
 				785C69BF223FDD51004DF721 /* HapticGenerator.swift in Sources */,

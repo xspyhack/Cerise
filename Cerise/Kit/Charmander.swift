@@ -35,7 +35,7 @@ struct Charmander {
                                   forKey key: StoreKey,
                                   encoder: JSONEncoder = JSONEncoder()) throws {
         let url = try disk.url(atPath: path(forKey: key), in: directory)
-        try disk.createDirectoryNecessary(at: url)
+        try disk.createDirectoryIfNecessary(at: url)
         let data = try encoder.encode(object)
         try disk.write(data, to: url)
     }
