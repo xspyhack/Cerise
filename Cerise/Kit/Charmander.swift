@@ -18,6 +18,12 @@ extension String: StoreKey {
     }
 }
 
+extension Matter: StoreKey {
+    var identifier: String {
+        return id.replacingOccurrences(of: "-", with: "").lowercased()
+    }
+}
+
 struct Charmander {
     let disk: Disk
     let directory: Disk.Directory

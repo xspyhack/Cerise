@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 @UIApplicationMain
 final class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -36,10 +37,10 @@ extension AppDelegate {
 
     func startMainStory() {
         let rootViewController = UINavigationController()
-        window?.rootViewController = rootViewController
-        let coordinator = AppCoodinator(rootViewController: rootViewController)
-        Router.shared.appCoordinator = coordinator
-        coordinator.start()
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.rootViewController = UIHostingController(rootView: NavigationView {
+            MatterListView()
+        })
         window?.makeKeyAndVisible()
     }
 }

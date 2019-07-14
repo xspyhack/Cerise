@@ -1,0 +1,25 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Ditto",
+        "repositoryURL": "https://github.com/xspyhack/Ditto.git",
+        "state": {
+          "branch": null,
+          "revision": "2899dd79b7df43255ea3b069c84b267c650a2a4c",
+          "version": "0.1.0"
+        }
+      },
+      {
+        "package": "Keldeo",
+        "repositoryURL": "https://github.com/xspyhack/Keldeo.git",
+        "state": {
+          "branch": null,
+          "revision": "7b1de9dda3360328a603041e69e140192ac54c72",
+          "version": "0.1.3"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

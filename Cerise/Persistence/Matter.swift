@@ -7,9 +7,10 @@
 //
 
 import Foundation
+import SwiftUI
 
 /// A model that represents a matter.
-struct Matter: Codable {
+struct Matter: Codable, Identifiable {
     /// The matter’s unique identifier.
     let id: String
 

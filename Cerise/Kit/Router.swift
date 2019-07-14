@@ -77,7 +77,6 @@ class Router {
     static let shared = Router()
     private let router: Ditto.Router<RoutingCoordinator>
 
-    var appCoordinator: AppCoodinator?
     weak var delegate: RoutingCoordinatorDelegate?
 
     private init() {
@@ -86,20 +85,6 @@ class Router {
 
     static func register() {
         try? shared.router.register([
-            // 首页
-            ("cerise://home", { context in
-                return true
-            }),
-            ("cerise://add", { context in
-                let coordinator = context.coordinator
-                guard coordinator.viewController.presentedViewController == nil else {
-                    return false
-                }
-
-                let vc = ComposerViewController()
-                coordinator.show(vc)
-                return true
-            }),
             // 强制用浏览器打开链接
             // cerise://browser?link=[url]
             ("development://browser", { context in
