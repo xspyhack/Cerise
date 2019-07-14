@@ -24,6 +24,7 @@
 		7849BE98223D3FA10068503A /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7849BE97223D3FA10068503A /* UIView+Layout.swift */; };
 		7849BE9A223D3FE50068503A /* AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7849BE99223D3FE50068503A /* AutoLayout.swift */; };
 		7849BE9D223E1F180068503A /* SafeCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7849BE9C223E1F180068503A /* SafeCollection.swift */; };
+		784A648122DB180900DF63E6 /* Disk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784A648022DB180900DF63E6 /* Disk.swift */; };
 		785C69BF223FDD51004DF721 /* HapticGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785C69BE223FDD51004DF721 /* HapticGenerator.swift */; };
 		785C69C1223FDF38004DF721 /* EditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785C69C0223FDF38004DF721 /* EditorViewController.swift */; };
 		785C69C3223FDF7C004DF721 /* ComposerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785C69C2223FDF7C004DF721 /* ComposerViewController.swift */; };
@@ -130,6 +131,7 @@
 		7849BE97223D3FA10068503A /* UIView+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Layout.swift"; sourceTree = "<group>"; };
 		7849BE99223D3FE50068503A /* AutoLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoLayout.swift; sourceTree = "<group>"; };
 		7849BE9C223E1F180068503A /* SafeCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeCollection.swift; sourceTree = "<group>"; };
+		784A648022DB180900DF63E6 /* Disk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Disk.swift; sourceTree = "<group>"; };
 		785C69BE223FDD51004DF721 /* HapticGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticGenerator.swift; sourceTree = "<group>"; };
 		785C69C0223FDF38004DF721 /* EditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorViewController.swift; sourceTree = "<group>"; };
 		785C69C2223FDF7C004DF721 /* ComposerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposerViewController.swift; sourceTree = "<group>"; };
@@ -410,6 +412,7 @@
 				FAB9280B2244A6F000E338A8 /* Shadowability.swift */,
 				FAB9280D2244A7D800E338A8 /* Scalable.swift */,
 				785C69CC22462971004DF721 /* Charmander.swift */,
+				784A648022DB180900DF63E6 /* Disk.swift */,
 				78A8D0A2222ABDAA00885B6E /* UIImage+Color.swift */,
 				1F1DF46A22CF3C5A0054EA48 /* UILabel+LargeTitle.swift */,
 				1F1DF46C22CF3D6D0054EA48 /* ViewStyle.swift */,
@@ -666,6 +669,7 @@
 				FAB9280E2244A7D800E338A8 /* Scalable.swift in Sources */,
 				7820D0F62256DA2600DE79AE /* CherryRefreshControl.swift in Sources */,
 				FAB928082243718800E338A8 /* CherryTransitionController.swift in Sources */,
+				784A648122DB180900DF63E6 /* Disk.swift in Sources */,
 				78A8D0A3222ABDAA00885B6E /* UIImage+Color.swift in Sources */,
 				78A8D07C222AAA5C00885B6E /* MatterViewController.swift in Sources */,
 				7883660322C7ACDC00152D94 /* ModalNavigationController.swift in Sources */,
