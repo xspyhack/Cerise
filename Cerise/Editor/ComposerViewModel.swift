@@ -45,6 +45,9 @@ struct ComposerViewModel {
             .withLatestFrom(validated)
             .filter { !$0 }
             .map { _ in }
+            .do(onNext: {
+                try? Draft.remove()
+            })
             .asDriver()
 
         let attemptToDismiss = inputs.cancel
