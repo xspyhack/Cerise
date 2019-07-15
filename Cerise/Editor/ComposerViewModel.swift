@@ -14,18 +14,13 @@ struct ComposerViewModel {
     struct Inputs {
         let post = PublishSubject<Void>()
         let cancel = PublishSubject<Void>()
-        let draft = PublishSubject<DraftAction>()
+        let draft = PublishSubject<Draft.Action>()
     }
 
     struct Outputs {
         let dismiss: Driver<Void>
         let isPostEnabled: Driver<Bool>
         let attemptToDismiss: Driver<Void>
-    }
-
-    enum DraftAction {
-        case delete
-        case save
     }
 
     let inputs: Inputs

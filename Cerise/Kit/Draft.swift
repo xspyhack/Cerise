@@ -12,6 +12,11 @@ struct Draft {
     static let charmander: Charmander = Charmander(directory: .caches)
     static let key: String = "matter.draft"
 
+    enum Action {
+        case delete
+        case save
+    }
+
     static func store<Object: Encodable>(_ object: Object,
                                          encoder: JSONEncoder = JSONEncoder()) throws {
         try charmander.store(object, forKey: key)
