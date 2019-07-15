@@ -7,12 +7,16 @@
 //
 
 import UIKit
+import RxCocoa
+import RxSwift
 
 final class ModalPresentationController: UIPresentationController {
     private var maximumContentHeight: CGFloat
     var preferredContentHeight: CGFloat
     var dismissalOffsetThreshold: CGFloat = -20
     var dismissOnTapped: Bool = false
+
+    var attemptToDismiss = PublishRelay<Void>()
 
     private var contentHeight: CGFloat {
         return min(maximumContentHeight, preferredContentHeight)
@@ -157,11 +161,12 @@ final class ModalPresentationController: UIPresentationController {
         guard dismissOnTapped else {
             return
         }
-        presentedViewController.dismiss(animated: true, completion: nil)
+
+        dismiss()
     }
 
     private func dismiss() {
-        presentedViewController.dismiss(animated: true, completion: nil)
+        attemptToDismiss.accept(())
     }
 
     private var lastOffsetY: CGFloat = 0

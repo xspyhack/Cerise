@@ -14,15 +14,18 @@ struct ComposerViewModel {
     struct Inputs {
         let post = PublishSubject<Void>()
         let cancel = PublishSubject<Void>()
+        let draft = PublishSubject<Draft.Action>()
     }
 
     struct Outputs {
         let dismiss: Driver<Void>
         let isPostEnabled: Driver<Bool>
+        let attemptToDismiss: Driver<Void>
     }
 
     let inputs: Inputs
     let outputs: Outputs
+    private let disposeBag = DisposeBag()
 
     init(matter: Driver<Matter>, validated: Driver<Bool>) {
         inputs = Inputs()
@@ -33,14 +36,43 @@ struct ComposerViewModel {
             .withLatestFrom(matter)
             .do(onNext: { matter in
                 Matter.didCreate.onNext(matter)
+                try? Draft.remove()
             })
-            .map { _ in
-            }
+            .map { _ in }
             .asDriver()
 
-        let didCancel = inputs.cancel.asDriver()
-        let dismiss = Driver.of(didPost, didCancel).merge()
+        let didCancel = inputs.cancel
+            .withLatestFrom(validated)
+            .filter { !$0 }
+            .map { _ in }
+            .do(onNext: {
+                try? Draft.remove()
+            })
+            .asDriver()
 
-        outputs = Outputs(dismiss: dismiss, isPostEnabled: validated)
+        let attemptToDismiss = inputs.cancel
+            .withLatestFrom(validated)
+            .filter { $0 }
+            .map { _ in }
+            .asDriver()
+
+        let didDraft = inputs.draft
+            .withLatestFrom(matter, resultSelector: { ($0, $1) })
+            .do(onNext: { action, matter in
+                switch action {
+                case .delete:
+                    try? Draft.remove()
+                case .save:
+                    try? Draft.store(matter)
+                }
+            })
+            .map { _ in }
+            .asDriver()
+
+        let dismiss = Driver.of(didPost, didCancel, didDraft).merge()
+
+        outputs = Outputs(dismiss: dismiss,
+                          isPostEnabled: validated,
+                          attemptToDismiss: attemptToDismiss)
     }
 }

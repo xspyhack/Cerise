@@ -172,6 +172,10 @@ extension EditorViewController {
         required init?(coder aDecoder: NSCoder) {
             fatalError("init(coder:) has not been implemented")
         }
+
+        func setDate(_ date: Date, animated: Bool = true) {
+            datePicker.setDate(date, animated: animated)
+        }
     }
 
     final class DisclosureCell: UITableViewCell, Reusable {
@@ -248,7 +252,7 @@ extension EditorViewController {
             fatalError("init(coder:) has not been implemented")
         }
 
-        func setTag(_ tag: Tagble, animated: Bool) {
+        func setTag(_ tag: Tagble, animated: Bool = true) {
             tagitView.select(tag: tag, animated: animated)
         }
     }

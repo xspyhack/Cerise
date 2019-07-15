@@ -148,6 +148,8 @@ extension EditorViewController: UITableViewDataSource {
         switch section {
         case .title:
             let cell: TextFieldCell = tableView.cerise.dequeueReusableCell(for: indexPath)
+            let title = viewModel.title.value
+            cell.textField.text = title == "" ? nil : title
             cell.textField.attributedPlaceholder = NSAttributedString(string: "What's the Matter", attributes: [.foregroundColor: UIColor(named: "BK30") ?? .gray])
             cell.textChanged
                 .bind(to: viewModel.title)
@@ -187,6 +189,7 @@ extension EditorViewController: UITableViewDataSource {
         case .notes:
             let cell: TextViewCell = tableView.cerise.dequeueReusableCell(for: indexPath)
             cell.titleLabel.text = section.annotation
+            cell.textView.text = viewModel.notes.value
 
             let keyboardWillShow = NotificationCenter.default.rx.notification(UIResponder.keyboardWillShowNotification)
                 .filter { _ in UIApplication.shared.applicationState == .active }
@@ -265,6 +268,7 @@ extension EditorViewController: UITableViewDataSource {
         case .when:
             if indexPathHasPicker(indexPath) {
                 let cell: DatePickerCell = tableView.cerise.dequeueReusableCell(for: indexPath)
+                cell.setDate(viewModel.when.value)
                 cell.datePicked
                     .distinctUntilChanged()
                     .bind(to: viewModel.when)

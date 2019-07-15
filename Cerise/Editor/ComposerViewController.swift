@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import RxCocoa
 
 final class ComposerViewController: BaseViewController {
 
     private lazy var editorViewController = EditorViewController(viewModel: EditorViewModel())
+    var attemptToDismiss = PublishRelay<Void>()
 
     private enum Constant {
         static let navigationBarHeight: CGFloat = 96.0
@@ -124,7 +126,8 @@ final class ComposerViewController: BaseViewController {
         // MARK: ViewModel binding
 
         let editorViewModel = editorViewController.viewModel
-        let viewModel = ComposerViewModel(matter: editorViewModel.outputs.matter, validated: editorViewModel.outputs.validated)
+        let viewModel = ComposerViewModel(matter: editorViewModel.outputs.matter,
+                                          validated: editorViewModel.outputs.validated)
 
         editorViewModel.title
             .map { $0 == "" ? "New Matter" : $0 }
@@ -140,6 +143,10 @@ final class ComposerViewController: BaseViewController {
             .disposed(by: disposeBag)
 
         cancelItem.rx.tap
+            .bind(to: viewModel.inputs.cancel)
+            .disposed(by: disposeBag)
+
+        attemptToDismiss
             .bind(to: viewModel.inputs.cancel)
             .disposed(by: disposeBag)
 
@@ -160,6 +167,23 @@ final class ComposerViewController: BaseViewController {
                 self?.dismiss(animated: true, completion: nil)
             })
             .disposed(by: disposeBag)
+
+        viewModel.outputs.attemptToDismiss
+            .drive(onNext: { [weak self] in
+                let vc = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+                vc.popoverPresentationController?.barButtonItem = cancelItem
+                vc.addAction(UIAlertAction(title: "Delete Draft", style: .destructive) { _ in
+                    viewModel.inputs.draft.onNext(.delete)
+                })
+
+                vc.addAction(UIAlertAction(title: "Save Draft", style: .default) { _ in
+                    viewModel.inputs.draft.onNext(.save)
+                })
+
+                vc.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+                self?.present(vc, animated: true, completion: nil)
+            })
+            .disposed(by: disposeBag)
     }
 }
 
@@ -178,6 +202,9 @@ extension ComposerViewController: UIViewControllerTransitioningDelegate {
         presentationController.setContentScrollView(editorViewController.tableView)
         presentationController.handleView.backgroundColor = UIColor.cerise.tint
         presentationController.bottomView.backgroundColor = UIColor.cerise.dark
+        presentationController.attemptToDismiss
+            .bind(to: attemptToDismiss)
+            .disposed(by: disposeBag)
         return presentationController
     }
 }

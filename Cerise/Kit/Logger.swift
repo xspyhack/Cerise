@@ -14,11 +14,11 @@ enum Logger {
         let formatter = LogFormatter()
 
         if Environment.type == .debug {
-            let consoleLogger = ConsoleLogger(level: .debug, formatter: formatter)
+            let consoleLogger = Loggers.Console(level: .debug, formatter: formatter)
             Keldeo.Logger.shared.add(AnyLogger(consoleLogger))
         } else {
-            let fileManager = DefaultFileManager()
-            if let fileLogger = FileLogger(level: .info, formatter: formatter, fileManager: fileManager) {
+            let fileManager = FileManagers.Default()
+            if let fileLogger = Loggers.File(level: .info, formatter: formatter, fileManager: fileManager) {
                 Keldeo.Logger.shared.add(AnyLogger(fileLogger))
                 print("Log directory: \(fileManager.directory)")
             }
