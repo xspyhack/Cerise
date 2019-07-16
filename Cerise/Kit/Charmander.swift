@@ -49,9 +49,10 @@ struct Charmander {
     }
 
     func retrieveAll<Object: Decodable>(type: Object.Type,
-                                        decoder: JSONDecoder = JSONDecoder()) throws -> [Object] {
+                                        decoder: JSONDecoder = JSONDecoder(),
+                                        sortBy sorting: Disk.Sorting = .none) throws -> [Object] {
         let url = try disk.url(atPath: "\(folder)/", in: directory)
-        let urls = try disk.urls(at: url)
+        let urls = try disk.urls(at: url, sortBy: sorting)
         return try urls.map { try disk.read(from: $0) }
             .map { try decoder.decode(type, from: $0) }
     }

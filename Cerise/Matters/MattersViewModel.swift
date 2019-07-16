@@ -80,7 +80,7 @@ struct MattersViewModel: MattersViewModelType {
     private let charmander = Charmander()
 
     init() {
-        let matters = try? charmander.retrieveAll(type: Matter.self)
+        let matters = try? charmander.retrieveAll(type: Matter.self, sortBy: .created)
         self.matters = BehaviorRelay<[Matter]>(value: matters ?? [])
 
         let sections: Driver<[MattersViewSection]> = self.matters.asObservable()
