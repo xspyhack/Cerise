@@ -15,6 +15,26 @@ struct Disk {
         case temporary
     }
 
+    enum Sorting {
+        case none
+        case created
+        case modified
+    }
+
+    enum Ordering {
+        case asc
+        case desc
+
+        func isIncreasing(_ asc: Bool) -> Bool {
+            switch self {
+            case .asc:
+                return asc
+            case .desc:
+                return !asc
+            }
+        }
+    }
+
     enum Error: Swift.Error {
         case couldNotAccessUserDomainMask
     }
@@ -33,8 +53,40 @@ struct Disk {
         return url.appendingPathComponent(path, isDirectory: false)
     }
 
-    func urls(at url: URL) throws -> [URL] {
-        return try fileManager.contentsOfDirectory(at: url, includingPropertiesForKeys: nil, options: [])
+    func urls(at url: URL,
+              sortBy sorting: Sorting = .none,
+              orderBy ordering: Ordering = .asc) throws -> [URL] {
+        let resourceKeys: [URLResourceKey]
+        switch sorting {
+        case .none:
+            resourceKeys = []
+        case .created:
+            resourceKeys = [.creationDateKey]
+        case .modified:
+            resourceKeys = [.contentModificationDateKey]
+        }
+
+        func sorted(_ lhs: URL, _ rhs: URL) throws -> Bool {
+            guard sorting != .none else {
+                return true
+            }
+
+            let lValues = try lhs.resourceValues(forKeys: Set(resourceKeys))
+            let rValues = try rhs.resourceValues(forKeys: Set(resourceKeys))
+            switch sorting {
+            case .created:
+                let asc = lValues.creationDate ?? .distantPast >= rValues.creationDate ?? .distantPast
+                return ordering.isIncreasing(asc)
+            case .modified:
+                let asc = lValues.contentModificationDate ?? .distantPast >= rValues.contentModificationDate ?? .distantPast
+                return ordering.isIncreasing(asc)
+            case .none:
+                return true
+            }
+        }
+
+        return try fileManager.contentsOfDirectory(at: url, includingPropertiesForKeys: resourceKeys, options: [])
+            .sorted(by: sorted)
     }
 
     func write(_ data: Data, to url: URL) throws {
