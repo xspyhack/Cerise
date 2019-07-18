@@ -35,6 +35,7 @@ extension AppDelegate {
     }
 
     func startMainStory() {
+        window = UIWindow(frame: UIScreen.main.bounds)
         let rootViewController = UINavigationController()
         window?.rootViewController = rootViewController
         let coordinator = AppCoodinator(rootViewController: rootViewController)

@@ -19,7 +19,7 @@ struct MainCoodinator: Coordinating {
     }
 
     func start() {
-        let viewController = Storyboard.main.viewController(of: MainViewController.self)
+        let viewController = MainViewController()
         viewController.rx.viewDidLoad
             .subscribe(onNext: { [unowned viewController] in
                 let coordinator = MattersCoodinator(parentViewController: viewController)
@@ -27,7 +27,7 @@ struct MainCoodinator: Coordinating {
             })
             .disposed(by: disposeBag)
         Router.shared.delegate = viewController
-        navigationController?.setViewControllers([viewController], animated: true)
+        navigationController?.setViewControllers([viewController], animated: false)
     }
 
     func stop() {
