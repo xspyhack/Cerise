@@ -1,0 +1,40 @@
+/* 
+  Localizable.strings
+  Cerise
+
+  Created by alex.huo on 2019/7/18.
+  Copyright © 2019 blessingsoftware. All rights reserved.
+*/
+
+/* Cancel */
+"Cancel" = "";
+/* Delete draft action title */
+"Delete Draft" = "Delete Draft";
+/* Matters list title */
+"Matters" = "Matters";
+/* Matters section title */
+"UPCOMING" = "UPCOMING";
+/* Matters section title */
+"PAST" = "PAST";
+/* Composer title */
+"New Matter" = "New Matter";
+/* Editor new matter notes */
+"Notes" = "Notes";
+/* Save draft action title */
+"Save Draft" = "Save Draft";
+/* Editor new matter tag */
+"Tag" = "Tag";
+/* Editor new matter title */
+"Title" = "Title";
+/* Editor new matter title's placeholder */
+"What's the Matter" = "What's the Matter";
+/* Editor new matter occurrence date */
+"When" = "When";
+/* Accessibility case */
+"Normal" = "Normal";
+/* Accessibility case */
+"Modern" = "Modern";
+/* Accessibility case */
+"Clean" = "Clean";
+/* App settings guide */
+"📱 -> Cerise -> Accessibility" = "📱 -> Cerise -> Accessibility";

@@ -17,7 +17,7 @@ enum Preferences {
         case clean
 
         var title: String {
-            return rawValue.capitalized
+            return NSLocalizedString(rawValue.capitalized, comment: "Accessibility case")
         }
 
         var isVerbose: Bool {

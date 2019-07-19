@@ -41,9 +41,9 @@ enum Section: Int {
     var title: String {
         switch self {
         case .upcoming:
-            return "UPCOMING"
+            return NSLocalizedString("UPCOMING", comment: "Matters section title")
         case .past:
-            return "PAST"
+            return NSLocalizedString("PAST", comment: "Matters section title")
         }
     }
 

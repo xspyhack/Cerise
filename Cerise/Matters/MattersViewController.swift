@@ -46,7 +46,7 @@ final class MattersViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = "Matters"
+        title = NSLocalizedString("Matters", comment: "Matters list title")
         registerForPreviewing(with: self, sourceView: tableView)
 
         view.addSubview(tableView)

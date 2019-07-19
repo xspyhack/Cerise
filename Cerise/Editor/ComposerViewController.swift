@@ -83,7 +83,7 @@ final class ComposerViewController: BaseViewController {
         }
 
         let largeTitleLabel = UILabel()
-        largeTitleLabel.text = "New Matter"
+        largeTitleLabel.text = NSLocalizedString("New Matter", comment: "Composer title")
         largeTitleLabel.textColor = .white
         largeTitleLabel.cerise.apply(UILabel.cerise.largeTitle)
 
@@ -130,7 +130,7 @@ final class ComposerViewController: BaseViewController {
                                           validated: editorViewModel.outputs.validated)
 
         editorViewModel.title
-            .map { $0 == "" ? "New Matter" : $0 }
+            .map { $0 == "" ? NSLocalizedString("New Matter", comment: "Composer title") : $0 }
             .bind(to: largeTitleLabel.rx.text)
             .disposed(by: disposeBag)
 
@@ -172,15 +172,17 @@ final class ComposerViewController: BaseViewController {
             .drive(onNext: { [weak self] in
                 let vc = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
                 vc.popoverPresentationController?.barButtonItem = cancelItem
-                vc.addAction(UIAlertAction(title: "Delete Draft", style: .destructive) { _ in
+                let deleteTitle = NSLocalizedString("Delete Draft", comment: "Delete draft action title")
+                vc.addAction(UIAlertAction(title: deleteTitle, style: .destructive) { _ in
                     viewModel.inputs.draft.onNext(.delete)
                 })
 
-                vc.addAction(UIAlertAction(title: "Save Draft", style: .default) { _ in
+                let saveTitle = NSLocalizedString("Save Draft", comment: "Save draft action title")
+                vc.addAction(UIAlertAction(title: saveTitle, style: .default) { _ in
                     viewModel.inputs.draft.onNext(.save)
                 })
 
-                vc.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+                vc.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel"), style: .cancel))
                 self?.present(vc, animated: true, completion: nil)
             })
             .disposed(by: disposeBag)

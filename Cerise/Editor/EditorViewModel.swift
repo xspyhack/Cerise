@@ -49,13 +49,13 @@ struct EditorViewModel: EditorViewModelType {
         var annotation: String {
             switch self {
             case .title:
-                return "Title"
+                return NSLocalizedString("Title", comment: "Editor new matter title")
             case .tag:
-                return "Tag"
+                return NSLocalizedString("Tag", comment: "Editor new matter tag")
             case .when:
-                return "When"
+                return NSLocalizedString("When", comment: "Editor new matter occurrence date")
             case .notes:
-                return "Notes"
+                return NSLocalizedString("Notes", comment: "Editor new matter notes")
             }
         }
     }

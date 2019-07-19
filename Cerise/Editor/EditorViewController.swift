@@ -150,7 +150,10 @@ extension EditorViewController: UITableViewDataSource {
             let cell: TextFieldCell = tableView.cerise.dequeueReusableCell(for: indexPath)
             let title = viewModel.title.value
             cell.textField.text = title == "" ? nil : title
-            cell.textField.attributedPlaceholder = NSAttributedString(string: "What's the Matter", attributes: [.foregroundColor: UIColor(named: "BK30") ?? .gray])
+            let placeholder = NSLocalizedString("What's the Matter", comment: "Editor new matter title's placeholder")
+            let attributes: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor(named: "BK30") ?? .gray]
+            cell.textField.attributedPlaceholder = NSAttributedString(string: placeholder,
+                                                                      attributes: attributes)
             cell.textChanged
                 .bind(to: viewModel.title)
                 .disposed(by: cell.reusableBag)
