@@ -118,7 +118,7 @@ extension SettingsViewController {
 
             let label = UILabel()
             label.font = UIFont.systemFont(ofSize: 12)
-            label.text = NSLocalizedString("📱 -> Cerise -> Accessibility", comment: "App settings guide")
+            label.text = NSLocalizedString("📱 -> Settings -> Cerise -> Accessibility", comment: "App settings guide")
             label.textColor = UIColor.cerise.description
 
             addSubview(label)
