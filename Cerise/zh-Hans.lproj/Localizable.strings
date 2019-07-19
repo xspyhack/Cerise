@@ -1,0 +1,40 @@
+/* 
+  Localizable.strings
+  Cerise
+
+  Created by alex.huo on 2019/7/18.
+  Copyright © 2019 blessingsoftware. All rights reserved.
+*/
+
+/* Cancel */
+"Cancel" = "取消";
+/* Delete draft action title */
+"Delete Draft" = "删除草稿";
+/* Matters list title */
+"Matters" = "事项";
+/* Matters section title */
+"UPCOMING" = "即将到来";
+/* Matters section title */
+"PAST" = "过去";
+/* Composer title */
+"New Matter" = "新事项";
+/* Editor new matter notes */
+"Notes" = "备注";
+/* Save draft action title */
+"Save Draft" = "存储草稿";
+/* Editor new matter tag */
+"Tag" = "标签";
+/* Editor new matter title */
+"Title" = "标题";
+/* Editor new matter title's placeholder */
+"What's the Matter" = "有什么新事项";
+/* Editor new matter occurrence date */
+"When" = "日期";
+/* Accessibility case */
+"Normal" = "普通";
+/* Accessibility case */
+"Modern" = "现代";
+/* Accessibility case */
+"Clean" = "简洁";
+/* App settings guide */
+"📱 -> Settings -> Cerise -> Accessibility" = "📱 -> 设置 -> Cerise -> 外观";

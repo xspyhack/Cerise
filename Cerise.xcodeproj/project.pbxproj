@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1F1DF46B22CF3C5A0054EA48 /* UILabel+LargeTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F1DF46A22CF3C5A0054EA48 /* UILabel+LargeTitle.swift */; };
 		1F1DF46D22CF3D6D0054EA48 /* ViewStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F1DF46C22CF3D6D0054EA48 /* ViewStyle.swift */; };
+		1FECE2EB22E0A2740063F209 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1FECE2ED22E0A2740063F209 /* Localizable.strings */; };
 		7820D0F22256C1E100DE79AE /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7820D0F12256C1E100DE79AE /* SettingsViewController.swift */; };
 		7820D0F42256C53500DE79AE /* UIScrollView+Refresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7820D0F32256C53500DE79AE /* UIScrollView+Refresh.swift */; };
 		7820D0F62256DA2600DE79AE /* CherryRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7820D0F52256DA2600DE79AE /* CherryRefreshControl.swift */; };
@@ -114,6 +115,10 @@
 /* Begin PBXFileReference section */
 		1F1DF46A22CF3C5A0054EA48 /* UILabel+LargeTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+LargeTitle.swift"; sourceTree = "<group>"; };
 		1F1DF46C22CF3D6D0054EA48 /* ViewStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewStyle.swift; sourceTree = "<group>"; };
+		1FECE2E822E0A2340063F209 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		1FECE2EC22E0A2740063F209 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		1FECE2EE22E0A29D0063F209 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1FECE2F022E0A2A60063F209 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		7820D0F12256C1E100DE79AE /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		7820D0F32256C53500DE79AE /* UIScrollView+Refresh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Refresh.swift"; sourceTree = "<group>"; };
 		7820D0F52256DA2600DE79AE /* CherryRefreshControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CherryRefreshControl.swift; sourceTree = "<group>"; };
@@ -301,6 +306,7 @@
 				78A8D056222AA94700885B6E /* LaunchScreen.storyboard */,
 				78A8D059222AA94700885B6E /* Info.plist */,
 				7820D0FD2257608700DE79AE /* Settings.bundle */,
+				1FECE2ED22E0A2740063F209 /* Localizable.strings */,
 			);
 			path = Cerise;
 			sourceTree = "<group>";
@@ -540,6 +546,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = 78A8D041222AA94600885B6E;
 			productRefGroup = 78A8D04B222AA94600885B6E /* Products */;
@@ -557,6 +564,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1FECE2EB22E0A2740063F209 /* Localizable.strings in Resources */,
 				78A8D058222AA94700885B6E /* LaunchScreen.storyboard in Resources */,
 				78A8D055222AA94700885B6E /* Assets.xcassets in Resources */,
 				78A8D085222AAA8000885B6E /* Colors.xcassets in Resources */,
@@ -727,10 +735,21 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		1FECE2ED22E0A2740063F209 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1FECE2EC22E0A2740063F209 /* zh-Hans */,
+				1FECE2EE22E0A29D0063F209 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		78A8D056222AA94700885B6E /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				78A8D057222AA94700885B6E /* Base */,
+				1FECE2E822E0A2340063F209 /* zh-Hans */,
+				1FECE2F022E0A2A60063F209 /* en */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -742,6 +761,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -803,6 +823,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
