@@ -12,6 +12,7 @@ import RxSwift
 
 final class SettingsViewController: BaseViewController {
 
+    private var attemptToDismiss = PublishRelay<Void>()
     private(set) lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.cerise.register(reusableCell: CheckmarkCell.self)
@@ -53,6 +54,12 @@ final class SettingsViewController: BaseViewController {
         tableView.cerise.layout { builder in
             builder.edges == view.cerise.edgesAnchor
         }
+
+        attemptToDismiss
+            .subscribe(onNext: { [weak self] in
+                self?.dismiss(animated: true, completion: nil)
+            })
+            .disposed(by: disposeBag)
 
         let items = BehaviorRelay(value: Preferences.Accessibility.allCases)
         items
@@ -148,6 +155,9 @@ extension SettingsViewController: UIViewControllerTransitioningDelegate {
         presentationController.setContentScrollView(tableView)
         presentationController.handleView.backgroundColor = UIColor.cerise.tint
         presentationController.bottomView.backgroundColor = UIColor.cerise.dark
+        presentationController.attemptToDismiss
+            .bind(to: attemptToDismiss)
+            .disposed(by: disposeBag)
         return presentationController
     }
 }

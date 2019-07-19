@@ -12,7 +12,7 @@ import RxCocoa
 final class ComposerViewController: BaseViewController {
 
     private lazy var editorViewController = EditorViewController(viewModel: EditorViewModel())
-    var attemptToDismiss = PublishRelay<Void>()
+    private var attemptToDismiss = PublishRelay<Void>()
 
     private enum Constant {
         static let navigationBarHeight: CGFloat = 96.0
