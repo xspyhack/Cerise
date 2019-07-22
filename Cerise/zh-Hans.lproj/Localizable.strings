@@ -38,3 +38,9 @@
 "Clean" = "简洁";
 /* App settings guide */
 "📱 -> Settings -> Cerise -> Accessibility" = "📱 -> 设置 -> Cerise -> 外观";
+
+/* Welcome and Guide */
+"🍒 Welcome to Cerise" = "🍒 欢迎使用 Cerise";
+"🚀 Getting Started" = "🚀 快速开始";
+"Cerise is a simple countdown app." = "Cerise 是一个简单的计日应用。";
+"getting_started_guide" = "👐 欢迎！上手和掌握 Cerise 非常容易，接下来就展示给你。\n\nCerise 主要分为三个部分：\n\n*📚 _事项列表_*：你的所有事项都在这里，分为 /即将到来/ 和 /过去/ 两个部分。\n*📖 _事项详情_*：一个事项的详情包括 /标题/、/标签/、/日期/ 和 /备注/。\n*📝 _编辑器_*：用来添加和编辑你的事项。\n\n*🖋 添加一个新事项*：你可以在主页（ _事项列表_ ）通过 `下拉` 或者 `点击 +` 来添加一个新的事项。\n\n*👀 查看事项详情*：你可以在 _详情列表_ 通过 `点击` 其中一个事项来查看它的详情，或者使用 `3D Touch` 来进行预览（如果你的设备支持 3D Touch）。然后你可以使用 `3D Touch` 来返回到 _事项列表_ 页面。\n\n*❌ 删除一个事项*：你可以在 _事项列表_  通过 `左滑` 手势来 ~删除~ 一个事项。\n\n玩的开心。🍻";
