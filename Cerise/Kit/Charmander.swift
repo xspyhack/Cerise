@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Keldeo
 
 protocol StoreKey {
     var identifier: String { get }
@@ -38,6 +39,8 @@ struct Charmander {
         try disk.createDirectoryIfNecessary(at: url)
         let data = try encoder.encode(object)
         try disk.write(data, to: url)
+
+        // also save to cloud
     }
 
     func retrieve<Object: Decodable>(forKey key: StoreKey,
@@ -60,6 +63,8 @@ struct Charmander {
     func remove(forKey key: StoreKey) throws {
         let url = try disk.url(atPath: path(forKey: key), in: directory)
         try disk.remove(at: url)
+
+        // also remove from cloud
     }
 
     func clear() throws {

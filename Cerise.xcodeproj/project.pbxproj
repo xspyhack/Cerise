@@ -16,6 +16,7 @@
 		7820D0F82256E81D00DE79AE /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7820D0F72256E81D00DE79AE /* Preferences.swift */; };
 		7820D0FA2256EA9E00DE79AE /* UIBarButtonItem+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7820D0F92256EA9E00DE79AE /* UIBarButtonItem+Rx.swift */; };
 		7820D0FE2257608700DE79AE /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7820D0FD2257608700DE79AE /* Settings.bundle */; };
+		782D3AA822E753DF00F254E5 /* Cloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782D3AA722E753DF00F254E5 /* Cloud.swift */; };
 		78368A97224AFF8A003E57A1 /* Bootstrap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78368A96224AFF8A003E57A1 /* Bootstrap.swift */; };
 		7849BE8C222BC2640068503A /* MattersCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7849BE8B222BC2640068503A /* MattersCoordinator.swift */; };
 		7849BE8F223D26150068503A /* Coordinating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7849BE8E223D26150068503A /* Coordinating.swift */; };
@@ -126,6 +127,8 @@
 		7820D0F72256E81D00DE79AE /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		7820D0F92256EA9E00DE79AE /* UIBarButtonItem+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Rx.swift"; sourceTree = "<group>"; };
 		7820D0FD2257608700DE79AE /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		782D3AA722E753DF00F254E5 /* Cloud.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cloud.swift; sourceTree = "<group>"; };
+		782D3AA922E7541600F254E5 /* Cerise.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Cerise.entitlements; sourceTree = "<group>"; };
 		78368A96224AFF8A003E57A1 /* Bootstrap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bootstrap.swift; sourceTree = "<group>"; };
 		7849BE8B222BC2640068503A /* MattersCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MattersCoordinator.swift; sourceTree = "<group>"; };
 		7849BE8E223D26150068503A /* Coordinating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinating.swift; sourceTree = "<group>"; };
@@ -415,6 +418,7 @@
 				785C69CC22462971004DF721 /* Charmander.swift */,
 				784A648022DB180900DF63E6 /* Disk.swift */,
 				784A648222DB188E00DF63E6 /* Draft.swift */,
+				782D3AA722E753DF00F254E5 /* Cloud.swift */,
 				78A8D0A2222ABDAA00885B6E /* UIImage+Color.swift */,
 				1F1DF46A22CF3C5A0054EA48 /* UILabel+LargeTitle.swift */,
 				1F1DF46C22CF3D6D0054EA48 /* ViewStyle.swift */,
@@ -643,6 +647,7 @@
 				FA90AAE42241FAFC00B08682 /* SafeDispatchQueue.swift in Sources */,
 				FA90AAE22241FA8200B08682 /* ListUpdate.swift in Sources */,
 				78D5391522B60A9600FEA6F9 /* Appearances.swift in Sources */,
+				782D3AA822E753DF00F254E5 /* Cloud.swift in Sources */,
 				785C69C3223FDF7C004DF721 /* ComposerViewController.swift in Sources */,
 				FA90AAEA224348C100B08682 /* UIColor+Hex.swift in Sources */,
 				1F1DF46D22CF3D6D0054EA48 /* ViewStyle.swift in Sources */,
