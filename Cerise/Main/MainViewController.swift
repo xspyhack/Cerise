@@ -65,7 +65,7 @@ final class MainViewController: BaseViewController {
         if Preferences.cloud.value == .enabled {
             // Check iCloud available
              DispatchQueue.global().async {
-                 Log.i("availabel \(Cloud.shared.isAvailable())")
+                 Log.i("iCloud available: \(Cloud.shared.isAvailable())")
              }
         }
     }

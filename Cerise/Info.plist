@@ -37,7 +37,7 @@
 	<true/>
 	<key>NSUbiquitousContainers</key>
 	<dict>
-		<key>iCloud.com.xspyhack.Cerise</key>
+		<key>iCloud.$(PRODUCT_BUNDLE_IDENTIFIER)</key>
 		<dict>
 			<key>NSUbiquitousContainerIsDocumentScopePublic</key>
 			<true/>
