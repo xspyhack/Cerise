@@ -16,6 +16,7 @@
 		7820D0F82256E81D00DE79AE /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7820D0F72256E81D00DE79AE /* Preferences.swift */; };
 		7820D0FA2256EA9E00DE79AE /* UIBarButtonItem+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7820D0F92256EA9E00DE79AE /* UIBarButtonItem+Rx.swift */; };
 		7820D0FE2257608700DE79AE /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7820D0FD2257608700DE79AE /* Settings.bundle */; };
+		782D3AA822E753DF00F254E5 /* Cloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 782D3AA722E753DF00F254E5 /* Cloud.swift */; };
 		78368A97224AFF8A003E57A1 /* Bootstrap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78368A96224AFF8A003E57A1 /* Bootstrap.swift */; };
 		7849BE8C222BC2640068503A /* MattersCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7849BE8B222BC2640068503A /* MattersCoordinator.swift */; };
 		7849BE8F223D26150068503A /* Coordinating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7849BE8E223D26150068503A /* Coordinating.swift */; };
@@ -113,6 +114,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1F1BFAC622EC489300880E7A /* Cerise.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Cerise.entitlements; sourceTree = "<group>"; };
 		1F1DF46A22CF3C5A0054EA48 /* UILabel+LargeTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+LargeTitle.swift"; sourceTree = "<group>"; };
 		1F1DF46C22CF3D6D0054EA48 /* ViewStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewStyle.swift; sourceTree = "<group>"; };
 		1FECE2E822E0A2340063F209 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
@@ -125,6 +127,8 @@
 		7820D0F72256E81D00DE79AE /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		7820D0F92256EA9E00DE79AE /* UIBarButtonItem+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Rx.swift"; sourceTree = "<group>"; };
 		7820D0FD2257608700DE79AE /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		782D3AA722E753DF00F254E5 /* Cloud.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cloud.swift; sourceTree = "<group>"; };
+		782D3AA922E7541600F254E5 /* Cerise.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Cerise.entitlements; sourceTree = "<group>"; };
 		78368A96224AFF8A003E57A1 /* Bootstrap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bootstrap.swift; sourceTree = "<group>"; };
 		7849BE8B222BC2640068503A /* MattersCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MattersCoordinator.swift; sourceTree = "<group>"; };
 		7849BE8E223D26150068503A /* Coordinating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinating.swift; sourceTree = "<group>"; };
@@ -291,6 +295,7 @@
 		78A8D04C222AA94600885B6E /* Cerise */ = {
 			isa = PBXGroup;
 			children = (
+				1F1BFAC622EC489300880E7A /* Cerise.entitlements */,
 				78A8D06D222AA95F00885B6E /* App */,
 				78A8D06E222AA96600885B6E /* Main */,
 				78A8D071222AA9EC00885B6E /* Matters */,
@@ -413,6 +418,7 @@
 				785C69CC22462971004DF721 /* Charmander.swift */,
 				784A648022DB180900DF63E6 /* Disk.swift */,
 				784A648222DB188E00DF63E6 /* Draft.swift */,
+				782D3AA722E753DF00F254E5 /* Cloud.swift */,
 				78A8D0A2222ABDAA00885B6E /* UIImage+Color.swift */,
 				1F1DF46A22CF3C5A0054EA48 /* UILabel+LargeTitle.swift */,
 				1F1DF46C22CF3D6D0054EA48 /* ViewStyle.swift */,
@@ -532,6 +538,11 @@
 				TargetAttributes = {
 					78A8D049222AA94600885B6E = {
 						CreatedOnToolsVersion = 10.1;
+						SystemCapabilities = {
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 					78A8D05D222AA94800885B6E = {
 						CreatedOnToolsVersion = 10.1;
@@ -636,6 +647,7 @@
 				FA90AAE42241FAFC00B08682 /* SafeDispatchQueue.swift in Sources */,
 				FA90AAE22241FA8200B08682 /* ListUpdate.swift in Sources */,
 				78D5391522B60A9600FEA6F9 /* Appearances.swift in Sources */,
+				782D3AA822E753DF00F254E5 /* Cloud.swift in Sources */,
 				785C69C3223FDF7C004DF721 /* ComposerViewController.swift in Sources */,
 				FA90AAEA224348C100B08682 /* UIColor+Hex.swift in Sources */,
 				1F1DF46D22CF3D6D0054EA48 /* ViewStyle.swift in Sources */,
@@ -879,7 +891,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Cerise/Cerise.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_TEAM = DJ5N6T769K;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -890,6 +904,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.xspyhack.Cerise;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -901,7 +916,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Cerise/Cerise.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_TEAM = DJ5N6T769K;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -912,6 +929,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.xspyhack.Cerise;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

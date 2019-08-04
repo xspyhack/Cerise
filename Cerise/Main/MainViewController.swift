@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Keldeo
 
 final class MainViewController: BaseViewController {
     private var containerView: UIView = UIView()
@@ -60,6 +61,13 @@ final class MainViewController: BaseViewController {
         addItem.rx.tap
             .bind(to: mattersViewController.viewModel.inputs.addAction)
             .disposed(by: disposeBag)
+
+        if Preferences.cloud.value == .enabled {
+            // Check iCloud available
+             DispatchQueue.global().async {
+                 Log.i("iCloud available: \(Cloud.shared.isAvailable())")
+             }
+        }
     }
 }
 

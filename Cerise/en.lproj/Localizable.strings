@@ -7,7 +7,7 @@
 */
 
 /* Cancel */
-"Cancel" = "";
+"Cancel" = "Cancel";
 /* Delete draft action title */
 "Delete Draft" = "Delete Draft";
 /* Matters list title */
@@ -38,3 +38,9 @@
 "Clean" = "Clean";
 /* App settings guide */
 "📱 -> Settings -> Cerise -> Accessibility" = "📱 -> Settings -> Cerise -> Accessibility";
+
+/* Welcome and Guide */
+"🍒 Welcome to Cerise" = "🍒 Welcome to Cerise";
+"🚀 Getting Started" = "🚀 Getting Started";
+"Cerise is a simple countdown app." = "Cerise is a simple countdown app.";
+"getting_started_guide" = "👐 Welcome! It’s easy to get started and master Cerise, so let’s show you around.\n\nCerise has three parts:\n\n*📚 _Matters List_*: All your matters live here, there are /UPCOMING/ and /PAST/ sections.\n*📖 _Matter Details_*: The matter's details contains /Title/, /Tag/, /When/ and /Notes/.\n*📝 _Editor_*: This is where you can add your matters.\n\n*🖋 Add a new matter*: You can `pull down` or `tap +` in home page (_Matters List_) to add a new matter.\n\n*👀 View matter details*: You can `tap` a matter in _Matters List_ to view the matter details, or use `3D Touch` to preview (If 3D Touch is available). And then you can use `3D Touch` to pop back to _Matters List_ page (If 3D Touch is available).\n\n*❌ Delete a matter*: You can use `swipe left` gesture to ~delete~ a matter in the _Matters List_.\n\nEnjoy yourself. 🍻";

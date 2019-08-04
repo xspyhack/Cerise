@@ -9,6 +9,7 @@
 import Foundation
 import RxCocoa
 import RxSwift
+import Keldeo
 
 enum Preferences {
     enum Accessibility: String, CaseIterable {
@@ -29,6 +30,25 @@ enum Preferences {
 
     static let accessibility = BehaviorRelay<Accessibility>(value: .normal)
 
+    enum Cloud {
+        case enabled
+        case disabled
+        //case unavailable
+
+        var isEnabled: Bool {
+            switch self {
+            case .enabled:
+                return true
+            case .disabled:
+                return false
+            }
+        }
+
+        static let key = "cloud" + Preferences.suffix
+    }
+
+    static let cloud = BehaviorRelay<Cloud>(value: .disabled)
+
     enum Info: String {
         case version
         case build
@@ -43,6 +63,7 @@ enum Preferences {
     private static let disposeBag = DisposeBag()
 
     static func setUp() {
+        // Accessibility
         func updateAccessibility() {
             let value = UserDefaults.standard.string(forKey: Accessibility.key) ?? "Normal"
             if let accessibility = Accessibility(rawValue: value.lowercased()) {
@@ -62,6 +83,21 @@ enum Preferences {
         NotificationCenter.default.rx.notification(UserDefaults.didChangeNotification)
             .subscribe(onNext: { _ in
                 updateAccessibility()
+            })
+            .disposed(by: disposeBag)
+
+        // Cloud
+        func updateCloud() {
+            let value = UserDefaults.standard.bool(forKey: Cloud.key)
+            Preferences.cloud.accept(value ? .enabled : .disabled)
+        }
+
+        updateCloud()
+
+        Preferences.cloud
+            .distinctUntilChanged()
+            .subscribe(onNext: { status in
+                UserDefaults.standard.set(status.isEnabled, forKey: Cloud.key)
             })
             .disposed(by: disposeBag)
 

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Keldeo
 
 protocol StoreKey {
     var identifier: String { get }
@@ -18,6 +19,7 @@ extension String: StoreKey {
     }
 }
 
+/// Disk service for manager encodable object. Store, retrieve, remove...
 struct Charmander {
     let disk: Disk
     let directory: Disk.Directory
@@ -31,13 +33,20 @@ struct Charmander {
         self.folder = folder
     }
 
+    /// Store object into disk
+    /// - Parameter object: The encodable object that you want to store into disk
+    /// - Parameter key: Identifier key
+    /// - Parameter encoder: Encoder. Defaults JSONEncoder.
+    @discardableResult
     func store<Object: Encodable>(_ object: Object,
                                   forKey key: StoreKey,
-                                  encoder: JSONEncoder = JSONEncoder()) throws {
+                                  encoder: JSONEncoder = JSONEncoder()) throws -> URL {
         let url = try disk.url(atPath: path(forKey: key), in: directory)
         try disk.createDirectoryIfNecessary(at: url)
         let data = try encoder.encode(object)
         try disk.write(data, to: url)
+
+        return url
     }
 
     func retrieve<Object: Decodable>(forKey key: StoreKey,
@@ -57,9 +66,14 @@ struct Charmander {
             .map { try decoder.decode(type, from: $0) }
     }
 
-    func remove(forKey key: StoreKey) throws {
+    /// Remove object from disk
+    /// - Parameter key: Identifier key
+    @discardableResult
+    func remove(forKey key: StoreKey) throws -> URL {
         let url = try disk.url(atPath: path(forKey: key), in: directory)
         try disk.remove(at: url)
+
+        return url
     }
 
     func clear() throws {

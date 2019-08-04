@@ -25,9 +25,9 @@ struct Bootstrap {
 
     private func welcome() {
         let matter = Matter(id: UUID().uuidString,
-                            title: "🍒 Welcome to Cerise",
+                            title: NSLocalizedString("🍒 Welcome to Cerise", comment: "Welcome title"),
                             occurrenceDate: Date(),
-                            notes: "Cerise is a simple countdown app.")
+                            notes: NSLocalizedString("Cerise is a simple countdown app.", comment: "Welcome details"))
         do {
             try charmander.store(matter, forKey: matter.identifier)
         } catch {
@@ -54,11 +54,12 @@ struct Bootstrap {
 
                     Enjoy yourself. 🍻
                     """
-
+        Log.d(notes)
+        // use localized key `getting_started_guide` instead notes
         let matter = Matter(id: UUID().uuidString,
-                            title: "🚀 Getting Started",
+                            title: NSLocalizedString("🚀 Getting Started", comment: "Guide title"),
                             occurrenceDate: Date(timeIntervalSinceNow: 233_333),
-                            notes: notes)
+                            notes: NSLocalizedString("getting_started_guide", comment: "Guide details"))
 
         do {
             try charmander.store(matter, forKey: matter.identifier)
