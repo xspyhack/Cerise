@@ -133,7 +133,14 @@ struct MattersViewModel: MattersViewModelType {
 
         Matter.didCreate
             .do(onNext: { matter in
-                try? self.charmander.store(matter, forKey: matter.identifier)
+                guard let url = try? self.charmander.store(matter, forKey: matter.identifier),
+                    Preferences.cloud.value == .enabled else {
+                    return
+                }
+                // also save to cloud
+                DispatchQueue.global().async {
+                    try? Cloud.shared.copyItem(at: url)
+                }
             })
             .subscribe(onNext: { matter in
                 var matters = self.matters.value
@@ -144,7 +151,14 @@ struct MattersViewModel: MattersViewModelType {
 
         Matter.didDelete
             .do(onNext: { matter in
-                try? self.charmander.remove(forKey: matter.identifier)
+                guard let url = try? self.charmander.remove(forKey: matter.identifier),
+                    Preferences.cloud.value == .enabled else {
+                    return
+                }
+                // also remove from cloud
+                DispatchQueue.global().async {
+                    try? Cloud.shared.removeItem(at: url)
+                }
             })
             .subscribe(onNext: { matter in
                 guard let index = self.matters.value.firstIndex(of: matter) else {
@@ -158,8 +172,8 @@ struct MattersViewModel: MattersViewModelType {
 
         Matter.didUpdate
             .do(onNext: { matter in
-                try? self.charmander.remove(forKey: matter.identifier)
-                try? self.charmander.store(matter, forKey: matter.identifier)
+                try self.charmander.remove(forKey: matter.identifier)
+                try self.charmander.store(matter, forKey: matter.identifier)
             })
             .subscribe(onNext: { matter in
                 guard let index = self.matters.value.firstIndex(of: matter) else {
