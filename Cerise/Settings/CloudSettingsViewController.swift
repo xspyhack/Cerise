@@ -1,21 +1,21 @@
 //
-//  SettingsViewController.swift
+//  CloudSettingsViewController.swift
 //  Cerise
 //
-//  Created by bl4ckra1sond3tre on 2019/4/5.
+//  Created by alex.huo on 2019/9/21.
 //  Copyright © 2019 blessingsoftware. All rights reserved.
 //
 
 import UIKit
-import RxCocoa
 import RxSwift
+import RxCocoa
 
-final class SettingsViewController: BaseViewController {
+final class CloudSettingsViewController: BaseViewController {
 
     private var attemptToDismiss = PublishRelay<Void>()
     private(set) lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
-        tableView.cerise.register(reusableCell: CheckmarkCell.self)
+        tableView.cerise.register(reusableCell: ToggleCell.self)
         tableView.rowHeight = Constant.rowHeight
         tableView.estimatedRowHeight = Constant.rowHeight
         tableView.sectionHeaderHeight = Constant.sectionHeaderHeight
@@ -25,20 +25,14 @@ final class SettingsViewController: BaseViewController {
         tableView.separatorColor = UIColor(named: "BK20")
         tableView.allowsSelection = true
         tableView.allowsMultipleSelection = false
-        tableView.tableFooterView = self.footerView
+        tableView.tableFooterView = FooterView()
         return tableView
-    }()
-
-    private lazy var footerView: FooterView = {
-        let view = FooterView(frame: CGRect(origin: .zero, size: CGSize(width: 100, height: Constant.footerViewHeight)))
-        return view
     }()
 
     private enum Constant {
         static let rowHeight: CGFloat = 56.0
         static let sectionHeaderHeight: CGFloat = 64.0
         static let sectionFooterHeight: CGFloat = 32.0
-        static let footerViewHeight: CGFloat = 88.0
     }
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -67,45 +61,54 @@ final class SettingsViewController: BaseViewController {
             })
             .disposed(by: disposeBag)
 
-        let items = BehaviorRelay(value: Preferences.Accessibility.allCases)
+        let items = BehaviorRelay(value: ["iCloud Backup"])
         items
-            .bind(to: tableView.rx.items(cellIdentifier: CheckmarkCell.reuseIdentifier, cellType: CheckmarkCell.self)) { _, modal, cell in
-                cell.textLabel?.text = modal.title
+            .bind(to: tableView.rx.items(cellIdentifier: ToggleCell.reuseIdentifier, cellType: ToggleCell.self)) { _, modal, cell in
+                cell.textLabel?.text = modal
+                cell.toggle.rx.isOn
+                    .skip(1)
+                    .map { $0 ? Preferences.Cloud.enabled : Preferences.Cloud.disabled }
+                    .bind(to: Preferences.cloud)
+                    .disposed(by: cell.reusableBag)
             }
-            .disposed(by: disposeBag)
-
-        tableView.rx
-            .modelSelected(Preferences.Accessibility.self)
-            .bind(to: Preferences.accessibility)
-            .disposed(by: disposeBag)
-
-        tableView.rx.itemSelected
-            .observeOn(MainScheduler.asyncInstance)
-            .subscribe(onNext: { [weak self] _ in
-                self?.dismiss(animated: true, completion: nil)
-            })
             .disposed(by: disposeBag)
 
         rx.viewDidAppear
             .take(1)
-            .compactMap { _ in items.value.firstIndex(of: Preferences.accessibility.value) }
-            .map { IndexPath(row: $0, section: 0) }
-            .subscribe(onNext: { [weak tableView] indexPath in
-                tableView?.selectRow(at: indexPath, animated: true, scrollPosition: .none)
+            .flatMap { _ -> Observable<Bool> in
+                Observable.create { observer -> Disposable in
+                    DispatchQueue.global().async {
+                        observer.onNext(Cloud.shared.isAvailable())
+                        observer.onCompleted()
+                    }
+                    return Disposables.create()
+                }
+            }
+            .observeOn(MainScheduler.instance)
+            .do(onNext: { [weak tableView] available in
+                let cell = tableView?.visibleCells.first as? ToggleCell
+                cell?.toggle.isEnabled = available
             })
-            .disposed(by: disposeBag)
-
-        footerView.backupButton.rx.tap
-            .subscribe(onNext: { [unowned self] _ in
-                let vc = CloudSettingsViewController()
-                self.present(vc, animated: true, completion: nil)
+            .filter { $0 }
+            .map { _ in Preferences.cloud.value.isEnabled }
+            .subscribe(onNext: { [weak tableView] enabled in
+                let cell = tableView?.visibleCells.first as? ToggleCell
+                cell?.toggle.setOn(enabled, animated: true)
             })
             .disposed(by: disposeBag)
     }
 }
 
-extension SettingsViewController {
-    class CheckmarkCell: RxTableViewCell, Reusable {
+extension CloudSettingsViewController {
+    class ToggleCell: RxTableViewCell, Reusable {
+        lazy var toggle: UISwitch = {
+            let toggle = UISwitch()
+            toggle.isOn = false
+            toggle.tintColor = UIColor.cerise.tint
+            toggle.onTintColor = UIColor.cerise.tint
+            return toggle
+        }()
+
         override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
             super.init(style: style, reuseIdentifier: reuseIdentifier)
 
@@ -115,29 +118,23 @@ extension SettingsViewController {
             textLabel?.textColor = .white
             textLabel?.font = UIFont.systemFont(ofSize: 18, weight: .regular)
             tintColor = UIColor.cerise.tint
+
+            accessoryType = .none
+            accessoryView = toggle
         }
 
         required init?(coder aDecoder: NSCoder) {
             fatalError("init(coder:) has not been implemented")
-        }
-
-        override func setSelected(_ selected: Bool, animated: Bool) {
-            super.setSelected(selected, animated: animated)
-
-            if selected {
-                accessoryType = .checkmark
-            } else {
-                accessoryType = .none
-            }
         }
     }
 
     class FooterView: UIView {
         lazy var backupButton: UIButton = {
             let button = UIButton(type: .custom)
-            button.setTitle(NSLocalizedString("☁️ Backup", comment: "icloud backup"), for: .normal)
+            button.setTitle(NSLocalizedString("Backup Now", comment: "Backup now button title"), for: .normal)
             button.setTitleColor(UIColor.cerise.title, for: .normal)
             button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .medium)
+            button.isHidden = true
             return button
         }()
 
@@ -146,8 +143,9 @@ extension SettingsViewController {
 
             let label = UILabel()
             label.font = UIFont.systemFont(ofSize: 12)
-            label.text = NSLocalizedString("📱 -> Settings -> Cerise -> Accessibility", comment: "App settings guide")
+            label.text = NSLocalizedString("Automatically back up your matters.", comment: "Backup descriptions")
             label.textColor = UIColor.cerise.description
+            label.numberOfLines = 0
 
             addSubview(label)
             label.cerise.layout { builder in
@@ -158,7 +156,7 @@ extension SettingsViewController {
             addSubview(backupButton)
             backupButton.cerise.layout { builder in
                 builder.centerX == self.centerXAnchor
-                builder.top == label.bottomAnchor + 20
+                builder.top == label.bottomAnchor + 8
             }
         }
 
@@ -168,7 +166,7 @@ extension SettingsViewController {
     }
 }
 
-extension SettingsViewController: UIViewControllerTransitioningDelegate {
+extension CloudSettingsViewController: UIViewControllerTransitioningDelegate {
     func presentationController(forPresented presented: UIViewController,
                                 presenting: UIViewController?,
                                 source: UIViewController) -> UIPresentationController? {

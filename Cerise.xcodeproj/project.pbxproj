@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		1F1DF46B22CF3C5A0054EA48 /* UILabel+LargeTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F1DF46A22CF3C5A0054EA48 /* UILabel+LargeTitle.swift */; };
 		1F1DF46D22CF3D6D0054EA48 /* ViewStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F1DF46C22CF3D6D0054EA48 /* ViewStyle.swift */; };
+		1F8B57CF23360A3C008B8908 /* CloudSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8B57CE23360A3C008B8908 /* CloudSettingsViewController.swift */; };
+		1F8B57D123360CFC008B8908 /* CloudBackupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8B57D023360CFC008B8908 /* CloudBackupViewController.swift */; };
 		1FECE2EB22E0A2740063F209 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1FECE2ED22E0A2740063F209 /* Localizable.strings */; };
 		7820D0F22256C1E100DE79AE /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7820D0F12256C1E100DE79AE /* SettingsViewController.swift */; };
 		7820D0F42256C53500DE79AE /* UIScrollView+Refresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7820D0F32256C53500DE79AE /* UIScrollView+Refresh.swift */; };
@@ -116,6 +118,8 @@
 		1F1BFAC622EC489300880E7A /* Cerise.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Cerise.entitlements; sourceTree = "<group>"; };
 		1F1DF46A22CF3C5A0054EA48 /* UILabel+LargeTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+LargeTitle.swift"; sourceTree = "<group>"; };
 		1F1DF46C22CF3D6D0054EA48 /* ViewStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewStyle.swift; sourceTree = "<group>"; };
+		1F8B57CE23360A3C008B8908 /* CloudSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudSettingsViewController.swift; sourceTree = "<group>"; };
+		1F8B57D023360CFC008B8908 /* CloudBackupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudBackupViewController.swift; sourceTree = "<group>"; };
 		1FECE2E822E0A2340063F209 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		1FECE2EC22E0A2740063F209 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		1FECE2EE22E0A29D0063F209 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -291,6 +295,8 @@
 			isa = PBXGroup;
 			children = (
 				7820D0F12256C1E100DE79AE /* SettingsViewController.swift */,
+				1F8B57CE23360A3C008B8908 /* CloudSettingsViewController.swift */,
+				1F8B57D023360CFC008B8908 /* CloudBackupViewController.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -690,6 +696,7 @@
 				FA90AADA2240F6B500B08682 /* Tagble.swift in Sources */,
 				78A8D09D222ABAEB00885B6E /* Router.swift in Sources */,
 				78A8D0AF222AC4BD00885B6E /* ObservableConvertibleType+Driver.swift in Sources */,
+				1F8B57D123360CFC008B8908 /* CloudBackupViewController.swift in Sources */,
 				FA4CFD33224B5AE80063088C /* Renderer.swift in Sources */,
 				78A8D0A7222AC08700885B6E /* Cerise.swift in Sources */,
 				78A8D0AA222AC19A00885B6E /* Matter.swift in Sources */,
@@ -730,6 +737,7 @@
 				785C69C7224136F5004DF721 /* EditorViewController+Cell.swift in Sources */,
 				7849BE98223D3FA10068503A /* UIView+Layout.swift in Sources */,
 				7820D0F82256E81D00DE79AE /* Preferences.swift in Sources */,
+				1F8B57CF23360A3C008B8908 /* CloudSettingsViewController.swift in Sources */,
 				78A8D0AC222AC44100885B6E /* ModelService.swift in Sources */,
 				7849BE8C222BC2640068503A /* MattersCoordinator.swift in Sources */,
 				7849BE9D223E1F180068503A /* SafeCollection.swift in Sources */,
