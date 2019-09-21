@@ -78,8 +78,10 @@ struct MattersViewModel: MattersViewModelType {
     private let disposeBag = DisposeBag()
     private(set) var matters: BehaviorRelay<[Matter]>
     private let charmander = Charmander()
+    private let cloud: Cloud
 
-    init() {
+    init(cloud: Cloud = Cloud.shared) {
+        self.cloud = cloud
         let matters = try? charmander.retrieveAll(type: Matter.self)
         self.matters = BehaviorRelay<[Matter]>(value: matters ?? [])
 
@@ -139,7 +141,7 @@ struct MattersViewModel: MattersViewModelType {
                 }
                 // also save to cloud
                 DispatchQueue.global().async {
-                    try? Cloud.shared.copyItem(at: url)
+                    try? self.cloud.copyItem(at: url)
                 }
             })
             .subscribe(onNext: { matter in
@@ -157,7 +159,7 @@ struct MattersViewModel: MattersViewModelType {
                 }
                 // also remove from cloud
                 DispatchQueue.global().async {
-                    try? Cloud.shared.removeItem(at: url)
+                    try? self.cloud.removeItem(at: url)
                 }
             })
             .subscribe(onNext: { matter in
