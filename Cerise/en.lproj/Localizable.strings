@@ -47,6 +47,8 @@
 
 /* icloud backup */
 "☁️ Backup" = "☁️ Backup";
+/* icloud backup title */
+"iCloud Backup" = "iCloud Backup";
 /* Backup now button title */
 "Backup Now" = "Backup Now";
 /* Backup descriptions */

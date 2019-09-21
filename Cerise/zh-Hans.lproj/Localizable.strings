@@ -47,7 +47,9 @@
 
 /* icloud backup */
 "☁️ Backup" = "☁️ 备份";
+/* icloud backup title */
+"iCloud Backup" = "iCloud 备份";
 /* Backup now button title */
 "Backup Now" = "立即备份";
 /* Backup descriptions */
-"Automatically back up your matters." = "自动备份你的事项到云端。";
+"Automatically back up your matters." = "自动备份你的事项到云端，避免数据丢失。";

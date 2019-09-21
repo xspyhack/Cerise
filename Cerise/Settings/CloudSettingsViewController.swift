@@ -61,7 +61,7 @@ final class CloudSettingsViewController: BaseViewController {
             })
             .disposed(by: disposeBag)
 
-        let items = BehaviorRelay(value: ["iCloud Backup"])
+        let items = BehaviorRelay(value: [NSLocalizedString("iCloud Backup", comment: "icloud backup title")])
         items
             .bind(to: tableView.rx.items(cellIdentifier: ToggleCell.reuseIdentifier, cellType: ToggleCell.self)) { _, modal, cell in
                 cell.textLabel?.text = modal

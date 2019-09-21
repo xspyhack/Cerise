@@ -11,6 +11,7 @@
 		1F1DF46D22CF3D6D0054EA48 /* ViewStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F1DF46C22CF3D6D0054EA48 /* ViewStyle.swift */; };
 		1F8B57CF23360A3C008B8908 /* CloudSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8B57CE23360A3C008B8908 /* CloudSettingsViewController.swift */; };
 		1F8B57D123360CFC008B8908 /* CloudBackupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8B57D023360CFC008B8908 /* CloudBackupViewController.swift */; };
+		1F8B57D3233635F5008B8908 /* PanelPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8B57D2233635F5008B8908 /* PanelPresentationController.swift */; };
 		1FECE2EB22E0A2740063F209 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1FECE2ED22E0A2740063F209 /* Localizable.strings */; };
 		7820D0F22256C1E100DE79AE /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7820D0F12256C1E100DE79AE /* SettingsViewController.swift */; };
 		7820D0F42256C53500DE79AE /* UIScrollView+Refresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7820D0F32256C53500DE79AE /* UIScrollView+Refresh.swift */; };
@@ -120,6 +121,7 @@
 		1F1DF46C22CF3D6D0054EA48 /* ViewStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewStyle.swift; sourceTree = "<group>"; };
 		1F8B57CE23360A3C008B8908 /* CloudSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudSettingsViewController.swift; sourceTree = "<group>"; };
 		1F8B57D023360CFC008B8908 /* CloudBackupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudBackupViewController.swift; sourceTree = "<group>"; };
+		1F8B57D2233635F5008B8908 /* PanelPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelPresentationController.swift; sourceTree = "<group>"; };
 		1FECE2E822E0A2340063F209 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		1FECE2EC22E0A2740063F209 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		1FECE2EE22E0A29D0063F209 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -277,6 +279,7 @@
 			isa = PBXGroup;
 			children = (
 				785C69C422408234004DF721 /* ModalPresentationController.swift */,
+				1F8B57D2233635F5008B8908 /* PanelPresentationController.swift */,
 				FAB928072243718800E338A8 /* CherryTransitionController.swift */,
 			);
 			path = Transitioning;
@@ -721,6 +724,7 @@
 				78A8D0A3222ABDAA00885B6E /* UIImage+Color.swift in Sources */,
 				78A8D07C222AAA5C00885B6E /* MatterViewController.swift in Sources */,
 				7883660322C7ACDC00152D94 /* ModalNavigationController.swift in Sources */,
+				1F8B57D3233635F5008B8908 /* PanelPresentationController.swift in Sources */,
 				785C69CF22476B0E004DF721 /* UIScrollView+Cerise.swift in Sources */,
 				78A8D0B7222AC51200885B6E /* UIView+Rx.swift in Sources */,
 				78A8D077222AAA5500885B6E /* MattersViewController+Cell.swift in Sources */,
