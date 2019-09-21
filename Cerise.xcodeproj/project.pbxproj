@@ -38,7 +38,6 @@
 		785C69CD22462971004DF721 /* Charmander.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785C69CC22462971004DF721 /* Charmander.swift */; };
 		785C69CF22476B0E004DF721 /* UIScrollView+Cerise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785C69CE22476B0E004DF721 /* UIScrollView+Cerise.swift */; };
 		788365FF22C4765100152D94 /* UIColorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788365FE22C4765100152D94 /* UIColorTests.swift */; };
-		7883660022C4783600152D94 /* UIColor+Cerise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A8D0C1222AC84E00885B6E /* UIColor+Cerise.swift */; };
 		7883660122C4783D00152D94 /* Cerise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A8D0A6222AC08700885B6E /* Cerise.swift */; };
 		7883660322C7ACDC00152D94 /* ModalNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7883660222C7ACDC00152D94 /* ModalNavigationController.swift */; };
 		78A8D04E222AA94600885B6E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A8D04D222AA94600885B6E /* AppDelegate.swift */; };
@@ -128,7 +127,6 @@
 		7820D0F92256EA9E00DE79AE /* UIBarButtonItem+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Rx.swift"; sourceTree = "<group>"; };
 		7820D0FD2257608700DE79AE /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		782D3AA722E753DF00F254E5 /* Cloud.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cloud.swift; sourceTree = "<group>"; };
-		782D3AA922E7541600F254E5 /* Cerise.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Cerise.entitlements; sourceTree = "<group>"; };
 		78368A96224AFF8A003E57A1 /* Bootstrap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bootstrap.swift; sourceTree = "<group>"; };
 		7849BE8B222BC2640068503A /* MattersCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MattersCoordinator.swift; sourceTree = "<group>"; };
 		7849BE8E223D26150068503A /* Coordinating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinating.swift; sourceTree = "<group>"; };
@@ -244,6 +242,51 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1F8B57CA2336063C008B8908 /* Persistences */ = {
+			isa = PBXGroup;
+			children = (
+				785C69CC22462971004DF721 /* Charmander.swift */,
+				784A648022DB180900DF63E6 /* Disk.swift */,
+				784A648222DB188E00DF63E6 /* Draft.swift */,
+				782D3AA722E753DF00F254E5 /* Cloud.swift */,
+			);
+			path = Persistences;
+			sourceTree = "<group>";
+		};
+		1F8B57CB23360673008B8908 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				78A8D0A2222ABDAA00885B6E /* UIImage+Color.swift */,
+				1F1DF46A22CF3C5A0054EA48 /* UILabel+LargeTitle.swift */,
+				785C69CE22476B0E004DF721 /* UIScrollView+Cerise.swift */,
+				78A8D0C1222AC84E00885B6E /* UIColor+Cerise.swift */,
+				FA90AAE9224348C100B08682 /* UIColor+Hex.swift */,
+				FA90AAD72240EDEC00B08682 /* Date+Cerise.swift */,
+				78A8D0C3222AD39200885B6E /* UIStoryboard+Cerise.swift */,
+				78A8D0C5222AD4C100885B6E /* String+Uppercased.swift */,
+				7820D0F32256C53500DE79AE /* UIScrollView+Refresh.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		1F8B57CC2336069C008B8908 /* Transitioning */ = {
+			isa = PBXGroup;
+			children = (
+				785C69C422408234004DF721 /* ModalPresentationController.swift */,
+				FAB928072243718800E338A8 /* CherryTransitionController.swift */,
+			);
+			path = Transitioning;
+			sourceTree = "<group>";
+		};
+		1F8B57CD233606B3008B8908 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				78A8D09A222ABAEB00885B6E /* BaseViewController.swift */,
+				7883660222C7ACDC00152D94 /* ModalNavigationController.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
 		7820D0F02256C1C000DE79AE /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -400,12 +443,12 @@
 				FA4CFD2B224B5AA60063088C /* Markup */,
 				7849BE90223D3E5F0068503A /* AutoLayout */,
 				78A8D0AD222AC4B100885B6E /* Rx */,
+				1F8B57CA2336063C008B8908 /* Persistences */,
+				1F8B57CB23360673008B8908 /* Extensions */,
+				1F8B57CC2336069C008B8908 /* Transitioning */,
+				1F8B57CD233606B3008B8908 /* Base */,
 				78A8D0A6222AC08700885B6E /* Cerise.swift */,
 				78A8D0A4222AC06200885B6E /* Reusable.swift */,
-				78A8D09A222ABAEB00885B6E /* BaseViewController.swift */,
-				785C69C422408234004DF721 /* ModalPresentationController.swift */,
-				7883660222C7ACDC00152D94 /* ModalNavigationController.swift */,
-				FAB928072243718800E338A8 /* CherryTransitionController.swift */,
 				7849BE8E223D26150068503A /* Coordinating.swift */,
 				FA4CFD2E224B5AE80063088C /* Renderer.swift */,
 				785C69BE223FDD51004DF721 /* HapticGenerator.swift */,
@@ -415,22 +458,9 @@
 				FA90AAD32240EB2C00B08682 /* Logger.swift */,
 				FAB9280B2244A6F000E338A8 /* Shadowability.swift */,
 				FAB9280D2244A7D800E338A8 /* Scalable.swift */,
-				785C69CC22462971004DF721 /* Charmander.swift */,
-				784A648022DB180900DF63E6 /* Disk.swift */,
-				784A648222DB188E00DF63E6 /* Draft.swift */,
-				782D3AA722E753DF00F254E5 /* Cloud.swift */,
-				78A8D0A2222ABDAA00885B6E /* UIImage+Color.swift */,
-				1F1DF46A22CF3C5A0054EA48 /* UILabel+LargeTitle.swift */,
 				1F1DF46C22CF3D6D0054EA48 /* ViewStyle.swift */,
-				78A8D0C1222AC84E00885B6E /* UIColor+Cerise.swift */,
-				FA90AAE9224348C100B08682 /* UIColor+Hex.swift */,
-				785C69CE22476B0E004DF721 /* UIScrollView+Cerise.swift */,
-				FA90AAD72240EDEC00B08682 /* Date+Cerise.swift */,
 				78A8D0AB222AC44100885B6E /* ModelService.swift */,
 				78A8D0B8222AC5EA00885B6E /* FeedbackController.swift */,
-				78A8D0C3222AD39200885B6E /* UIStoryboard+Cerise.swift */,
-				78A8D0C5222AD4C100885B6E /* String+Uppercased.swift */,
-				7820D0F32256C53500DE79AE /* UIScrollView+Refresh.swift */,
 				7820D0F52256DA2600DE79AE /* CherryRefreshControl.swift */,
 			);
 			path = Kit;
@@ -732,7 +762,6 @@
 				78A8D063222AA94800885B6E /* CeriseTests.swift in Sources */,
 				788365FF22C4765100152D94 /* UIColorTests.swift in Sources */,
 				7883660122C4783D00152D94 /* Cerise.swift in Sources */,
-				7883660022C4783600152D94 /* UIColor+Cerise.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
