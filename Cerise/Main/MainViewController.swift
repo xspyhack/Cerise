@@ -8,6 +8,7 @@
 
 import UIKit
 import Keldeo
+import RxSwift
 
 final class MainViewController: BaseViewController {
     private var containerView: UIView = UIView()
@@ -62,23 +63,43 @@ final class MainViewController: BaseViewController {
             .bind(to: mattersViewController.viewModel.inputs.addAction)
             .disposed(by: disposeBag)
 
-        if Preferences.cloud.value == .enabled {
-            // Check iCloud available
-            DispatchQueue.global().async {
-                Log.i("iCloud available: \(Cloud.shared.isAvailable())")
-                let key = "com.cerise.backup.remind"
-                guard Cloud.shared.isAvailable(),
-                    !UserDefaults.standard.bool(forKey: key) else {
-                    return
-                }
-
-                DispatchQueue.main.async {
-                    let vc = CloudBackupViewController()
-                    self.present(vc, animated: true, completion: nil)
-                    UserDefaults.standard.set(true, forKey: key)
+        // Check iCloud available
+        let cloudKey = "com.cerise.backup.remind"
+        rx.viewDidAppear
+            .take(1)
+            .flatMap { _ -> Observable<Bool> in
+                Observable.create { observer -> Disposable in
+                    DispatchQueue.global().async {
+                        let booted = try? Charmander().urls().count > 2
+                        observer.onNext(booted ?? false)
+                        observer.onCompleted()
+                    }
+                    return Disposables.create()
                 }
             }
-        }
+            .filter { $0 || UserDefaults.standard.bool(forKey: Charmander.firstMatterKey) }
+            .flatMap { _ -> Observable<Bool> in
+                Observable.create { observer -> Disposable in
+                    DispatchQueue.global().async {
+                        observer.onNext(Cloud.shared.isAvailable())
+                        observer.onCompleted()
+                    }
+                    return Disposables.create()
+                }
+            }
+            .filter { $0 }
+            .do(onNext: { available in
+                Log.i("iCloud available: \(available)")
+            })
+            .filter { _ in !UserDefaults.standard.bool(forKey: cloudKey) }
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { _ in
+                let vc = CloudBackupViewController()
+                self.present(vc, animated: true) {
+                    UserDefaults.standard.set(true, forKey: cloudKey)
+                }
+            })
+            .disposed(by: disposeBag)
     }
 }
 

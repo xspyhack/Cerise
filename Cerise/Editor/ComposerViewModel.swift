@@ -37,6 +37,7 @@ struct ComposerViewModel {
             .do(onNext: { matter in
                 Matter.didCreate.onNext(matter)
                 try? Draft.remove()
+                UserDefaults.standard.set(true, forKey: Charmander.firstMatterKey)
             })
             .map { _ in }
             .asDriver()

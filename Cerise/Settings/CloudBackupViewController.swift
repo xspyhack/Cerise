@@ -95,8 +95,8 @@ final class CloudBackupViewController: BaseViewController {
         do {
             let cloud = Cloud.shared
             let urls = try Charmander().urls()
-            try urls.forEach { url in
-                try cloud.copyItem(at: url)
+            urls.forEach { url in
+                try? cloud.copyItem(at: url)
             }
         } catch {
             Log.e("Backup failed: \(error)")

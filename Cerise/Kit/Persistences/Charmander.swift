@@ -25,6 +25,8 @@ struct Charmander {
     let directory: Disk.Directory
     let folder: String
 
+    static let firstMatterKey = "com.cerise.first.matter"
+
     init(disk: Disk = Disk(),
          directory: Disk.Directory = .documents,
          folder: String = "com.blessingsoftware.cerise") {
