@@ -17,6 +17,14 @@ extension Cerise where Base: UIColor {
         return UIColor(named: "DARK")!
     }
 
+    static var lightSecondary: UIColor {
+        return UIColor(named: "LTSE")!
+    }
+
+    static var darkTertiary: UIColor {
+        return UIColor(named: "DKTE")!
+    }
+
     static var lightText: UIColor {
         return UIColor(named: "lightText")!
     }

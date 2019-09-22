@@ -66,6 +66,11 @@ struct Charmander {
             .map { try decoder.decode(type, from: $0) }
     }
 
+    func urls(sortBy sorting: Disk.Sorting = .none) throws -> [URL] {
+        let url = try disk.url(atPath: "\(folder)/", in: directory)
+        return try disk.urls(at: url, sortBy: sorting)
+    }
+
     /// Remove object from disk
     /// - Parameter key: Identifier key
     @discardableResult

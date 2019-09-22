@@ -64,9 +64,20 @@ final class MainViewController: BaseViewController {
 
         if Preferences.cloud.value == .enabled {
             // Check iCloud available
-             DispatchQueue.global().async {
-                 Log.i("iCloud available: \(Cloud.shared.isAvailable())")
-             }
+            DispatchQueue.global().async {
+                Log.i("iCloud available: \(Cloud.shared.isAvailable())")
+                let key = "com.cerise.backup.remind"
+                guard Cloud.shared.isAvailable(),
+                    !UserDefaults.standard.bool(forKey: key) else {
+                    return
+                }
+
+                DispatchQueue.main.async {
+                    let vc = CloudBackupViewController()
+                    self.present(vc, animated: true, completion: nil)
+                    UserDefaults.standard.set(true, forKey: key)
+                }
+            }
         }
     }
 }

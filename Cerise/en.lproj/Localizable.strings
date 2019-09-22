@@ -53,3 +53,10 @@
 "Backup Now" = "Backup Now";
 /* Backup descriptions */
 "Automatically back up your matters." = "Automatically back up your matters.";
+
+/* iCloud back up title */
+"iCloud Back Up" = "iCloud Back Up";
+/* iCloud backup details */
+"Back up your matters to iCloud." = "Back up your matters to iCloud.";
+/* Back up button title */
+"Backup" = "Backup";

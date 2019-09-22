@@ -53,3 +53,10 @@
 "Backup Now" = "立即备份";
 /* Backup descriptions */
 "Automatically back up your matters." = "自动备份你的事项到云端，避免数据丢失。";
+
+/* iCloud back up title */
+"iCloud Back Up" = "iCloud 备份";
+/* iCloud backup details */
+"Back up your matters to iCloud." = "备份你的所有事项到 iCloud，避免数据丢失。";
+/* Back up button title */
+"Backup" = "备份";
