@@ -97,6 +97,9 @@ final class Cloud {
     func copyItem(at localURL: URL) throws {
         // make a copy first
         let tempURL = fileManager.temporaryDirectory.appendingPathComponent(localURL.lastPathComponent)
+        if fileManager.fileExists(atPath: tempURL.path) {
+            try fileManager.removeItem(at: tempURL)
+        }
         try fileManager.copyItem(at: localURL, to: tempURL)
         // move into iCloud
         try moveItem(from: tempURL)

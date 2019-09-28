@@ -81,6 +81,7 @@ enum Preferences {
             .disposed(by: disposeBag)
 
         NotificationCenter.default.rx.notification(UserDefaults.didChangeNotification)
+            .observeOn(MainScheduler.instance)
             .subscribe(onNext: { _ in
                 updateAccessibility()
             })
