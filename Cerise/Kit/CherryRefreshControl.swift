@@ -10,7 +10,7 @@ import UIKit
 import RxCocoa
 import RxSwift
 
-class CherryRefreshControl: UIRefreshControl {
+final class CherryRefreshControl: UIRefreshControl {
 
     private let disposeBag = DisposeBag()
     private var observeBag = DisposeBag()
@@ -55,8 +55,9 @@ class CherryRefreshControl: UIRefreshControl {
         let threshold: CGFloat = 20.0
         observeBag = DisposeBag()
         superview.rx.contentOffset
+            .map { $0.y + superview.adjustedContentInset.top }
             .subscribe(onNext: { [weak self] offset in
-                self?.refreshIndicator.alpha = (-offset.y - threshold) / (threshold * 3)
+                self?.refreshIndicator.alpha = (-offset) / (threshold * 3)
             })
             .disposed(by: observeBag)
 

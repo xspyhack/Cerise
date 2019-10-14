@@ -55,6 +55,7 @@ final class SettingsViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        HapticGenerator.trigger(with: .impactLight)
         view.backgroundColor = UIColor.cerise.dark
         view.addSubview(tableView)
         tableView.cerise.layout { builder in
@@ -79,8 +80,12 @@ final class SettingsViewController: BaseViewController {
             .bind(to: Preferences.accessibility)
             .disposed(by: disposeBag)
 
-        tableView.rx.itemSelected
+        tableView.rx
+            .itemSelected
             .observeOn(MainScheduler.asyncInstance)
+            .do(onNext: { _ in
+                HapticGenerator.trigger(with: .selection)
+            })
             .subscribe(onNext: { [weak self] _ in
                 self?.dismiss(animated: true, completion: nil)
             })
