@@ -1,6 +1,7 @@
 # Cerise
 
 ![Swift 5.0](https://img.shields.io/badge/Swift-5.0%2B-orange)
+![MVVM](https://img.shields.io/badge/Arch-MVVM-brightgreen)
 
 A simple countdown app helps you countdown to those wonderful moments that matters to you.
 
