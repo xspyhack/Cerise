@@ -204,6 +204,7 @@ extension ComposerViewController: UIViewControllerTransitioningDelegate {
         presentationController.setContentScrollView(editorViewController.tableView)
         presentationController.handleView.backgroundColor = UIColor.cerise.tint
         presentationController.bottomView.backgroundColor = UIColor.cerise.dark
+        presentationController.dismissalOffsetThreshold = 60
         presentationController.attemptToDismiss
             .bind(to: attemptToDismiss)
             .disposed(by: disposeBag)
